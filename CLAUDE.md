@@ -90,6 +90,7 @@ These were tried and intentionally removed. Do not add them back:
 Rules about non-obvious behavior that must survive future edits.
 
 - Masthead GB label distinguishes three cases: sole leader (`holds 1st`), tied-for-first (`tied for 1st`), and trailing (`X.X GB`). Keep these distinct in any future `renderMasthead` edits — do not collapse "sole leader" and "tied" into a single label.
+- Initial page load: all six main sections start collapsed. This is intentional, not an oversight — it's the almanac conceit in action (quiet on arrival, visitor chooses what to see). Do not default any top-level section to expanded without an explicit request to change the conceit.
 
 ## Working with Dave
 
