@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2026 Cubs — A Season Almanac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400;1,8..60,600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #faf6ec;
+    --paper-deep: #f0e9d6;
+    --ink: #0e3386;          /* Cubs royal blue */
+    --ink-soft: #3d5896;
+    --accent: #cc3433;       /* Cubs red */
+    --accent-deep: #9e1c2c;
+    --rule: #c8b896;
+    --win: #0e3386;          /* royal — wins are blue */
+    --loss: #cc3433;         /* red — losses are red */
+    --national: #c89b3f;
+    --ivy: #2d5a3d;          /* the green of Wrigley ivy, used sparingly */
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(124, 95, 50, 0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(124, 95, 50, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 40px 80px;
+    position: relative;
+    z-index: 2;
+  }
+  .masthead {
+    border-top: 6px double var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 14px 0 16px;
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+  }
+  .masthead::before, .masthead::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+  }
+  .masthead::before { top: -10px; }
+  .masthead::after  { bottom: -6px; }
+  .masthead-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .title em {
+    font-style: italic;
+    color: var(--accent);
+    font-weight: 400;
+  }
+  .masthead-record {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    margin-top: 10px;
+  }
+  .masthead-record .sep {
+    color: var(--accent);
+    margin: 0 10px;
+  }
+  .masthead-record .gb {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .masthead-pennants {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+    margin-top: 12px;
+    padding: 0 20px;
+  }
+  .pennant {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 18px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 9px;
+    color: var(--paper);
+    clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%);
+  }
+  .pennant-w { background: var(--ink); }
+  .pennant-l { background: var(--accent); }
+  .dateline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ink-soft);
+    padding-top: 10px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 14px;
+    margin-bottom: 36px;
+  }
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin: 48px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  /* Section wrapper (drag removed; collapse retained) */
+  .draggable-section .section-head {
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: opacity 0.15s ease;
+  }
+  .draggable-section .section-head:hover {
+    opacity: 0.7;
+  }
+  .collapse-toggle {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-family: 'Source Serif 4', serif;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--accent);
+    padding: 6px 8px;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .draggable-section.collapsed .section-body { display: none; }
+  .draggable-section.collapsed .section-head {
+    margin-bottom: 0;
+    border-bottom-style: dashed;
+  }
+
+  /* Inline channel badge for sections IV & V */
+  .game-channel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 3px;
+    line-height: 1;
+  }
+  .game-channel.national {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .game-channel.national::before {
+    content: '★ ';
+    color: var(--national);
+  }
+  .section-roman {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .section-rule {
+    flex: 1;
+  }
+  .pulse-section {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 8px;
+  }
+  .pulse-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .pulse-strip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    letter-spacing: 0.15em;
+    line-height: 1;
+    word-break: break-all;
+  }
+  .pulse-W { color: var(--win); font-weight: 700; }
+  .pulse-L { color: var(--accent); }
+  .pulse-record {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 0.9;
+    text-align: right;
+  }
+  .pulse-record .pct {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 16px;
+  }
+  @media (max-width: 760px) {
+    .two-col { grid-template-columns: 1fr; gap: 36px; }
+    .pulse-section { grid-template-columns: 1fr; }
+    .pulse-record { text-align: left; }
+    .container { padding: 30px 20px 60px; }
+  }
+  .standings {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+  }
+  .standings th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .standings th:first-child { text-align: left; }
+  .standings td {
+    padding: 11px 6px;
+    border-bottom: 1px dotted var(--rule);
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+  .standings td:first-child { text-align: left; font-weight: 600; }
+  .standings tr.cubs-row { background: rgba(122, 31, 43, 0.06); }
+  .standings tr.cubs-row td { color: var(--accent-deep); font-weight: 700; }
+  .standings tr.cubs-row td:first-child::before {
+    content: '▸ ';
+    color: var(--accent);
+  }
+  .game {
+    display: grid;
+    grid-template-columns: 70px 1fr auto;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--rule);
+    align-items: center;
+  }
+  .game-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+  .game-matchup { font-family: 'Source Serif 4', serif; font-size: 15px; }
+  .game-matchup .vs { color: var(--ink-soft); font-style: italic; margin: 0 4px; }
+  .game-matchup .home-mark {
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .game-result {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border: 1px solid currentColor;
+  }
+  .game-result.W { color: var(--win); }
+  .game-result.L { color: var(--accent); }
+  .watch-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 8px;
+  }
+  @media (max-width: 700px) { .watch-grid { grid-template-columns: 1fr; } }
+  .watch-card {
+    border: 1px solid var(--rule);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 22px 24px;
+  }
+  .watch-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .watch-card .market {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+  .watch-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .watch-list {
+    list-style: none;
+    margin-top: 12px;
+  }
+  .watch-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule);
+    font-size: 14px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .watch-list li:last-child { border-bottom: none; }
+  .watch-list .name { font-weight: 600; }
+  .watch-list .price {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .watch-note {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    line-height: 1.6;
+  }
+  .national-windows {
+    margin-top: 18px;
+    padding: 16px 20px;
+    background: var(--paper-deep);
+    border-left: 3px solid var(--national);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .national-windows strong { color: var(--ink); font-weight: 700; }
+  .filters {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0 24px;
+    padding: 14px;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+  }
+  .filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .filters-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-right: 4px;
+    min-width: 38px;
+  }
+  .filter-btn, .sort-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .filter-btn:hover, .sort-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-btn.active, .sort-btn.active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .schedule-month { margin-bottom: 32px; }
+  .schedule-month-head {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .schedule-game {
+    display: grid;
+    grid-template-columns: 80px 1fr 70px 180px 38px;
+    gap: 14px;
+    padding: 9px 4px;
+    border-bottom: 1px dotted var(--rule);
+    align-items: center;
+    font-size: 14px;
+  }
+  @media (max-width: 700px) {
+    .schedule-game {
+      grid-template-columns: 60px 1fr 60px;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .schedule-game .sched-time, .schedule-game .sched-channel { display: none; }
+  }
+  .schedule-game.played { color: var(--ink-soft); }
+  .schedule-game.today {
+    background: rgba(122, 31, 43, 0.08);
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+  }
+  .sched-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .sched-opp .home-mark {
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    margin-right: 2px;
+  }
+  .sched-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-align: right;
+  }
+  .sched-channel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    text-align: right;
+  }
+  .sched-channel.national { color: var(--ink); font-weight: 700; }
+  .sched-channel.national::before { content: '★ '; color: var(--national); }
+  .sched-result {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    padding: 2px 6px;
+    border: 1px solid currentColor;
+  }
+  .sched-result.W { color: var(--win); }
+  .sched-result.L { color: var(--accent); }
+  .sched-result.empty { border: none; }
+  .projection {
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    padding: 32px;
+    margin-top: 24px;
+    position: relative;
+  }
+  .projection::before {
+    content: '§';
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--paper);
+    padding: 0 12px;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--accent);
+  }
+  .projection-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  @media (max-width: 600px) {
+    .projection-row { grid-template-columns: 1fr; gap: 12px; }
+  }
+  .proj-stat { text-align: center; }
+  .proj-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .proj-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .proj-value .small {
+    font-size: 18px;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .proj-controls { margin-top: 8px; }
+  .proj-controls label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .slider-wrap { display: flex; align-items: center; gap: 16px; }
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2px;
+    background: var(--ink);
+    outline: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--ink);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--ink);
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  .slider-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    min-width: 60px;
+    text-align: right;
+  }
+  .lede {
+    font-family: 'Source Serif 4', serif;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 24px 0;
+  }
+  .lede::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.85;
+    margin: 4px 10px -4px 0;
+    color: var(--accent);
+  }
+
+  /* Floating control cluster (refresh + collapse all) */
+  .floating-controls {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 100;
+    display: flex;
+    gap: 8px;
+  }
+  .floating-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    border-top: 3px solid var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(14, 51, 134, 0.25);
+    transition: all 0.15s ease;
+  }
+  .floating-btn:hover:not(:disabled) {
+    background: var(--accent);
+    border-top-color: var(--ink);
+    box-shadow: 0 6px 18px rgba(204, 52, 51, 0.3);
+  }
+  .floating-btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .floating-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  .floating-icon {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    line-height: 1;
+  }
+  .refresh-btn .floating-icon {
+    font-size: 16px;
+    display: inline-block;
+  }
+  .refresh-btn.spinning .floating-icon {
+    animation: spin 0.9s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Refresh status toast */
+  .refresh-status {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    z-index: 99;
+    max-width: 280px;
+    padding: 10px 14px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-left: 4px solid var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    box-shadow: 0 4px 12px rgba(14, 51, 134, 0.15);
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .refresh-status.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .refresh-status.error {
+    border-left-color: var(--accent);
+    color: var(--accent-deep);
+  }
+
+  @media (max-width: 600px) {
+    .floating-controls {
+      bottom: 16px;
+      right: 16px;
+    }
+    .floating-btn {
+      padding: 9px 11px;
+      font-size: 10px;
+      gap: 6px;
+    }
+    .refresh-status {
+      bottom: 72px;
+      right: 16px;
+      max-width: calc(100vw - 32px);
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header class="masthead">
+    <div class="masthead-meta">
+      <span id="lastUpdatedMeta">As of conversation</span>
+      <span id="datelineMeta"></span>
+    </div>
+    <h1 class="title">The <em>2026</em> Cubs</h1>
+    <div class="masthead-record" id="mastheadRecord"></div>
+    <div class="masthead-pennants" id="mastheadPennants" aria-label="Season W/L sequence"></div>
+  </header>
+
+  <div id="sectionsContainer"></div>
+
+  <template id="t-section-pulse">
+  <section class="draggable-section" data-section-id="pulse">
+    <div class="section-head">
+      <span class="section-roman">I.</span>
+      <span class="section-title">The Season's Pulse</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <div class="pulse-section">
+        <div>
+          <div class="pulse-label">Game-by-Game · Wins Marked W, Losses L</div>
+          <div class="pulse-strip" id="pulseStrip"></div>
+        </div>
+        <div>
+          <div class="pulse-record" id="pulseRecord"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </template>
+
+  <template id="t-section-standings">
+  <section class="draggable-section" data-section-id="standings">
+    <div class="section-head">
+      <span class="section-roman">II.</span>
+      <span class="section-title">The National League Central</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <table class="standings">
+        <thead>
+          <tr>
+            <th>Club</th><th>W</th><th>L</th><th>Pct.</th><th>GB</th>
+          </tr>
+        </thead>
+        <tbody id="standingsBody"></tbody>
+      </table>
+    </div>
+  </section>
+  </template>
+
+  <template id="t-section-watch">
+  <section class="draggable-section" data-section-id="watch">
+    <div class="section-head">
+      <span class="section-roman">III.</span>
+      <span class="section-title">Where to Watch</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <p class="lede" style="font-size: 16px;">
+        Of the 162 regular-season games, roughly 145 air on Marquee Sports Network, the
+        Cubs' regional home. The remaining games are claimed by national broadcasters —
+        Fox, ESPN, NBC/Peacock, Apple TV+, and TBS — under windows announced piecemeal,
+        usually a few weeks ahead. Below: the lay of the land.
+      </p>
+      <div class="watch-grid">
+        <div class="watch-card">
+          <h3>Marquee Sports Network</h3>
+          <div class="market">In-Market · Chicagoland</div>
+          <p>The Cubs' dedicated regional channel since 2020. Carries the great majority of games not claimed by national broadcasters. Booth: Boog Sciambi (PxP), Jim Deshaies (analyst).</p>
+          <ul class="watch-list">
+            <li><span class="name">Comcast / Xfinity</span><span class="price">cable</span></li>
+            <li><span class="name">DirecTV</span><span class="price">satellite</span></li>
+            <li><span class="name">Hulu + Live TV</span><span class="price">~$83/mo</span></li>
+            <li><span class="name">Fubo</span><span class="price">~$85/mo</span></li>
+            <li><span class="name">Marquee app (DTC)</span><span class="price">~$20/mo</span></li>
+            <li><span class="name">Prime Video add-on</span><span class="price">~$20/mo</span></li>
+          </ul>
+          <div class="watch-note">
+            Schaumburg is squarely inside the Cubs' in-market territory, so any
+            Marquee-carrying option above will give you the local broadcast. Prices
+            approximate and subject to change.
+          </div>
+        </div>
+        <div class="watch-card">
+          <h3>National Broadcasters</h3>
+          <div class="market">Roughly 17 Games Per Season</div>
+          <p>A handful of games are picked up each year by national networks for primetime windows. These supersede Marquee.</p>
+          <ul class="watch-list">
+            <li><span class="name">Fox / FS1 — Sat night</span><span class="price">cable / OTA</span></li>
+            <li><span class="name">ESPN — Sun &amp; Mon night</span><span class="price">cable</span></li>
+            <li><span class="name">NBC / Peacock — Sun night</span><span class="price">~$8/mo</span></li>
+            <li><span class="name">Apple TV+ — Fri night</span><span class="price">~$10/mo</span></li>
+            <li><span class="name">TBS / HBO Max — Tue night</span><span class="price">cable / ~$17/mo</span></li>
+          </ul>
+          <div class="watch-note">
+            If you have YouTube TV or Fubo, all of the cable/OTA national windows above
+            are already covered. Peacock, Apple TV+, and HBO Max each require a separate
+            subscription for their exclusive games.
+          </div>
+        </div>
+      </div>
+      <div class="national-windows">
+        <strong>Confirmed national windows:</strong>
+        Cubs–Cardinals on <strong>Sunday, May 31</strong> on NBC and Peacock (Sunday Night Baseball).
+        Other national broadcasts will be announced piecemeal through the season; the schedule
+        below shows ★ where confirmed, and "Marquee" for the default. When in doubt,
+        check <em>marqueesportsnetwork.com/schedule</em> a day or two before first pitch.
+      </div>
+    </div>
+  </section>
+  </template>
+
+  <template id="t-section-recap">
+  <section class="draggable-section" data-section-id="recap">
+    <div class="section-head">
+      <span class="section-roman">IV.</span>
+      <span class="section-title">Recently &amp; Coming Up</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <div class="two-col">
+        <div>
+          <h4 style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Recently</h4>
+          <div id="recentGames"></div>
+        </div>
+        <div>
+          <h4 style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Coming Up</h4>
+          <div id="upcomingGames"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </template>
+
+  <template id="t-section-slate">
+  <section class="draggable-section" data-section-id="slate">
+    <div class="section-head">
+      <span class="section-roman">V.</span>
+      <span class="section-title">The Full Slate · 162 Games</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <div class="filters">
+        <div class="filter-group">
+          <span class="filters-label">Show</span>
+          <button class="filter-btn active" data-filter="all">All Games</button>
+          <button class="filter-btn" data-filter="home">Home Only</button>
+          <button class="filter-btn" data-filter="away">Away Only</button>
+          <button class="filter-btn" data-filter="rivals">Vs. Rivals</button>
+          <button class="filter-btn" data-filter="upcoming">Upcoming Only</button>
+        </div>
+        <div class="filter-group">
+          <span class="filters-label">Sort</span>
+          <button class="sort-btn active" data-sort="date">By Date</button>
+          <button class="sort-btn" data-sort="channel">By Channel</button>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin: -12px 0 18px; line-height: 1.6;">
+        Channel column shows where to find each game from Schaumburg. <strong style="font-weight: 700; font-style: normal; color: var(--ink);">Marquee</strong> carries the great majority — both home and road games — through your cable, Hulu+Live, Fubo, the Marquee app, or Prime Video. National windows (★) supersede Marquee for that game. Out-of-market viewers use MLB.TV; in-market viewers in Schaumburg do not need it.
+      </p>
+      <div id="fullSchedule"></div>
+    </div>
+  </section>
+  </template>
+
+  <template id="t-section-arithmetic">
+  <section class="draggable-section" data-section-id="arithmetic">
+    <div class="section-head">
+      <span class="section-roman">VI.</span>
+      <span class="section-title">The Long Arithmetic</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <div class="projection">
+        <div class="proj-controls">
+          <label for="paceSlider">Adjust the winning percentage to project a final record</label>
+          <div class="slider-wrap">
+            <input type="range" id="paceSlider" min="300" max="700" step="5" value="526">
+            <span class="slider-value" id="sliderValue">.526</span>
+          </div>
+        </div>
+        <div class="projection-row">
+          <div class="proj-stat">
+            <div class="proj-label">Projected Wins</div>
+            <div class="proj-value" id="projWins">—</div>
+          </div>
+          <div class="proj-stat">
+            <div class="proj-label">Final Record</div>
+            <div class="proj-value" id="projRecord">—</div>
+          </div>
+          <div class="proj-stat">
+            <div class="proj-label">Postseason Math</div>
+            <div class="proj-value" id="projPostseason">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  </template>
+
+</div>
+
+<div id="floatingControls" class="floating-controls">
+  <button id="refreshBtn" class="floating-btn refresh-btn" title="Fetch latest data from MLB">
+    <span class="floating-icon" id="refreshIcon">↻</span>
+    <span class="floating-label">Refresh</span>
+  </button>
+  <button id="toggleAllBtn" class="floating-btn toggle-all" title="Collapse all sections">
+    <span class="floating-icon" id="toggleAllIcon">▾</span>
+    <span class="floating-label" id="toggleAllLabel">Collapse All</span>
+  </button>
+</div>
+
+<div id="refreshStatus" class="refresh-status" aria-live="polite"></div>
+
+<script>
+  // ============================================================
+  // SECTION FRAMEWORK: instantiate templates into container,
+  // then enable collapse + drag-to-reorder.
+  // ============================================================
+  const SECTION_ORDER = ['pulse', 'standings', 'watch', 'recap', 'slate', 'arithmetic'];
+  const sectionsContainer = document.getElementById('sectionsContainer');
+
+  SECTION_ORDER.forEach(id => {
+    const tpl = document.getElementById('t-section-' + id);
+    if (tpl) sectionsContainer.appendChild(tpl.content.cloneNode(true));
+  });
+
+  // Collapse / expand — click anywhere on the section header
+  function wireCollapseToggles() {
+    document.querySelectorAll('.draggable-section').forEach(section => {
+      const head = section.querySelector('.section-head');
+      const btn = section.querySelector('.collapse-toggle');
+      if (!head || !btn) return;
+
+      head.onclick = () => {
+        section.classList.toggle('collapsed');
+        const isCollapsed = section.classList.contains('collapsed');
+        btn.textContent = isCollapsed ? '▸' : '▾';
+        btn.title = isCollapsed ? 'Expand' : 'Collapse';
+        refreshToggleAllState();
+      };
+    });
+  }
+
+  // Floating "Collapse All / Expand All" button
+  function refreshToggleAllState() {
+    const sections = document.querySelectorAll('.draggable-section');
+    const anyExpanded = Array.from(sections).some(s => !s.classList.contains('collapsed'));
+    const label = document.getElementById('toggleAllLabel');
+    const icon = document.getElementById('toggleAllIcon');
+    const btn = document.getElementById('toggleAllBtn');
+    if (anyExpanded) {
+      label.textContent = 'Collapse All';
+      icon.textContent = '▾';
+      btn.title = 'Collapse all sections';
+    } else {
+      label.textContent = 'Expand All';
+      icon.textContent = '▸';
+      btn.title = 'Expand all sections';
+    }
+  }
+
+  document.getElementById('toggleAllBtn').onclick = () => {
+    const sections = document.querySelectorAll('.draggable-section');
+    const anyExpanded = Array.from(sections).some(s => !s.classList.contains('collapsed'));
+    const shouldCollapse = anyExpanded;
+    sections.forEach(section => {
+      const btn = section.querySelector('.collapse-toggle');
+      if (shouldCollapse) {
+        section.classList.add('collapsed');
+        if (btn) { btn.textContent = '▸'; btn.title = 'Expand'; }
+      } else {
+        section.classList.remove('collapsed');
+        if (btn) { btn.textContent = '▾'; btn.title = 'Collapse'; }
+      }
+    });
+    refreshToggleAllState();
+  };
+  wireCollapseToggles();
+
+  // Mutable state — replaced by refresh
+  let today = new Date('2026-04-18T12:00:00');
+
+  let standings = [
+    { team: 'Cincinnati Reds',    abbr: 'CIN', w: 12, l: 8 },
+    { team: 'Pittsburgh Pirates', abbr: 'PIT', w: 12, l: 8 },
+    { team: 'Milwaukee Brewers',  abbr: 'MIL', w: 11, l: 8 },
+    { team: 'St. Louis Cardinals',abbr: 'STL', w: 11, l: 8 },
+    { team: 'Chicago Cubs',       abbr: 'CHC', w: 10, l: 9 },
+  ];
+
+  const RIVALS = ['STL', 'MIL'];
+
+  let fullSchedule = [
+    { date: '2026-03-26', opp: 'WSH', home: true,  time: '1:20 PM', result: { us: 4,  them: 10 } },
+    { date: '2026-03-28', opp: 'WSH', home: true,  time: '1:20 PM', result: { us: 10, them: 2  } },
+    { date: '2026-03-29', opp: 'WSH', home: true,  time: '1:20 PM', result: { us: 3,  them: 6  } },
+    { date: '2026-03-30', opp: 'LAA', home: true,  time: '6:40 PM', result: { us: 6,  them: 0  } },
+    { date: '2026-03-31', opp: 'LAA', home: true,  time: '6:40 PM', result: { us: 0,  them: 2  } },
+    { date: '2026-04-01', opp: 'LAA', home: true,  time: '1:20 PM', result: { us: 6,  them: 2  } },
+    { date: '2026-04-03', opp: 'CLE', home: false, time: '3:10 PM', result: { us: 1,  them: 4  } },
+    { date: '2026-04-05', opp: 'CLE', home: false, time: '12:40 PM', result: { us: 1, them: 0  } },
+    { date: '2026-04-05', opp: 'CLE', home: false, time: '6:15 PM', result: { us: 5,  them: 6  } },
+    { date: '2026-04-06', opp: 'TB',  home: false, time: '3:10 PM', result: { us: 4,  them: 5  } },
+    { date: '2026-04-07', opp: 'TB',  home: false, time: '5:40 PM', result: { us: 7,  them: 3  } },
+    { date: '2026-04-08', opp: 'TB',  home: false, time: '5:40 PM', result: { us: 6,  them: 2  } },
+    { date: '2026-04-10', opp: 'PIT', home: true,  time: '1:20 PM', result: { us: 0,  them: 2  } },
+    { date: '2026-04-11', opp: 'PIT', home: true,  time: '1:20 PM', result: { us: 3,  them: 4  } },
+    { date: '2026-04-12', opp: 'PIT', home: true,  time: '1:20 PM', result: { us: 8,  them: 7  } },
+    { date: '2026-04-13', opp: 'PHI', home: false, time: '5:40 PM', result: { us: 7,  them: 13 } },
+    { date: '2026-04-14', opp: 'PHI', home: false, time: '5:40 PM', result: { us: 10, them: 4  } },
+    { date: '2026-04-15', opp: 'PHI', home: false, time: '5:40 PM', result: { us: 11, them: 2  } },
+    { date: '2026-04-17', opp: 'NYM', home: true,  time: '1:20 PM', result: { us: 12, them: 4  } },
+    { date: '2026-04-18', opp: 'NYM', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-04-19', opp: 'NYM', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-04-20', opp: 'PHI', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-04-21', opp: 'PHI', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-04-22', opp: 'PHI', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-04-23', opp: 'PHI', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-04-24', opp: 'LAD', home: false, time: '9:10 PM', result: null },
+    { date: '2026-04-25', opp: 'LAD', home: false, time: '6:15 PM', result: null },
+    { date: '2026-04-26', opp: 'LAD', home: false, time: '3:10 PM', result: null },
+    { date: '2026-04-27', opp: 'SD',  home: false, time: '8:40 PM', result: null },
+    { date: '2026-04-28', opp: 'SD',  home: false, time: '8:40 PM', result: null },
+    { date: '2026-04-29', opp: 'SD',  home: false, time: '3:10 PM', result: null },
+    { date: '2026-05-01', opp: 'AZ',  home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-02', opp: 'AZ',  home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-03', opp: 'AZ',  home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-04', opp: 'CIN', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-05', opp: 'CIN', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-06', opp: 'CIN', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-07', opp: 'CIN', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-08', opp: 'TEX', home: false, time: '7:05 PM', result: null },
+    { date: '2026-05-09', opp: 'TEX', home: false, time: '6:05 PM', result: null },
+    { date: '2026-05-10', opp: 'TEX', home: false, time: '1:35 PM', result: null },
+    { date: '2026-05-12', opp: 'ATL', home: false, time: '6:15 PM', result: null },
+    { date: '2026-05-13', opp: 'ATL', home: false, time: '6:15 PM', result: null },
+    { date: '2026-05-14', opp: 'ATL', home: false, time: '6:15 PM', result: null },
+    { date: '2026-05-15', opp: 'CWS', home: false, time: '6:40 PM', result: null },
+    { date: '2026-05-16', opp: 'CWS', home: false, time: '6:10 PM', result: null },
+    { date: '2026-05-17', opp: 'CWS', home: false, time: '1:10 PM', result: null },
+    { date: '2026-05-18', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-19', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-20', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-05-22', opp: 'HOU', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-23', opp: 'HOU', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-24', opp: 'HOU', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-05-25', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-05-26', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-05-27', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-05-28', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-05-29', opp: 'STL', home: false, time: '7:15 PM', result: null },
+    { date: '2026-05-30', opp: 'STL', home: false, time: '6:15 PM', result: null },
+    { date: '2026-05-31', opp: 'STL', home: false, time: '6:20 PM', result: null, tvNational: 'NBC / Peacock' },
+    { date: '2026-06-02', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-03', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-04', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-05', opp: 'SF',  home: true,  time: '1:20 PM', result: null },
+    { date: '2026-06-06', opp: 'SF',  home: true,  time: '1:20 PM', result: null },
+    { date: '2026-06-07', opp: 'SF',  home: true,  time: '7:20 PM', result: null },
+    { date: '2026-06-09', opp: 'COL', home: false, time: '7:40 PM', result: null },
+    { date: '2026-06-10', opp: 'COL', home: false, time: '7:40 PM', result: null },
+    { date: '2026-06-11', opp: 'COL', home: false, time: '2:10 PM', result: null },
+    { date: '2026-06-12', opp: 'SF',  home: false, time: '9:15 PM', result: null },
+    { date: '2026-06-13', opp: 'SF',  home: false, time: '9:05 PM', result: null },
+    { date: '2026-06-14', opp: 'SF',  home: false, time: '2:10 PM', result: null },
+    { date: '2026-06-15', opp: 'COL', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-16', opp: 'COL', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-17', opp: 'COL', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-19', opp: 'TOR', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-06-20', opp: 'TOR', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-06-21', opp: 'TOR', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-06-22', opp: 'NYM', home: false, time: '6:10 PM', result: null },
+    { date: '2026-06-23', opp: 'NYM', home: false, time: '6:10 PM', result: null },
+    { date: '2026-06-24', opp: 'NYM', home: false, time: '6:10 PM', result: null },
+    { date: '2026-06-25', opp: 'NYM', home: false, time: '6:10 PM', result: null },
+    { date: '2026-06-26', opp: 'MIL', home: false, time: '6:40 PM', result: null },
+    { date: '2026-06-27', opp: 'MIL', home: false, time: '6:10 PM', result: null },
+    { date: '2026-06-28', opp: 'MIL', home: false, time: '1:10 PM', result: null },
+    { date: '2026-06-29', opp: 'SD',  home: true,  time: '7:05 PM', result: null },
+    { date: '2026-06-30', opp: 'SD',  home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-01', opp: 'SD',  home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-03', opp: 'STL', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-07-04', opp: 'STL', home: true,  time: '7:08 PM', result: null },
+    { date: '2026-07-05', opp: 'STL', home: true,  time: '1:30 PM', result: null },
+    { date: '2026-07-07', opp: 'BAL', home: false, time: '5:35 PM', result: null },
+    { date: '2026-07-08', opp: 'BAL', home: false, time: '5:35 PM', result: null },
+    { date: '2026-07-09', opp: 'BAL', home: false, time: '5:35 PM', result: null },
+    { date: '2026-07-10', opp: 'CIN', home: false, time: '6:10 PM', result: null },
+    { date: '2026-07-11', opp: 'CIN', home: false, time: '6:10 PM', result: null },
+    { date: '2026-07-12', opp: 'CIN', home: false, time: '12:40 PM', result: null },
+    { date: '2026-07-17', opp: 'MIN', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-18', opp: 'MIN', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-07-19', opp: 'MIN', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-07-20', opp: 'DET', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-21', opp: 'DET', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-22', opp: 'DET', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-07-24', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-07-25', opp: 'PIT', home: false, time: '5:40 PM', result: null },
+    { date: '2026-07-26', opp: 'PIT', home: false, time: '12:35 PM', result: null },
+    { date: '2026-07-27', opp: 'STL', home: false, time: '6:45 PM', result: null },
+    { date: '2026-07-28', opp: 'STL', home: false, time: '6:45 PM', result: null },
+    { date: '2026-07-29', opp: 'STL', home: false, time: '6:45 PM', result: null },
+    { date: '2026-07-30', opp: 'STL', home: false, time: '1:15 PM', result: null },
+    { date: '2026-07-31', opp: 'NYY', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-01', opp: 'NYY', home: true,  time: '6:15 PM', result: null },
+    { date: '2026-08-02', opp: 'NYY', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-03', opp: 'LAD', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-08-04', opp: 'LAD', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-08-05', opp: 'LAD', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-07', opp: 'KC',  home: false, time: '7:10 PM', result: null },
+    { date: '2026-08-08', opp: 'KC',  home: false, time: '6:10 PM', result: null },
+    { date: '2026-08-09', opp: 'KC',  home: false, time: '1:10 PM', result: null },
+    { date: '2026-08-11', opp: 'WSH', home: false, time: '5:45 PM', result: null },
+    { date: '2026-08-12', opp: 'WSH', home: false, time: '5:45 PM', result: null },
+    { date: '2026-08-13', opp: 'WSH', home: false, time: '3:05 PM', result: null },
+    { date: '2026-08-14', opp: 'STL', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-15', opp: 'STL', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-16', opp: 'STL', home: true,  time: '2:10 PM', result: null },
+    { date: '2026-08-17', opp: 'CWS', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-08-18', opp: 'CWS', home: true,  time: '7:05 PM', result: null },
+    { date: '2026-08-19', opp: 'CWS', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-21', opp: 'SEA', home: false, time: '9:10 PM', result: null },
+    { date: '2026-08-22', opp: 'SEA', home: false, time: '8:40 PM', result: null },
+    { date: '2026-08-23', opp: 'SEA', home: false, time: '3:10 PM', result: null },
+    { date: '2026-08-24', opp: 'AZ',  home: false, time: '8:40 PM', result: null },
+    { date: '2026-08-25', opp: 'AZ',  home: false, time: '8:40 PM', result: null },
+    { date: '2026-08-26', opp: 'AZ',  home: false, time: '2:40 PM', result: null },
+    { date: '2026-08-28', opp: 'CIN', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-29', opp: 'CIN', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-08-30', opp: 'CIN', home: true,  time: '2:10 PM', result: null },
+    { date: '2026-08-31', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-01', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-02', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-03', opp: 'MIL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-04', opp: 'MIA', home: false, time: '6:10 PM', result: null },
+    { date: '2026-09-05', opp: 'MIA', home: false, time: '3:10 PM', result: null },
+    { date: '2026-09-06', opp: 'MIA', home: false, time: '12:40 PM', result: null },
+    { date: '2026-09-07', opp: 'MIL', home: false, time: '1:10 PM', result: null },
+    { date: '2026-09-08', opp: 'MIL', home: false, time: '6:40 PM', result: null },
+    { date: '2026-09-09', opp: 'MIL', home: false, time: '6:40 PM', result: null },
+    { date: '2026-09-11', opp: 'PIT', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-09-12', opp: 'PIT', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-09-13', opp: 'PIT', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-09-14', opp: 'ATL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-15', opp: 'ATL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-16', opp: 'ATL', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-18', opp: 'CIN', home: false, time: '5:40 PM', result: null },
+    { date: '2026-09-19', opp: 'CIN', home: false, time: '5:40 PM', result: null },
+    { date: '2026-09-20', opp: 'CIN', home: false, time: '12:40 PM', result: null },
+    { date: '2026-09-22', opp: 'MIA', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-23', opp: 'MIA', home: true,  time: '6:40 PM', result: null },
+    { date: '2026-09-24', opp: 'MIA', home: true,  time: '1:20 PM', result: null },
+    { date: '2026-09-25', opp: 'BOS', home: false, time: '6:10 PM', result: null },
+    { date: '2026-09-26', opp: 'BOS', home: false, time: '3:10 PM', result: null },
+    { date: '2026-09-27', opp: 'BOS', home: false, time: '2:35 PM', result: null },
+  ];
+
+  // ============================================================
+  // RENDERERS — each is idempotent, can be re-called after refresh
+  // ============================================================
+
+  function renderPulseStrip() {
+    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const pulseHTML = playedGames.map(g => {
+      const w = g.result.us > g.result.them;
+      return w ? '<span class="pulse-W">W</span>' : '<span class="pulse-L">L</span>';
+    }).join(' ');
+    document.getElementById('pulseStrip').innerHTML = pulseHTML;
+
+    const winsCount = playedGames.filter(g => g.result.us > g.result.them).length;
+    const lossesCount = playedGames.length - winsCount;
+    const pctVal = playedGames.length > 0
+      ? (winsCount / playedGames.length).toFixed(3).replace(/^0/, '')
+      : '\u2014';
+    document.getElementById('pulseRecord').innerHTML =
+      `${winsCount}\u2013${lossesCount}<span class="pct">${pctVal} \u00b7 ${playedGames.length} GAMES</span>`;
+  }
+
+  function renderStandings() {
+    const stbody = document.getElementById('standingsBody');
+    stbody.innerHTML = '';
+    if (!standings.length) return;
+    const leader = standings[0];
+    standings.forEach(t => {
+      const tpct = (t.w + t.l) > 0
+        ? (t.w / (t.w + t.l)).toFixed(3).replace(/^0/, '')
+        : '\u2014';
+      const gb = ((leader.w - t.w) + (t.l - leader.l)) / 2;
+      const gbDisplay = gb === 0 ? '\u2014' : gb.toFixed(1);
+      const isCubs = t.abbr === 'CHC';
+      const tr = document.createElement('tr');
+      if (isCubs) tr.className = 'cubs-row';
+      tr.innerHTML = `
+        <td>${t.team}</td>
+        <td>${t.w}</td>
+        <td>${t.l}</td>
+        <td>${tpct}</td>
+        <td>${gbDisplay}</td>`;
+      stbody.appendChild(tr);
+    });
+  }
+
+  function renderRecent() {
+    const recentDiv = document.getElementById('recentGames');
+    recentDiv.innerHTML = '';
+    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const recent = playedGames.slice(-5).reverse();
+    recent.forEach(g => {
+      const result = g.result.us > g.result.them ? 'W' : 'L';
+      const homeMark = g.home ? 'vs.' : '@';
+      const channelClass = g.tvNational ? 'national' : '';
+      const channelText = g.tvNational || 'Marquee';
+      const div = document.createElement('div');
+      div.className = 'game';
+      div.innerHTML = `
+        <div class="game-date">${formatShortDate(g.date)}</div>
+        <div class="game-matchup">
+          <span class="home-mark">${homeMark}</span> ${g.opp}
+          <span class="vs">\u2014</span> ${g.result.us}-${g.result.them}
+          <div class="game-channel ${channelClass}">${channelText}</div>
+        </div>
+        <div class="game-result ${result}">${result}</div>`;
+      recentDiv.appendChild(div);
+    });
+  }
+
+  function renderUpcoming() {
+    const upDiv = document.getElementById('upcomingGames');
+    upDiv.innerHTML = '';
+    const upcoming = fullSchedule.filter(g => g.result === null && new Date(g.date + 'T12:00:00') >= today).slice(0, 8);
+    upcoming.forEach(g => {
+      const homeMark = g.home ? 'vs.' : '@';
+      const channelClass = g.tvNational ? 'national' : '';
+      const channelText = g.tvNational || 'Marquee';
+      const div = document.createElement('div');
+      div.className = 'game';
+      div.innerHTML = `
+        <div class="game-date">${formatShortDate(g.date)}</div>
+        <div class="game-matchup">
+          <span class="home-mark">${homeMark}</span> ${g.opp}
+          <div class="game-channel ${channelClass}">${channelText}</div>
+        </div>
+        <div class="game-result" style="border:none; color:var(--ink-soft); font-weight:400;">${g.time}</div>`;
+      upDiv.appendChild(div);
+    });
+  }
+
+  function renderMasthead() {
+    const shortDateOpts = { month: 'long', day: 'numeric', year: 'numeric' };
+    document.getElementById('datelineMeta').textContent = today.toLocaleDateString('en-US', shortDateOpts);
+
+    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const cubsW = playedGames.filter(g => g.result.us > g.result.them).length;
+    const cubsL = playedGames.length - cubsW;
+    const cubsPct = playedGames.length > 0
+      ? (cubsW / playedGames.length).toFixed(3).replace(/^0/, '')
+      : '\u2014';
+    const ldr = standings[0];
+    const cubs = standings.find(s => s.abbr === 'CHC') || { w: cubsW, l: cubsL };
+    const gamesBack = ldr ? ((ldr.w - cubs.w) + (cubs.l - ldr.l)) / 2 : 0;
+    const gbStr = gamesBack === 0 ? 'tied for 1st' : `${gamesBack.toFixed(1)} GB`;
+    document.getElementById('mastheadRecord').innerHTML =
+      `${cubsW}\u2013${cubsL} <span class="sep">·</span> ${cubsPct} <span class="sep">·</span> <span class="gb">${gbStr}</span>`;
+
+    const pennantsEl = document.getElementById('mastheadPennants');
+    pennantsEl.innerHTML = playedGames.map(g => {
+      const win = g.result.us > g.result.them;
+      return `<span class="pennant pennant-${win ? 'w' : 'l'}" title="${g.date}: ${win ? 'W' : 'L'}">${win ? 'W' : 'L'}</span>`;
+    }).join('');
+  }
+
+  // Render everything that depends on data — call after any refresh
+  function renderAll() {
+    renderMasthead();
+    renderPulseStrip();
+    renderStandings();
+    renderRecent();
+    renderUpcoming();
+    renderSchedule();
+  }
+
+  // ============================================================
+  // FULL SCHEDULE (filter/sort logic — references fullSchedule live)
+  // ============================================================
+  const scheduleDiv = document.getElementById('fullSchedule');
+  const monthNames = ['January','February','March','April','May','June',
+                      'July','August','September','October','November','December'];
+
+  function viewingGroup(g) {
+    if (g.tvNational) return { key: 'national', label: 'National Broadcast', subtitle: 'Available without Marquee — see Where to Watch above' };
+    return { key: 'marquee', label: 'Marquee Sports Network', subtitle: 'Cable, Hulu+Live, Fubo, Marquee app, or Prime Video' };
+  }
+
+  const state = { filter: 'all', sort: 'date' };
+
+  function buildGameRow(g) {
+    const d = new Date(g.date + 'T12:00:00');
+    const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+    const homeMark = g.home ? 'vs.' : '@';
+    const todayStr = today.toISOString().slice(0, 10);
+    const isToday = g.date === todayStr;
+    const isPlayed = g.result !== null;
+
+    let resultBadge = '<span class="sched-result empty"></span>';
+    if (isPlayed) {
+      const w = g.result.us > g.result.them;
+      resultBadge = `<span class="sched-result ${w ? 'W' : 'L'}">${w ? 'W' : 'L'}</span>`;
+    }
+
+    const channel = g.tvNational
+      ? `<span class="sched-channel national">${g.tvNational}</span>`
+      : `<span class="sched-channel">Marquee</span>`;
+
+    const scoreText = isPlayed ? ` <span style="color:var(--ink-soft);font-size:12px;">(${g.result.us}-${g.result.them})</span>` : '';
+
+    const gameDiv = document.createElement('div');
+    gameDiv.className = `schedule-game ${isPlayed ? 'played' : ''} ${isToday ? 'today' : ''}`;
+    gameDiv.innerHTML = `
+      <div class="sched-date">${dayLabel}</div>
+      <div class="sched-opp"><span class="home-mark">${homeMark}</span> ${g.opp}${scoreText}</div>
+      <div class="sched-time">${g.time}</div>
+      ${channel}
+      ${resultBadge}`;
+    return gameDiv;
+  }
+
+  function renderSchedule() {
+    scheduleDiv.innerHTML = '';
+
+    const filtered = fullSchedule.filter(g => {
+      if (state.filter === 'home') return g.home;
+      if (state.filter === 'away') return !g.home;
+      if (state.filter === 'rivals') return RIVALS.includes(g.opp);
+      if (state.filter === 'upcoming') return g.result === null && new Date(g.date + 'T12:00:00') >= today;
+      return true;
+    });
+
+    if (filtered.length === 0) {
+      scheduleDiv.innerHTML = '<p style="text-align:center; color:var(--ink-soft); font-style:italic; padding:40px 0;">No games match this filter.</p>';
+      return;
+    }
+
+    if (state.sort === 'date') {
+      // Group by month
+      const byMonth = {};
+      filtered.forEach(g => {
+        const d = new Date(g.date + 'T12:00:00');
+        const key = d.getFullYear() + '-' + String(d.getMonth()).padStart(2, '0');
+        if (!byMonth[key]) byMonth[key] = { name: monthNames[d.getMonth()] + ' ' + d.getFullYear(), games: [] };
+        byMonth[key].games.push(g);
+      });
+
+      Object.keys(byMonth).sort().forEach(key => {
+        const month = byMonth[key];
+        const monthDiv = document.createElement('div');
+        monthDiv.className = 'schedule-month';
+        monthDiv.innerHTML = `<div class="schedule-month-head">${month.name}</div>`;
+        month.games.forEach(g => monthDiv.appendChild(buildGameRow(g)));
+        scheduleDiv.appendChild(monthDiv);
+      });
+    } else {
+      // Group by channel — order: National first, then Marquee
+      const byChannel = {};
+      filtered.forEach(g => {
+        const grp = viewingGroup(g);
+        if (!byChannel[grp.key]) byChannel[grp.key] = { ...grp, games: [] };
+        byChannel[grp.key].games.push(g);
+      });
+
+      const order = ['national', 'marquee'];
+      order.forEach(key => {
+        if (!byChannel[key]) return;
+        const group = byChannel[key];
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'schedule-month';
+        groupDiv.innerHTML = `
+          <div class="schedule-month-head">
+            ${group.label}
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11px; font-style:normal; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-left:10px;">${group.games.length} game${group.games.length === 1 ? '' : 's'}</span>
+          </div>
+          <p style="font-size:13px; color:var(--ink-soft); font-style:italic; margin: 4px 0 12px;">${group.subtitle}</p>`;
+        group.games.forEach(g => groupDiv.appendChild(buildGameRow(g)));
+        scheduleDiv.appendChild(groupDiv);
+      });
+    }
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.filter = btn.dataset.filter;
+      renderSchedule();
+    });
+  });
+
+  document.querySelectorAll('.sort-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.sort = btn.dataset.sort;
+      renderSchedule();
+    });
+  });
+
+  renderSchedule();
+
+  // Projection
+  const slider = document.getElementById('paceSlider');
+  const sliderValue = document.getElementById('sliderValue');
+  const projWins = document.getElementById('projWins');
+  const projRecord = document.getElementById('projRecord');
+  const projPostseason = document.getElementById('projPostseason');
+
+  function updateProjection() {
+    const p = slider.value / 1000;
+    sliderValue.textContent = p.toFixed(3).replace(/^0/, '');
+    const w = Math.round(p * 162);
+    const l = 162 - w;
+    projWins.innerHTML = `${w}<span class="small"> / 162</span>`;
+    projRecord.textContent = `${w}\u2013${l}`;
+
+    let verdict;
+    if (w >= 95) verdict = 'Division contender';
+    else if (w >= 88) verdict = 'Wild card in play';
+    else if (w >= 82) verdict = 'In the conversation';
+    else if (w >= 75) verdict = 'Below the line';
+    else verdict = 'A rebuilding year';
+    projPostseason.innerHTML = `<span class="small">${verdict}</span>`;
+  }
+
+  slider.addEventListener('input', updateProjection);
+  updateProjection();
+
+  // ============================================================
+  // Initial render — uses the embedded data
+  // ============================================================
+  renderAll();
+
+  // ============================================================
+  // REFRESH FROM data.json (updated daily by GitHub Actions)
+  // ============================================================
+  // The data.json file lives alongside this HTML on GitHub Pages.
+  // Same-origin = no CORS issues. The GitHub Action regenerates it
+  // every few hours by calling the MLB API server-side.
+
+  function showStatus(msg, isError) {
+    const el = document.getElementById('refreshStatus');
+    el.textContent = msg;
+    el.classList.toggle('error', !!isError);
+    el.classList.add('visible');
+    clearTimeout(showStatus._t);
+    showStatus._t = setTimeout(() => el.classList.remove('visible'), 3500);
+  }
+
+  async function fetchData(silent) {
+    const btn = document.getElementById('refreshBtn');
+    const lastUpdatedEl = document.getElementById('lastUpdatedMeta');
+    if (!silent) {
+      btn.disabled = true;
+      btn.classList.add('spinning');
+      showStatus('Loading latest data\u2026');
+    }
+
+    try {
+      // Cache-buster ensures we get the freshest copy, not a stale CDN version
+      const res = await fetch('./data.json?t=' + Date.now());
+      if (!res.ok) throw new Error('data.json fetch failed (' + res.status + ')');
+      const data = await res.json();
+
+      if (!data.schedule || !data.standings) {
+        throw new Error('data.json missing required fields');
+      }
+
+      // Preserve our hardcoded national-TV markers across refreshes
+      data.schedule.forEach(g => {
+        if (!g.tvNational) {
+          const lookup = NATIONAL_TV_LOOKUP[g.date + '|' + g.opp];
+          if (lookup) g.tvNational = lookup;
+        }
+      });
+
+      fullSchedule = data.schedule;
+      standings = data.standings;
+      today = new Date();
+      renderAll();
+
+      // Update last-updated indicator using the timestamp from the data file
+      if (data.updatedAt) {
+        const updated = new Date(data.updatedAt);
+        const stampOpts = { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' };
+        lastUpdatedEl.textContent = 'Updated ' + updated.toLocaleString('en-US', stampOpts);
+      }
+
+      if (!silent) showStatus('Updated.');
+    } catch (err) {
+      console.error(err);
+      if (!silent) showStatus('Could not update \u2014 please try again later.', true);
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('spinning');
+    }
+  }
+
+  // Preserve any tvNational annotations from the embedded fallback data
+  // so they persist across refreshes even though data.json doesn't carry them.
+  const NATIONAL_TV_LOOKUP = {};
+  fullSchedule.forEach(g => {
+    if (g.tvNational) NATIONAL_TV_LOOKUP[g.date + '|' + g.opp] = g.tvNational;
+  });
+
+  document.getElementById('refreshBtn').onclick = () => fetchData(false);
+
+  // Try to load fresh data on page load, silently. If it fails, the page
+  // shows the embedded data and no error toast appears.
+  fetchData(true);
+
+  function formatShortDate(dateStr) {
+    const d = new Date(dateStr + 'T12:00:00');
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+  }
+</script>
+</body>
+</html>
