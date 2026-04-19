@@ -34,6 +34,35 @@ def normalize_abbr(a: str) -> str:
     return ABBR_MAP.get(a, a)
 
 
+# Hand-crafted abbreviations for when the API doesn't return one.
+# Keyed by the last word of the team name (the team nickname).
+NICKNAME_TO_ABBR = {
+    "Angels": "LAA", "Astros": "HOU", "Athletics": "ATH",
+    "Blue Jays": "TOR", "Braves": "ATL", "Brewers": "MIL",
+    "Cardinals": "STL", "Cubs": "CHC", "Diamondbacks": "AZ",
+    "Dodgers": "LAD", "Giants": "SF", "Guardians": "CLE",
+    "Mariners": "SEA", "Marlins": "MIA", "Mets": "NYM",
+    "Nationals": "WSH", "Orioles": "BAL", "Padres": "SD",
+    "Phillies": "PHI", "Pirates": "PIT", "Rangers": "TEX",
+    "Rays": "TB", "Red Sox": "BOS", "Reds": "CIN",
+    "Rockies": "COL", "Royals": "KC", "Tigers": "DET",
+    "Twins": "MIN", "White Sox": "CWS", "Yankees": "NYY",
+}
+
+
+def derive_abbr_from_name(name: str) -> str:
+    """Best-effort abbreviation from a team name like 'Washington Nationals'."""
+    if not name:
+        return ""
+    # Try the full nickname-match first (handles "Red Sox", "Blue Jays", "White Sox")
+    for nickname, abbr in NICKNAME_TO_ABBR.items():
+        if name.endswith(nickname):
+            return abbr
+    # Fallback: uppercase first 3 letters of the last word
+    parts = name.strip().split()
+    return parts[-1][:3].upper() if parts else ""
+
+
 def http_get_json(url: str):
     """Fetch a URL and parse it as JSON. Raises on any failure."""
     req = urllib.request.Request(
@@ -51,6 +80,7 @@ def fetch_schedule():
     url = (
         f"https://statsapi.mlb.com/api/v1/schedule"
         f"?sportId=1&teamId={CUBS_TEAM_ID}&season={SEASON_YEAR}&gameType=R"
+        f"&hydrate=team"
     )
     data = http_get_json(url)
     games = []
@@ -65,7 +95,18 @@ def fetch_schedule():
             away_team = g["teams"]["away"]["team"]
             is_home = home_team["id"] == CUBS_TEAM_ID
             opp = away_team if is_home else home_team
-            opp_abbr = normalize_abbr(opp.get("abbreviation") or opp.get("teamCode") or "OPP")
+
+            # Try every known field for the abbreviation; if all fail, build one
+            # from the team name (e.g. "Washington Nationals" -> "WAS") rather
+            # than defaulting to "OPP" for every game.
+            opp_abbr_raw = (
+                opp.get("abbreviation")
+                or opp.get("teamCode")
+                or opp.get("fileCode")
+                or derive_abbr_from_name(opp.get("teamName") or opp.get("name") or "")
+                or "OPP"
+            )
+            opp_abbr = normalize_abbr(opp_abbr_raw.upper())
 
             # Date in YYYY-MM-DD — officialDate respects league calendar day
             date_str = (g.get("officialDate") or g.get("gameDate", ""))[:10]
