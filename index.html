@@ -552,18 +552,6 @@
     border: 1px solid var(--rule);
     padding: 32px;
     margin-top: 24px;
-    position: relative;
-  }
-  .projection::before {
-    content: '§';
-    position: absolute;
-    top: -14px;
-    left: 24px;
-    background: var(--paper);
-    padding: 0 12px;
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    color: var(--accent);
   }
   .projection-row {
     display: grid;
@@ -639,7 +627,7 @@
     font-size: 14px;
     font-weight: 700;
     color: var(--accent);
-    min-width: 60px;
+    min-width: 12ch;
     text-align: right;
   }
   .lede {
@@ -1365,6 +1353,24 @@
     }).join('');
   }
 
+  function renderProjection() {
+    const played = fullSchedule.filter(g => g.result !== null);
+    if (played.length === 0) {
+      currentPaceSliderValue = null;
+    } else {
+      const won = played.filter(g => g.result.us > g.result.them).length;
+      const pct = won / played.length;
+      const step = Number(slider.step) || 5;
+      const min = Number(slider.min) || 300;
+      const max = Number(slider.max) || 700;
+      let v = Math.round(pct * 1000 / step) * step;
+      v = Math.max(min, Math.min(max, v));
+      currentPaceSliderValue = v;
+      slider.value = v;
+    }
+    updateProjection();
+  }
+
   function renderLastUpdated(timestamp) {
     if (!timestamp) return;
     const d = timestamp instanceof Date ? timestamp : new Date(timestamp);
@@ -1390,6 +1396,7 @@
     renderRecent();
     renderUpcoming();
     renderSchedule();
+    renderProjection();
   }
 
   // ============================================================
@@ -1406,6 +1413,7 @@
 
   const state = { filter: 'all', sort: 'date' };
   const openMonths = new Set();
+  let currentPaceSliderValue = null;
 
   function buildGameRow(g) {
     const d = new Date(g.date + 'T12:00:00');
@@ -1540,7 +1548,8 @@
 
   function updateProjection() {
     const p = slider.value / 1000;
-    sliderValue.textContent = p.toFixed(3).replace(/^0/, '');
+    const isCurrent = currentPaceSliderValue !== null && Number(slider.value) === currentPaceSliderValue;
+    sliderValue.textContent = isCurrent ? 'current pace' : p.toFixed(3).replace(/^0/, '');
     const w = Math.round(p * 162);
     const l = 162 - w;
     projWins.innerHTML = `${w}<span class="small"> / 162</span>`;
@@ -1556,7 +1565,6 @@
   }
 
   slider.addEventListener('input', updateProjection);
-  updateProjection();
 
   // ============================================================
   // Initial render — uses the embedded data
