@@ -127,6 +127,80 @@
   }
   .pennant-w { background: var(--ink); }
   .pennant-l { background: var(--accent); }
+
+  /* Hero band — between masthead and section I */
+  .hero-band {
+    border-top: 2px solid var(--ink);
+    padding: 18px 0;
+    margin: -8px 0 32px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .hero-band.is-empty { display: none; }
+  .hero-primary, .hero-secondary {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .hero-secondary::before {
+    content: '·';
+    color: var(--rule);
+    margin-right: 4px;
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .hero-date {
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  .hero-sep { color: var(--rule); }
+  .hero-matchup, .hero-score, .hero-record {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+  }
+  .hero-time {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .hero-channel, .hero-state {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .hero-channel.national {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .hero-channel.national::before {
+    content: '★ ';
+    color: var(--national);
+  }
+  .hero-standing {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 600px) {
+    .hero-band { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .hero-secondary::before { display: none; }
+  }
+  @media (max-width: 400px) {
+    .hero-channel { display: none; }
+  }
+
   .dateline {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
@@ -764,6 +838,8 @@
     <div class="masthead-pennants" id="mastheadPennants" aria-label="Season W/L sequence"></div>
   </header>
 
+  <div class="hero-band is-empty" id="heroBand"></div>
+
   <div id="sectionsContainer"></div>
 
   <template id="t-section-pulse">
@@ -1068,6 +1144,17 @@
 
   const RIVALS = ['STL', 'MIL'];
 
+  const ABBR_TO_NICKNAME = {
+    ARI: 'Diamondbacks', AZ: 'Diamondbacks', ATH: 'Athletics',
+    ATL: 'Braves', BAL: 'Orioles', BOS: 'Red Sox', CHC: 'Cubs',
+    CIN: 'Reds', CLE: 'Guardians', COL: 'Rockies', CWS: 'White Sox',
+    DET: 'Tigers', HOU: 'Astros', KC: 'Royals', LAA: 'Angels',
+    LAD: 'Dodgers', MIA: 'Marlins', MIL: 'Brewers', MIN: 'Twins',
+    NYM: 'Mets', NYY: 'Yankees', PHI: 'Phillies', PIT: 'Pirates',
+    SD: 'Padres', SEA: 'Mariners', SF: 'Giants', STL: 'Cardinals',
+    TB: 'Rays', TEX: 'Rangers', TOR: 'Blue Jays', WSH: 'Nationals',
+  };
+
   let fullSchedule = [
     { date: '2026-03-26', opp: 'WSH', home: true,  time: '1:20 PM', result: { us: 4,  them: 10 } },
     { date: '2026-03-28', opp: 'WSH', home: true,  time: '1:20 PM', result: { us: 10, them: 2  } },
@@ -1353,6 +1440,158 @@
     }).join('');
   }
 
+  function nowInChicago() {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/Chicago',
+      year: 'numeric', month: '2-digit', day: '2-digit',
+      hour: '2-digit', minute: '2-digit', hour12: false,
+    }).formatToParts(new Date());
+    const get = t => parts.find(p => p.type === t).value;
+    return {
+      date: `${get('year')}-${get('month')}-${get('day')}`,
+      time: `${get('hour')}:${get('minute')}`,
+    };
+  }
+
+  function parseGameTime(timeStr) {
+    if (!timeStr) return null;
+    const m = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+    if (!m) return null;
+    let h = parseInt(m[1], 10);
+    const min = m[2];
+    const ampm = m[3].toUpperCase();
+    if (ampm === 'PM' && h !== 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    return `${String(h).padStart(2, '0')}:${min}`;
+  }
+
+  function classifyTodayGame(g, nowTime) {
+    if (g.result) return 'final';
+    const gt = parseGameTime(g.time);
+    if (!gt) return 'pregame';
+    return gt > nowTime ? 'pregame' : 'inprogress';
+  }
+
+  function pickTodayGame(gamesToday, nowTime) {
+    const classified = gamesToday.map(g => ({ g, state: classifyTodayGame(g, nowTime), gt: parseGameTime(g.time) }));
+    const pregames = classified.filter(c => c.state === 'pregame');
+    if (pregames.length) {
+      pregames.sort((a, b) => (a.gt || '').localeCompare(b.gt || ''));
+      return pregames[0];
+    }
+    const inprogress = classified.filter(c => c.state === 'inprogress');
+    if (inprogress.length) {
+      inprogress.sort((a, b) => (a.gt || '').localeCompare(b.gt || ''));
+      return inprogress[0];
+    }
+    const finals = classified.filter(c => c.state === 'final');
+    if (finals.length) {
+      finals.sort((a, b) => (b.gt || '').localeCompare(a.gt || ''));
+      return finals[0];
+    }
+    return null;
+  }
+
+  function daysBetween(dateA, dateB) {
+    const a = new Date(dateA + 'T12:00:00');
+    const b = new Date(dateB + 'T12:00:00');
+    return Math.round((b - a) / (1000 * 60 * 60 * 24));
+  }
+
+  function formatNextDateLabel(gameDate, todayDate) {
+    const diff = daysBetween(todayDate, gameDate);
+    const d = new Date(gameDate + 'T12:00:00');
+    if (diff === 1) return 'Tomorrow';
+    if (diff >= 2 && diff <= 7) return d.toLocaleDateString('en-US', { weekday: 'long' });
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function ordinal(n) {
+    const s = ['th', 'st', 'nd', 'rd'];
+    const v = n % 100;
+    return n + (s[(v - 20) % 10] || s[v] || s[0]);
+  }
+
+  function heroChannelMarkup(g) {
+    if (g.tvNational) {
+      return `<span class="hero-channel national">${g.tvNational}</span>`;
+    }
+    return '<span class="hero-channel">Marquee</span>';
+  }
+
+  function heroMatchupMarkup(g) {
+    const vs = g.home ? 'vs' : 'at';
+    return `<span class="hero-matchup">${vs} <strong>${g.opp}</strong></span>`;
+  }
+
+  function computeHeroContent() {
+    if (!Array.isArray(fullSchedule) || fullSchedule.length === 0) return null;
+    const { date: todayDate, time: nowTime } = nowInChicago();
+
+    const gamesToday = fullSchedule.filter(g => g.date === todayDate);
+    if (gamesToday.length > 0) {
+      const picked = pickTodayGame(gamesToday, nowTime);
+      if (!picked) return null;
+      const { g, state } = picked;
+      const primary = '<span class="hero-label">Today</span>';
+      let secondary;
+      if (state === 'final') {
+        const cubsWon = g.result.us > g.result.them;
+        const oppName = ABBR_TO_NICKNAME[g.opp] || g.opp;
+        const score = cubsWon
+          ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
+          : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
+        secondary = `<span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
+      } else if (state === 'inprogress') {
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span>`;
+      } else {
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
+      }
+      return { primary, secondary };
+    }
+
+    const futureGames = fullSchedule.filter(g => g.date > todayDate && !g.result);
+    if (futureGames.length > 0) {
+      const next = futureGames[0];
+      const dateLabel = formatNextDateLabel(next.date, todayDate);
+      const primary = `<span class="hero-label">Next</span><span class="hero-sep">·</span><span class="hero-date">${dateLabel}</span>`;
+      const secondary = `${heroMatchupMarkup(next)}<span class="hero-sep">·</span><span class="hero-time">${next.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(next)}`;
+      return { primary, secondary };
+    }
+
+    const played = fullSchedule.filter(g => g.result);
+    if (played.length === 0) return null;
+    const wins = played.filter(g => g.result.us > g.result.them).length;
+    const losses = played.length - wins;
+    const primary = '<span class="hero-label">Season complete</span>';
+    const recordStr = `${wins}\u2013${losses}`;
+    let secondary = `<span class="hero-record"><strong>${recordStr}</strong></span>`;
+    const rankIdx = Array.isArray(standings) ? standings.findIndex(s => s.abbr === 'CHC') : -1;
+    if (rankIdx >= 0) {
+      const rank = ordinal(rankIdx + 1);
+      secondary += `<span class="hero-sep">·</span><span class="hero-standing">${rank} in NL Central</span>`;
+    }
+    return { primary, secondary };
+  }
+
+  function renderHero() {
+    const band = document.getElementById('heroBand');
+    if (!band) return;
+    try {
+      const content = computeHeroContent();
+      if (!content || !content.primary) {
+        band.classList.add('is-empty');
+        band.innerHTML = '';
+        return;
+      }
+      band.classList.remove('is-empty');
+      band.innerHTML = `<div class="hero-primary">${content.primary}</div><div class="hero-secondary">${content.secondary}</div>`;
+    } catch {
+      band.classList.add('is-empty');
+      band.innerHTML = '';
+    }
+  }
+
   function renderProjection() {
     const played = fullSchedule.filter(g => g.result !== null);
     if (played.length === 0) {
@@ -1391,6 +1630,7 @@
   // Render everything that depends on data — call after any refresh
   function renderAll() {
     renderMasthead();
+    renderHero();
     renderPulseStrip();
     renderStandings();
     renderRecent();
