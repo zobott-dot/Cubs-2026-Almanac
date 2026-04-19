@@ -91,6 +91,14 @@ def fetch_schedule():
             if g.get("gameType", "R") != "R":
                 continue
 
+            # Skip postponed predecessors. When a game is rained out and
+            # rescheduled into a doubleheader, the API returns both the
+            # original (detailedState: "Postponed", null scores) and the
+            # makeup (detailedState: "Final" with scores), often sharing
+            # the same gamePk. The postponed record is a ghost.
+            if g.get("status", {}).get("detailedState") == "Postponed":
+                continue
+
             home_team = g["teams"]["home"]["team"]
             away_team = g["teams"]["away"]["team"]
             is_home = home_team["id"] == CUBS_TEAM_ID
