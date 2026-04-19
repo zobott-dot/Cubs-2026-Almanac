@@ -1348,7 +1348,13 @@
     const ldr = standings[0];
     const cubs = standings.find(s => s.abbr === 'CHC') || { w: cubsW, l: cubsL };
     const gamesBack = ldr ? ((ldr.w - cubs.w) + (cubs.l - ldr.l)) / 2 : 0;
-    const gbStr = gamesBack === 0 ? 'tied for 1st' : `${gamesBack.toFixed(1)} GB`;
+    let gbStr;
+    if (gamesBack === 0) {
+      const sharedTop = ldr && standings.filter(s => s.w === ldr.w && s.l === ldr.l).length > 1;
+      gbStr = sharedTop ? 'tied for 1st' : 'holds 1st';
+    } else {
+      gbStr = `${gamesBack.toFixed(1)} GB`;
+    }
     document.getElementById('mastheadRecord').innerHTML =
       `${cubsW}\u2013${cubsL} <span class="sep">·</span> ${cubsPct} <span class="sep">·</span> <span class="gb">${gbStr}</span>`;
 

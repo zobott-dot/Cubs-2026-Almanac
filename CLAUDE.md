@@ -85,6 +85,12 @@ These were tried and intentionally removed. Do not add them back:
 - Orphan `.dateline` CSS rule left behind after the dateline div was removed.
 - Long Arithmetic slider doesn't initialize to the current pace value.
 
+## Semantic contracts
+
+Rules about non-obvious behavior that must survive future edits.
+
+- Masthead GB label distinguishes three cases: sole leader (`holds 1st`), tied-for-first (`tied for 1st`), and trailing (`X.X GB`). Keep these distinct in any future `renderMasthead` edits — do not collapse "sole leader" and "tied" into a single label.
+
 ## Working with Dave
 
 - Address the user as "Dave."
