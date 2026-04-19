@@ -451,6 +451,38 @@
     padding-bottom: 6px;
     border-bottom: 1px solid var(--rule);
   }
+  .schedule-month.month-collapsible .schedule-month-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: opacity 0.15s ease;
+  }
+  .schedule-month.month-collapsible .schedule-month-head:hover { opacity: 0.7; }
+  .schedule-month-head .month-name { flex: 1; }
+  .schedule-month-head .month-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .schedule-month-head .month-chevron {
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .schedule-month.month-collapsible:not(.month-collapsed) .month-meta { display: none; }
+  .schedule-month.month-collapsed .schedule-game { display: none; }
+  .schedule-month.month-collapsed .schedule-month-head {
+    margin-bottom: 0;
+    border-bottom-style: dashed;
+  }
   .schedule-game {
     display: grid;
     grid-template-columns: 80px 1fr 70px 180px 38px;
@@ -1349,6 +1381,7 @@
   }
 
   const state = { filter: 'all', sort: 'date' };
+  const openMonths = new Set();
 
   function buildGameRow(g) {
     const d = new Date(g.date + 'T12:00:00');
@@ -1409,9 +1442,21 @@
 
       Object.keys(byMonth).sort().forEach(key => {
         const month = byMonth[key];
+        const total = month.games.length;
+        const played = month.games.filter(g => g.result !== null).length;
+        const isOpen = openMonths.has(month.name);
         const monthDiv = document.createElement('div');
-        monthDiv.className = 'schedule-month';
-        monthDiv.innerHTML = `<div class="schedule-month-head">${month.name}</div>`;
+        monthDiv.className = 'schedule-month month-collapsible' + (isOpen ? '' : ' month-collapsed');
+        const head = document.createElement('div');
+        head.className = 'schedule-month-head';
+        head.innerHTML = `<span class="month-name">${month.name}</span><span class="month-meta">${total} game${total === 1 ? '' : 's'} · ${played} played</span><span class="month-chevron" aria-hidden="true">${isOpen ? '▾' : '▸'}</span>`;
+        head.addEventListener('click', () => {
+          const isCollapsed = monthDiv.classList.toggle('month-collapsed');
+          head.querySelector('.month-chevron').textContent = isCollapsed ? '▸' : '▾';
+          if (isCollapsed) openMonths.delete(month.name);
+          else openMonths.add(month.name);
+        });
+        monthDiv.appendChild(head);
         month.games.forEach(g => monthDiv.appendChild(buildGameRow(g)));
         scheduleDiv.appendChild(monthDiv);
       });
