@@ -80,13 +80,10 @@ These were tried and intentionally removed. Do not add them back:
 
 ## Known issues
 
-- Masthead shows "As of conversation" placeholder text instead of the real timestamp.
 - Pennant strip renders empty on first paint before data.json loads.
-- Standings section can render empty when data is missing or malformed.
-- Duplicate 4/5 CLE entries appear in data.json.
+- Standings section has no empty-state fallback — if `standings` is an empty array, `renderStandings` clears the tbody and returns silently, leaving a headers-only table. Guarded upstream by `update_data.py`'s non-empty check, so rare in practice.
 - Orphan `.dateline` CSS rule left behind after the dateline div was removed.
-- Refresh button doesn't cache-bust — browser may serve stale data.json.
-- `.pulse-L` class has no `font-weight` set.
+- `.pulse-L` inherits `font-weight: 400` while `.pulse-W` is `700`, so losses render visibly lighter than wins in the pennant strip.
 - Long Arithmetic slider doesn't initialize to the current pace value.
 
 ## Working with Dave
