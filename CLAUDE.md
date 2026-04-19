@@ -83,7 +83,6 @@ These were tried and intentionally removed. Do not add them back:
 - Pennant strip renders empty on first paint before data.json loads.
 - Standings section has no empty-state fallback — if `standings` is an empty array, `renderStandings` clears the tbody and returns silently, leaving a headers-only table. Guarded upstream by `update_data.py`'s non-empty check, so rare in practice.
 - Orphan `.dateline` CSS rule left behind after the dateline div was removed.
-- `.pulse-L` inherits `font-weight: 400` while `.pulse-W` is `700`, so losses render visibly lighter than wins in the pennant strip.
 - Long Arithmetic slider doesn't initialize to the current pace value.
 
 ## Working with Dave
