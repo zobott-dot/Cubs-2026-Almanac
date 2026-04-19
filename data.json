@@ -1,9 +1,9 @@
 {
-  "updatedAt": "2026-04-19T17:22:58.788627+00:00",
+  "updatedAt": "2026-04-19T17:38:13.194553+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -13,7 +13,7 @@
     },
     {
       "date": "2026-03-28",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -23,7 +23,7 @@
     },
     {
       "date": "2026-03-29",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -33,7 +33,7 @@
     },
     {
       "date": "2026-03-30",
-      "opp": "OPP",
+      "opp": "LAA",
       "home": true,
       "time": "6:40 PM",
       "result": {
@@ -43,7 +43,7 @@
     },
     {
       "date": "2026-03-31",
-      "opp": "OPP",
+      "opp": "LAA",
       "home": true,
       "time": "6:40 PM",
       "result": {
@@ -53,7 +53,7 @@
     },
     {
       "date": "2026-04-01",
-      "opp": "OPP",
+      "opp": "LAA",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -63,7 +63,7 @@
     },
     {
       "date": "2026-04-03",
-      "opp": "OPP",
+      "opp": "CLE",
       "home": false,
       "time": "3:10 PM",
       "result": {
@@ -73,7 +73,7 @@
     },
     {
       "date": "2026-04-05",
-      "opp": "OPP",
+      "opp": "CLE",
       "home": false,
       "time": "12:10 PM",
       "result": {
@@ -83,7 +83,7 @@
     },
     {
       "date": "2026-04-05",
-      "opp": "OPP",
+      "opp": "CLE",
       "home": false,
       "time": "12:15 PM",
       "result": {
@@ -93,14 +93,14 @@
     },
     {
       "date": "2026-04-05",
-      "opp": "OPP",
+      "opp": "CLE",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-04-06",
-      "opp": "OPP",
+      "opp": "TB",
       "home": false,
       "time": "3:10 PM",
       "result": {
@@ -110,7 +110,7 @@
     },
     {
       "date": "2026-04-07",
-      "opp": "OPP",
+      "opp": "TB",
       "home": false,
       "time": "5:40 PM",
       "result": {
@@ -120,7 +120,7 @@
     },
     {
       "date": "2026-04-08",
-      "opp": "OPP",
+      "opp": "TB",
       "home": false,
       "time": "5:40 PM",
       "result": {
@@ -130,7 +130,7 @@
     },
     {
       "date": "2026-04-10",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -140,7 +140,7 @@
     },
     {
       "date": "2026-04-11",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -150,7 +150,7 @@
     },
     {
       "date": "2026-04-12",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -160,7 +160,7 @@
     },
     {
       "date": "2026-04-13",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": false,
       "time": "5:40 PM",
       "result": {
@@ -170,7 +170,7 @@
     },
     {
       "date": "2026-04-14",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": false,
       "time": "5:40 PM",
       "result": {
@@ -180,7 +180,7 @@
     },
     {
       "date": "2026-04-15",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": false,
       "time": "5:40 PM",
       "result": {
@@ -190,7 +190,7 @@
     },
     {
       "date": "2026-04-17",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -200,7 +200,7 @@
     },
     {
       "date": "2026-04-18",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": true,
       "time": "1:20 PM",
       "result": {
@@ -210,994 +210,994 @@
     },
     {
       "date": "2026-04-19",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-04-20",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-04-21",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-04-22",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-04-23",
-      "opp": "OPP",
+      "opp": "PHI",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-04-24",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": false,
       "time": "9:15 PM",
       "result": null
     },
     {
       "date": "2026-04-25",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-04-26",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": false,
       "time": "3:10 PM",
       "result": null
     },
     {
       "date": "2026-04-27",
-      "opp": "OPP",
+      "opp": "SD",
       "home": false,
       "time": "8:40 PM",
       "result": null
     },
     {
       "date": "2026-04-28",
-      "opp": "OPP",
+      "opp": "SD",
       "home": false,
       "time": "8:40 PM",
       "result": null
     },
     {
       "date": "2026-04-29",
-      "opp": "OPP",
+      "opp": "SD",
       "home": false,
       "time": "3:10 PM",
       "result": null
     },
     {
       "date": "2026-05-01",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-02",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-03",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-04",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-05",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-06",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-07",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-08",
-      "opp": "OPP",
+      "opp": "TEX",
       "home": false,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-05-09",
-      "opp": "OPP",
+      "opp": "TEX",
       "home": false,
       "time": "6:05 PM",
       "result": null
     },
     {
       "date": "2026-05-10",
-      "opp": "OPP",
+      "opp": "TEX",
       "home": false,
       "time": "1:35 PM",
       "result": null
     },
     {
       "date": "2026-05-12",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-05-13",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-05-14",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-05-15",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": false,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-16",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-05-17",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": false,
       "time": "1:10 PM",
       "result": null
     },
     {
       "date": "2026-05-18",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-19",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-20",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-05-22",
-      "opp": "OPP",
+      "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-23",
-      "opp": "OPP",
+      "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-24",
-      "opp": "OPP",
+      "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-05-25",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-05-26",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-05-27",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-05-28",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-05-29",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-05-30",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-05-31",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:20 PM",
       "result": null
     },
     {
       "date": "2026-06-02",
-      "opp": "OPP",
+      "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-03",
-      "opp": "OPP",
+      "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-04",
-      "opp": "OPP",
+      "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-05",
-      "opp": "OPP",
+      "opp": "SF",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-06-06",
-      "opp": "OPP",
+      "opp": "SF",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-06-07",
-      "opp": "OPP",
+      "opp": "SF",
       "home": true,
       "time": "7:20 PM",
       "result": null
     },
     {
       "date": "2026-06-09",
-      "opp": "OPP",
+      "opp": "COL",
       "home": false,
       "time": "7:40 PM",
       "result": null
     },
     {
       "date": "2026-06-10",
-      "opp": "OPP",
+      "opp": "COL",
       "home": false,
       "time": "7:40 PM",
       "result": null
     },
     {
       "date": "2026-06-11",
-      "opp": "OPP",
+      "opp": "COL",
       "home": false,
       "time": "2:10 PM",
       "result": null
     },
     {
       "date": "2026-06-12",
-      "opp": "OPP",
+      "opp": "SF",
       "home": false,
       "time": "9:15 PM",
       "result": null
     },
     {
       "date": "2026-06-13",
-      "opp": "OPP",
+      "opp": "SF",
       "home": false,
       "time": "9:05 PM",
       "result": null
     },
     {
       "date": "2026-06-14",
-      "opp": "OPP",
+      "opp": "SF",
       "home": false,
       "time": "2:10 PM",
       "result": null
     },
     {
       "date": "2026-06-15",
-      "opp": "OPP",
+      "opp": "COL",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-16",
-      "opp": "OPP",
+      "opp": "COL",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-17",
-      "opp": "OPP",
+      "opp": "COL",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-19",
-      "opp": "OPP",
+      "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-06-20",
-      "opp": "OPP",
+      "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-06-21",
-      "opp": "OPP",
+      "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-06-22",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-06-23",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-06-24",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-06-25",
-      "opp": "OPP",
+      "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-06-26",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "6:45 PM",
       "result": null
     },
     {
       "date": "2026-06-27",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-06-28",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "1:10 PM",
       "result": null
     },
     {
       "date": "2026-06-29",
-      "opp": "OPP",
+      "opp": "SD",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-06-30",
-      "opp": "OPP",
+      "opp": "SD",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-07-01",
-      "opp": "OPP",
+      "opp": "SD",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-07-03",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "3:05 PM",
       "result": null
     },
     {
       "date": "2026-07-04",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "7:08 PM",
       "result": null
     },
     {
       "date": "2026-07-05",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "1:30 PM",
       "result": null
     },
     {
       "date": "2026-07-07",
-      "opp": "OPP",
+      "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
       "result": null
     },
     {
       "date": "2026-07-08",
-      "opp": "OPP",
+      "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
       "result": null
     },
     {
       "date": "2026-07-09",
-      "opp": "OPP",
+      "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
       "result": null
     },
     {
       "date": "2026-07-10",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-07-11",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-07-12",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "12:40 PM",
       "result": null
     },
     {
       "date": "2026-07-17",
-      "opp": "OPP",
+      "opp": "MIN",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-07-18",
-      "opp": "OPP",
+      "opp": "MIN",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-07-19",
-      "opp": "OPP",
+      "opp": "MIN",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-07-20",
-      "opp": "OPP",
+      "opp": "DET",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-07-21",
-      "opp": "OPP",
+      "opp": "DET",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-07-22",
-      "opp": "OPP",
+      "opp": "DET",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-07-24",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-07-25",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-07-26",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": false,
       "time": "12:35 PM",
       "result": null
     },
     {
       "date": "2026-07-27",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:45 PM",
       "result": null
     },
     {
       "date": "2026-07-28",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:45 PM",
       "result": null
     },
     {
       "date": "2026-07-29",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "6:45 PM",
       "result": null
     },
     {
       "date": "2026-07-30",
-      "opp": "OPP",
+      "opp": "STL",
       "home": false,
       "time": "1:15 PM",
       "result": null
     },
     {
       "date": "2026-07-31",
-      "opp": "OPP",
+      "opp": "NYY",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-01",
-      "opp": "OPP",
+      "opp": "NYY",
       "home": true,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-08-02",
-      "opp": "OPP",
+      "opp": "NYY",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-03",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-08-04",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-08-05",
-      "opp": "OPP",
+      "opp": "LAD",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-07",
-      "opp": "OPP",
+      "opp": "KC",
       "home": false,
       "time": "7:10 PM",
       "result": null
     },
     {
       "date": "2026-08-08",
-      "opp": "OPP",
+      "opp": "KC",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-08-09",
-      "opp": "OPP",
+      "opp": "KC",
       "home": false,
       "time": "1:10 PM",
       "result": null
     },
     {
       "date": "2026-08-11",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": false,
       "time": "5:45 PM",
       "result": null
     },
     {
       "date": "2026-08-12",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": false,
       "time": "5:45 PM",
       "result": null
     },
     {
       "date": "2026-08-13",
-      "opp": "OPP",
+      "opp": "WSH",
       "home": false,
       "time": "3:05 PM",
       "result": null
     },
     {
       "date": "2026-08-14",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-15",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-16",
-      "opp": "OPP",
+      "opp": "STL",
       "home": true,
       "time": "2:10 PM",
       "result": null
     },
     {
       "date": "2026-08-17",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-08-18",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": true,
       "time": "7:05 PM",
       "result": null
     },
     {
       "date": "2026-08-19",
-      "opp": "OPP",
+      "opp": "CWS",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-21",
-      "opp": "OPP",
+      "opp": "SEA",
       "home": false,
       "time": "9:10 PM",
       "result": null
     },
     {
       "date": "2026-08-22",
-      "opp": "OPP",
+      "opp": "SEA",
       "home": false,
       "time": "8:40 PM",
       "result": null
     },
     {
       "date": "2026-08-23",
-      "opp": "OPP",
+      "opp": "SEA",
       "home": false,
       "time": "3:10 PM",
       "result": null
     },
     {
       "date": "2026-08-24",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": false,
       "time": "8:40 PM",
       "result": null
     },
     {
       "date": "2026-08-25",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": false,
       "time": "8:40 PM",
       "result": null
     },
     {
       "date": "2026-08-26",
-      "opp": "OPP",
+      "opp": "AZ",
       "home": false,
       "time": "2:40 PM",
       "result": null
     },
     {
       "date": "2026-08-28",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-29",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-08-30",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": true,
       "time": "2:10 PM",
       "result": null
     },
     {
       "date": "2026-08-31",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-01",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-02",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-03",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-04",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-09-05",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": false,
       "time": "3:10 PM",
       "result": null
     },
     {
       "date": "2026-09-06",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": false,
       "time": "12:40 PM",
       "result": null
     },
     {
       "date": "2026-09-07",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "1:10 PM",
       "result": null
     },
     {
       "date": "2026-09-08",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-09",
-      "opp": "OPP",
+      "opp": "MIL",
       "home": false,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-11",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-09-12",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-09-13",
-      "opp": "OPP",
+      "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-09-14",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-15",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-16",
-      "opp": "OPP",
+      "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-18",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-09-19",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "5:40 PM",
       "result": null
     },
     {
       "date": "2026-09-20",
-      "opp": "OPP",
+      "opp": "CIN",
       "home": false,
       "time": "12:40 PM",
       "result": null
     },
     {
       "date": "2026-09-22",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-23",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": true,
       "time": "6:40 PM",
       "result": null
     },
     {
       "date": "2026-09-24",
-      "opp": "OPP",
+      "opp": "MIA",
       "home": true,
       "time": "1:20 PM",
       "result": null
     },
     {
       "date": "2026-09-25",
-      "opp": "OPP",
+      "opp": "BOS",
       "home": false,
       "time": "6:10 PM",
       "result": null
     },
     {
       "date": "2026-09-26",
-      "opp": "OPP",
+      "opp": "BOS",
       "home": false,
       "time": "6:15 PM",
       "result": null
     },
     {
       "date": "2026-09-27",
-      "opp": "OPP",
+      "opp": "BOS",
       "home": false,
       "time": "2:05 PM",
       "result": null
