@@ -1543,7 +1543,7 @@
           : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
         secondary = `<span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
       } else if (state === 'inprogress') {
-        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span>`;
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       } else {
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       }

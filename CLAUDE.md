@@ -92,6 +92,7 @@ Rules about non-obvious behavior that must survive future edits.
 - Masthead GB label distinguishes three cases: sole leader (`holds 1st`), tied-for-first (`tied for 1st`), and trailing (`X.X GB`). Keep these distinct in any future `renderMasthead` edits — do not collapse "sole leader" and "tied" into a single label.
 - Initial page load: all six main sections start collapsed. This is intentional, not an oversight — it's the almanac conceit in action (quiet on arrival, visitor chooses what to see). Do not default any top-level section to expanded without an explicit request to change the conceit.
 - Hero band content priority: today's games first (with doubleheader priority pre-game > in-progress > final, latest final if all final), then next unplayed future game, then season complete. All dates anchored to America/Chicago (the almanac's frame of reference). Band hides itself via `is-empty` class if content can't be determined — never renders a dangling rule.
+- Hero band channel segment shows on pre-game, in-progress, and next-upcoming cases so the fan knows where to tune in. Hidden on final (game is over; Marquee is dead information) and on season complete (no game to watch). Channel lookup is per-game via `g.tvNational`, not per-date, so doubleheaders pick up the right game's broadcast.
 
 ## Working with Dave
 
