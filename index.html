@@ -621,6 +621,7 @@
   }
   .sched-result.W { color: var(--win); }
   .sched-result.L { color: var(--accent); }
+  .sched-result.live { color: var(--accent); }
   .sched-result.empty { border: none; }
   .projection {
     background: var(--paper-deep);
@@ -1326,7 +1327,7 @@
   // ============================================================
 
   function renderPulseStrip() {
-    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const playedGames = fullSchedule.filter(isFinal);
     const pulseHTML = playedGames.map(g => {
       const w = g.result.us > g.result.them;
       return w ? '<span class="pulse-W">W</span>' : '<span class="pulse-L">L</span>';
@@ -1369,7 +1370,7 @@
   function renderRecent() {
     const recentDiv = document.getElementById('recentGames');
     recentDiv.innerHTML = '';
-    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const playedGames = fullSchedule.filter(isFinal);
     const recent = playedGames.slice(-5).reverse();
     recent.forEach(g => {
       const result = g.result.us > g.result.them ? 'W' : 'L';
@@ -1393,7 +1394,7 @@
   function renderUpcoming() {
     const upDiv = document.getElementById('upcomingGames');
     upDiv.innerHTML = '';
-    const upcoming = fullSchedule.filter(g => g.result === null && new Date(g.date + 'T12:00:00') >= today).slice(0, 8);
+    const upcoming = fullSchedule.filter(g => g.result === null && !g.live && new Date(g.date + 'T12:00:00') >= today).slice(0, 8);
     upcoming.forEach(g => {
       const homeMark = g.home ? 'vs.' : '@';
       const channelClass = g.tvNational ? 'national' : '';
@@ -1415,7 +1416,7 @@
     const shortDateOpts = { month: 'long', day: 'numeric', year: 'numeric' };
     document.getElementById('datelineMeta').textContent = today.toLocaleDateString('en-US', shortDateOpts);
 
-    const playedGames = fullSchedule.filter(g => g.result !== null);
+    const playedGames = fullSchedule.filter(isFinal);
     const cubsW = playedGames.filter(g => g.result.us > g.result.them).length;
     const cubsL = playedGames.length - cubsW;
     const cubsPct = playedGames.length > 0
@@ -1466,8 +1467,14 @@
     return `${String(h).padStart(2, '0')}:${min}`;
   }
 
+  // A "final" game has a result AND is not currently live. Live games
+  // carry g.result too (running score), so anywhere we're asking "is
+  // this game over?" we need both checks, not just result !== null.
+  function isFinal(g) { return g.result !== null && !g.live; }
+
   function classifyTodayGame(g, nowTime) {
-    if (g.result) return 'final';
+    if (isFinal(g)) return 'final';
+    if (g.live) return 'inprogress';
     const gt = parseGameTime(g.time);
     if (!gt) return 'pregame';
     return gt > nowTime ? 'pregame' : 'inprogress';
@@ -1544,7 +1551,21 @@
           : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
         secondary = `<span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
       } else if (state === 'inprogress') {
-        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
+        const hasLiveScore = g.result
+          && typeof g.result.us === 'number'
+          && typeof g.result.them === 'number';
+        if (hasLiveScore) {
+          // Match the final-case typography: leader listed first. On a
+          // tie, Cubs lead (this is a Cubs almanac — their frame).
+          const cubsLead = g.result.us >= g.result.them;
+          const oppName = ABBR_TO_NICKNAME[g.opp] || g.opp;
+          const score = cubsLead
+            ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
+            : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
+          secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
+        } else {
+          secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
+        }
       } else {
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       }
@@ -1560,7 +1581,7 @@
       return { primary, secondary };
     }
 
-    const played = fullSchedule.filter(g => g.result);
+    const played = fullSchedule.filter(isFinal);
     if (played.length === 0) return null;
     const wins = played.filter(g => g.result.us > g.result.them).length;
     const losses = played.length - wins;
@@ -1594,7 +1615,7 @@
   }
 
   function renderProjection() {
-    const played = fullSchedule.filter(g => g.result !== null);
+    const played = fullSchedule.filter(isFinal);
     if (played.length === 0) {
       currentPaceSliderValue = null;
     } else {
@@ -1662,10 +1683,14 @@
     const homeMark = g.home ? 'vs.' : '@';
     const todayStr = today.toISOString().slice(0, 10);
     const isToday = g.date === todayStr;
-    const isPlayed = g.result !== null;
+    const isLive = g.live === true;
+    const isComplete = g.result !== null && !isLive;
+    const hasScore = g.result !== null;
 
     let resultBadge = '<span class="sched-result empty"></span>';
-    if (isPlayed) {
+    if (isLive) {
+      resultBadge = `<span class="sched-result live" title="In progress">\u25CF</span>`;
+    } else if (isComplete) {
       const w = g.result.us > g.result.them;
       resultBadge = `<span class="sched-result ${w ? 'W' : 'L'}">${w ? 'W' : 'L'}</span>`;
     }
@@ -1674,10 +1699,10 @@
       ? `<span class="sched-channel national">${g.tvNational}</span>`
       : `<span class="sched-channel">Marquee</span>`;
 
-    const scoreText = isPlayed ? ` <span style="color:var(--ink-soft);font-size:12px;">(${g.result.us}-${g.result.them})</span>` : '';
+    const scoreText = hasScore ? ` <span style="color:var(--ink-soft);font-size:12px;">(${g.result.us}-${g.result.them})</span>` : '';
 
     const gameDiv = document.createElement('div');
-    gameDiv.className = `schedule-game ${isPlayed ? 'played' : ''} ${isToday ? 'today' : ''}`;
+    gameDiv.className = `schedule-game ${isComplete ? 'played' : ''} ${isToday ? 'today' : ''}`;
     gameDiv.innerHTML = `
       <div class="sched-date">${dayLabel}</div>
       <div class="sched-opp"><span class="home-mark">${homeMark}</span> ${g.opp}${scoreText}</div>
@@ -1694,7 +1719,7 @@
       if (state.filter === 'home') return g.home;
       if (state.filter === 'away') return !g.home;
       if (state.filter === 'rivals') return RIVALS.includes(g.opp);
-      if (state.filter === 'upcoming') return g.result === null && new Date(g.date + 'T12:00:00') >= today;
+      if (state.filter === 'upcoming') return g.result === null && !g.live && new Date(g.date + 'T12:00:00') >= today;
       return true;
     });
 
@@ -1716,7 +1741,7 @@
       Object.keys(byMonth).sort().forEach(key => {
         const month = byMonth[key];
         const total = month.games.length;
-        const played = month.games.filter(g => g.result !== null).length;
+        const played = month.games.filter(isFinal).length;
         const isOpen = openMonths.has(month.name);
         const monthDiv = document.createElement('div');
         monthDiv.className = 'schedule-month month-collapsible' + (isOpen ? '' : ' month-collapsed');

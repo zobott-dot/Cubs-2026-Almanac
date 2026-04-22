@@ -75,6 +75,27 @@ def http_get_json(url: str):
         return json.loads(resp.read().decode("utf-8"))
 
 
+def fetch_linescore(game_pk):
+    """Fetch current home/away runs for a single in-progress game.
+
+    Returns (home_runs, away_runs) or None on any failure. Individual
+    game failures should not break the overall update, so we log and
+    return None rather than raise.
+    """
+    url = f"https://statsapi.mlb.com/api/v1/game/{game_pk}/linescore"
+    try:
+        data = http_get_json(url)
+    except Exception as e:
+        print(f"WARN: linescore fetch failed for gamePk={game_pk}: {e}", file=sys.stderr)
+        return None
+    teams = data.get("teams") or {}
+    home_runs = (teams.get("home") or {}).get("runs")
+    away_runs = (teams.get("away") or {}).get("runs")
+    if isinstance(home_runs, int) and isinstance(away_runs, int):
+        return home_runs, away_runs
+    return None
+
+
 def fetch_schedule():
     """Fetch the Cubs' full regular-season schedule and return the parsed list."""
     url = (
@@ -144,8 +165,11 @@ def fetch_schedule():
                 except Exception:
                     pass
 
-            # Result if final
+            # Result if final or live. "Live" covers In Progress, Warmup,
+            # Manager Challenge, Delayed, etc. — anything MLB considers
+            # mid-game. Pregame ("Preview") and other states leave result=None.
             result = None
+            live = False
             status = g.get("status", {}).get("abstractGameState", "")
             if status == "Final":
                 home_score = g["teams"]["home"].get("score")
@@ -155,14 +179,40 @@ def fetch_schedule():
                         result = {"us": home_score, "them": away_score}
                     else:
                         result = {"us": away_score, "them": home_score}
+            elif status == "Live":
+                live = True
+                # Prefer the schedule's running score; fall back to the
+                # per-game linescore endpoint if the schedule omits it.
+                home_score = g["teams"]["home"].get("score")
+                away_score = g["teams"]["away"].get("score")
+                if not (isinstance(home_score, int) and isinstance(away_score, int)):
+                    game_pk = g.get("gamePk")
+                    if game_pk is not None:
+                        scores = fetch_linescore(game_pk)
+                        if scores:
+                            home_score, away_score = scores
+                if isinstance(home_score, int) and isinstance(away_score, int):
+                    if is_home:
+                        result = {"us": home_score, "them": away_score}
+                    else:
+                        result = {"us": away_score, "them": home_score}
+                else:
+                    print(
+                        f"WARN: no live score available for gamePk={g.get('gamePk')} "
+                        f"({opp_abbr} {date_str})",
+                        file=sys.stderr,
+                    )
 
-            games.append({
+            game_obj = {
                 "date": date_str,
                 "opp": opp_abbr,
                 "home": is_home,
                 "time": time_str,
                 "result": result,
-            })
+            }
+            if live:
+                game_obj["live"] = True
+            games.append(game_obj)
 
     # Sort by date for determinism (the API usually returns sorted but make sure)
     games.sort(key=lambda x: (x["date"], x["time"]))
