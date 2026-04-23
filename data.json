@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-22T21:53:18.651578+00:00",
+  "updatedAt": "2026-04-23T02:57:04.711353+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -236,7 +236,10 @@
       "opp": "PHI",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": {
+        "us": 7,
+        "them": 2
+      }
     },
     {
       "date": "2026-04-23",
@@ -1215,8 +1218,14 @@
     {
       "team": "Cubs",
       "abbr": "",
-      "w": 14,
+      "w": 15,
       "l": 9
+    },
+    {
+      "team": "Pirates",
+      "abbr": "",
+      "w": 14,
+      "l": 10
     },
     {
       "team": "Cardinals",
@@ -1226,12 +1235,6 @@
     },
     {
       "team": "Brewers",
-      "abbr": "",
-      "w": 13,
-      "l": 9
-    },
-    {
-      "team": "Pirates",
       "abbr": "",
       "w": 13,
       "l": 10
