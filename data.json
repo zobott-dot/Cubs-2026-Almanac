@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-23T16:45:32.775745+00:00",
+  "updatedAt": "2026-04-23T19:17:17.237218+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -246,7 +246,11 @@
       "opp": "PHI",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": {
+        "us": 4,
+        "them": 2
+      },
+      "live": true
     },
     {
       "date": "2026-04-24",
