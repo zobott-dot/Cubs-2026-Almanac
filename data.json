@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-23T21:51:21.919491+00:00",
+  "updatedAt": "2026-04-24T02:57:55.766868+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -1225,16 +1225,16 @@
       "l": 9
     },
     {
-      "team": "Pirates",
+      "team": "Cardinals",
       "abbr": "",
       "w": 14,
       "l": 10
     },
     {
-      "team": "Cardinals",
+      "team": "Pirates",
       "abbr": "",
       "w": 14,
-      "l": 10
+      "l": 11
     },
     {
       "team": "Brewers",
