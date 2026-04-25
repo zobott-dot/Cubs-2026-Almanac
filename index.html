@@ -716,27 +716,30 @@
     border-radius: 50%;
   }
   .slider-value {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     font-weight: 700;
     color: var(--accent);
-    min-width: 20ch;
+    width: 34ch;
+    flex: 0 0 auto;
     text-align: right;
     white-space: nowrap;
   }
-  .pace-reset-row { text-align: right; margin-top: 10px; }
   .pace-reset {
     background: none;
     border: none;
     padding: 0;
+    margin-left: 10px;
     cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
+    font: inherit;
+    color: inherit;
+    white-space: nowrap;
   }
-  .pace-reset:hover { color: var(--ink); }
+  .pace-reset::before { content: '·'; margin-right: 8px; }
+  .pace-reset:hover { opacity: 0.7; }
   .pace-reset[hidden] { display: none; }
   .lede {
     font-family: 'Source Serif 4', serif;
@@ -1051,10 +1054,9 @@
           <label for="paceSlider">Adjust the winning percentage to project a final record</label>
           <div class="slider-wrap">
             <input type="range" id="paceSlider" min="300" max="700" step="5" value="526">
-            <span class="slider-value" id="sliderValue">.526</span>
-          </div>
-          <div class="pace-reset-row">
-            <button type="button" id="paceReset" class="pace-reset" hidden>↺ reset to current pace</button>
+            <span class="slider-value">
+              <span id="sliderValue">.526</span><button type="button" id="paceReset" class="pace-reset" hidden>↺ reset to current pace</button>
+            </span>
           </div>
         </div>
         <div class="projection-row">
