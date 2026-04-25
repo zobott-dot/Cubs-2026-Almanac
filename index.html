@@ -558,6 +558,23 @@
     margin-bottom: 0;
     border-bottom-style: dashed;
   }
+  /* Section III per-column collapse — same chevron treatment as months */
+  .recap-col-head {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: opacity 0.15s ease;
+  }
+  .recap-col-head:hover { opacity: 0.7; }
+  .recap-col-head .recap-col-chevron {
+    font-family: 'Source Serif 4', serif;
+    font-style: normal;
+    font-size: 18px;
+    line-height: 1;
+    color: var(--accent);
+    margin-left: 8px;
+  }
+  .recap-col.col-collapsed .recap-col-body { display: none; }
   .schedule-game {
     display: grid;
     grid-template-columns: 80px 1fr 70px 180px 38px;
@@ -960,13 +977,13 @@
     </div>
     <div class="section-body">
       <div class="two-col">
-        <div>
-          <h4 style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Recently</h4>
-          <div id="recentGames"></div>
+        <div class="recap-col" data-col="recently">
+          <h4 class="recap-col-head" style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Recently<span class="recap-col-chevron" aria-hidden="true">▾</span></h4>
+          <div class="recap-col-body" id="recentGames"></div>
         </div>
-        <div>
-          <h4 style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Coming Up</h4>
-          <div id="upcomingGames"></div>
+        <div class="recap-col" data-col="upcoming">
+          <h4 class="recap-col-head" style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--accent); margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid var(--rule);">Coming Up<span class="recap-col-chevron" aria-hidden="true">▾</span></h4>
+          <div class="recap-col-body" id="upcomingGames"></div>
         </div>
       </div>
     </div>
@@ -1132,6 +1149,29 @@
   };
   wireCollapseToggles();
   refreshToggleAllState();
+
+  // Section III: per-column collapse state (Recently / Coming Up).
+  // Both default to open so the section reads top-to-bottom in one
+  // continuous timeline once the user expands the section itself.
+  const openRecapColumns = new Set(['recently', 'upcoming']);
+  function wireRecapColumnToggles() {
+    document.querySelectorAll('.recap-col').forEach(col => {
+      const key = col.getAttribute('data-col');
+      const head = col.querySelector('.recap-col-head');
+      if (!key || !head) return;
+      const chevron = head.querySelector('.recap-col-chevron');
+      const isOpen = openRecapColumns.has(key);
+      if (!isOpen) col.classList.add('col-collapsed');
+      if (chevron) chevron.textContent = isOpen ? '▾' : '▸';
+      head.addEventListener('click', () => {
+        const isCollapsed = col.classList.toggle('col-collapsed');
+        if (chevron) chevron.textContent = isCollapsed ? '▸' : '▾';
+        if (isCollapsed) openRecapColumns.delete(key);
+        else openRecapColumns.add(key);
+      });
+    });
+  }
+  wireRecapColumnToggles();
 
   // Mutable state — replaced by refresh
   let today = new Date('2026-04-18T12:00:00');
@@ -1371,7 +1411,9 @@
     const recentDiv = document.getElementById('recentGames');
     recentDiv.innerHTML = '';
     const playedGames = fullSchedule.filter(isFinal);
-    const recent = playedGames.slice(-5).reverse();
+    // Oldest at top, most recent at the bottom — flows into "Coming Up"
+    // so the two columns read as a single chronological timeline.
+    const recent = playedGames.slice(-5);
     recent.forEach(g => {
       const result = g.result.us > g.result.them ? 'W' : 'L';
       const homeMark = g.home ? 'vs.' : '@';
