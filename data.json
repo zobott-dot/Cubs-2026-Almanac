@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-25T22:56:15.763577+00:00",
+  "updatedAt": "2026-04-25T23:36:10.768206+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -266,7 +266,11 @@
       "opp": "LAD",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": {
+        "us": 0,
+        "them": 0
+      },
+      "live": true
     },
     {
       "date": "2026-04-26",
