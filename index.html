@@ -720,9 +720,24 @@
     font-size: 14px;
     font-weight: 700;
     color: var(--accent);
-    min-width: 12ch;
+    min-width: 20ch;
     text-align: right;
+    white-space: nowrap;
   }
+  .pace-reset-row { text-align: right; margin-top: 10px; }
+  .pace-reset {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .pace-reset:hover { color: var(--ink); }
+  .pace-reset[hidden] { display: none; }
   .lede {
     font-family: 'Source Serif 4', serif;
     font-size: 17px;
@@ -1037,6 +1052,9 @@
           <div class="slider-wrap">
             <input type="range" id="paceSlider" min="300" max="700" step="5" value="526">
             <span class="slider-value" id="sliderValue">.526</span>
+          </div>
+          <div class="pace-reset-row">
+            <button type="button" id="paceReset" class="pace-reset" hidden>↺ reset to current pace</button>
           </div>
         </div>
         <div class="projection-row">
@@ -1850,6 +1868,7 @@
   // Projection
   const slider = document.getElementById('paceSlider');
   const sliderValue = document.getElementById('sliderValue');
+  const paceReset = document.getElementById('paceReset');
   const projWins = document.getElementById('projWins');
   const projRecord = document.getElementById('projRecord');
   const projPostseason = document.getElementById('projPostseason');
@@ -1857,7 +1876,9 @@
   function updateProjection() {
     const p = slider.value / 1000;
     const isCurrent = currentPaceSliderValue !== null && Number(slider.value) === currentPaceSliderValue;
-    sliderValue.textContent = isCurrent ? 'current pace' : p.toFixed(3).replace(/^0/, '');
+    const pctStr = p.toFixed(3).replace(/^0/, '');
+    sliderValue.textContent = isCurrent ? `current pace · ${pctStr}` : pctStr;
+    paceReset.hidden = isCurrent || currentPaceSliderValue === null;
     const w = Math.round(p * 162);
     const l = 162 - w;
     projWins.innerHTML = `${w}<span class="small"> / 162</span>`;
@@ -1873,6 +1894,12 @@
   }
 
   slider.addEventListener('input', updateProjection);
+
+  paceReset.addEventListener('click', () => {
+    if (currentPaceSliderValue === null) return;
+    slider.value = currentPaceSliderValue;
+    updateProjection();
+  });
 
   // ============================================================
   // Initial render — uses the embedded data
