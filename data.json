@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-25T02:47:17.923924+00:00",
+  "updatedAt": "2026-04-25T04:08:23.460694+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -258,7 +258,7 @@
       "time": "9:15 PM",
       "result": {
         "us": 0,
-        "them": 0
+        "them": 4
       },
       "live": true
     },
@@ -1217,13 +1217,13 @@
   ],
   "standings": [
     {
-      "team": "Cubs",
+      "team": "Reds",
       "abbr": "",
-      "w": 16,
+      "w": 17,
       "l": 9
     },
     {
-      "team": "Reds",
+      "team": "Cubs",
       "abbr": "",
       "w": 16,
       "l": 9
@@ -1238,7 +1238,7 @@
       "team": "Cardinals",
       "abbr": "",
       "w": 14,
-      "l": 10
+      "l": 11
     },
     {
       "team": "Brewers",
