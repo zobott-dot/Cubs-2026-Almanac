@@ -1723,7 +1723,7 @@
     const d = new Date(g.date + 'T12:00:00');
     const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     const homeMark = g.home ? 'vs.' : '@';
-    const todayStr = today.toISOString().slice(0, 10);
+    const todayStr = nowInChicago().date;
     const isToday = g.date === todayStr;
     const isLive = g.live === true;
     const isComplete = g.result !== null && !isLive;
