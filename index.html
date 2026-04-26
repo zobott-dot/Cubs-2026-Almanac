@@ -654,9 +654,6 @@
   .sched-result.live { color: var(--accent); }
   .sched-result.empty { border: none; }
   .projection {
-    background: var(--paper-deep);
-    border: 1px solid var(--rule);
-    padding: 32px;
     margin-top: 24px;
   }
   .projection-row {
@@ -699,7 +696,7 @@
     color: var(--ink-soft);
     margin-bottom: 12px;
   }
-  .slider-wrap { display: flex; align-items: center; gap: 16px; }
+  .slider-wrap { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
   input[type="range"] {
     flex: 1;
     -webkit-appearance: none;
@@ -731,14 +728,12 @@
   .slider-value {
     display: flex;
     align-items: baseline;
-    justify-content: flex-end;
+    justify-content: center;
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     font-weight: 700;
     color: var(--accent);
-    width: 34ch;
-    flex: 0 0 auto;
-    text-align: right;
+    text-align: center;
     white-space: nowrap;
   }
   .pace-reset {
@@ -754,11 +749,6 @@
   .pace-reset::before { content: '·'; margin-right: 8px; }
   .pace-reset:hover { opacity: 0.7; }
   .pace-reset[hidden] { display: none; }
-  @media (max-width: 600px) {
-    .slider-wrap { flex-direction: column; align-items: stretch; gap: 10px; }
-    .slider-wrap input[type="range"] { flex: 0 0 auto; }
-    .slider-value { width: auto; justify-content: center; text-align: center; }
-  }
   .lede {
     font-family: 'Source Serif 4', serif;
     font-size: 17px;
@@ -1071,7 +1061,7 @@
         <div class="proj-controls">
           <label for="paceSlider">Adjust the winning percentage to project a final record</label>
           <div class="slider-wrap">
-            <input type="range" id="paceSlider" min="300" max="700" step="5" value="526">
+            <input type="range" id="paceSlider" min="300" max="700" step="1" value="526">
             <span class="slider-value">
               <span id="sliderValue">.526</span><button type="button" id="paceReset" class="pace-reset" hidden>↺ reset</button>
             </span>
