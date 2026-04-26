@@ -1282,7 +1282,7 @@
     { date: '2026-05-28', opp: 'PIT', home: false, time: '5:40 PM', result: null },
     { date: '2026-05-29', opp: 'STL', home: false, time: '7:15 PM', result: null },
     { date: '2026-05-30', opp: 'STL', home: false, time: '6:15 PM', result: null },
-    { date: '2026-05-31', opp: 'STL', home: false, time: '6:20 PM', result: null, tvNational: 'NBC / Peacock' },
+    { date: '2026-05-31', opp: 'STL', home: false, time: '6:20 PM', result: null, tvNational: 'NBC/Peacock' },
     { date: '2026-06-02', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
     { date: '2026-06-03', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
     { date: '2026-06-04', opp: 'ATH', home: true,  time: '7:05 PM', result: null },
@@ -1432,6 +1432,20 @@
     });
   }
 
+  // Resolve which channel to display for a game.
+  // Priority: manual tvNational override > API broadcast field > Marquee default.
+  // Returns { text, isNational } so callers can pick the right CSS class.
+  // Marquee from the API arrives as "MARQUEE" (canonical for storage); we
+  // display "Marquee" to match the existing visual style of the page.
+  function resolveChannel(g) {
+    if (g.tvNational) return { text: g.tvNational, isNational: true };
+    if (g.broadcast) {
+      if (g.broadcast === 'MARQUEE') return { text: 'Marquee', isNational: false };
+      return { text: g.broadcast, isNational: true };
+    }
+    return { text: 'Marquee', isNational: false };
+  }
+
   function renderRecent() {
     const recentDiv = document.getElementById('recentGames');
     recentDiv.innerHTML = '';
@@ -1442,8 +1456,9 @@
     recent.forEach(g => {
       const result = g.result.us > g.result.them ? 'W' : 'L';
       const homeMark = g.home ? 'vs.' : '@';
-      const channelClass = g.tvNational ? 'national' : '';
-      const channelText = g.tvNational || 'Marquee';
+      const ch = resolveChannel(g);
+      const channelClass = ch.isNational ? 'national' : '';
+      const channelText = ch.text;
       const div = document.createElement('div');
       div.className = 'game';
       div.innerHTML = `
@@ -1464,8 +1479,9 @@
     const upcoming = fullSchedule.filter(g => g.result === null && !g.live && new Date(g.date + 'T12:00:00') >= today).slice(0, 8);
     upcoming.forEach(g => {
       const homeMark = g.home ? 'vs.' : '@';
-      const channelClass = g.tvNational ? 'national' : '';
-      const channelText = g.tvNational || 'Marquee';
+      const ch = resolveChannel(g);
+      const channelClass = ch.isNational ? 'national' : '';
+      const channelText = ch.text;
       const div = document.createElement('div');
       div.className = 'game';
       div.innerHTML = `
@@ -1588,10 +1604,9 @@
   }
 
   function heroChannelMarkup(g) {
-    if (g.tvNational) {
-      return `<span class="hero-channel national">${g.tvNational}</span>`;
-    }
-    return '<span class="hero-channel">Marquee</span>';
+    const ch = resolveChannel(g);
+    const cls = ch.isNational ? 'hero-channel national' : 'hero-channel';
+    return `<span class="${cls}">${ch.text}</span>`;
   }
 
   function heroMatchupMarkup(g) {
@@ -1736,7 +1751,8 @@
                       'July','August','September','October','November','December'];
 
   function viewingGroup(g) {
-    if (g.tvNational) return { key: 'national', label: 'National Broadcast', subtitle: 'Available without Marquee — see Where to Watch above' };
+    const ch = resolveChannel(g);
+    if (ch.isNational) return { key: 'national', label: 'National Broadcast', subtitle: 'Available without Marquee — see Where to Watch above' };
     return { key: 'marquee', label: 'Marquee Sports Network', subtitle: 'Cable, Hulu+Live, Fubo, Marquee app, or Prime Video' };
   }
 
@@ -1762,9 +1778,10 @@
       resultBadge = `<span class="sched-result ${w ? 'W' : 'L'}">${w ? 'W' : 'L'}</span>`;
     }
 
-    const channel = g.tvNational
-      ? `<span class="sched-channel national">${g.tvNational}</span>`
-      : `<span class="sched-channel">Marquee</span>`;
+    const ch = resolveChannel(g);
+    const channel = ch.isNational
+      ? `<span class="sched-channel national">${ch.text}</span>`
+      : `<span class="sched-channel">${ch.text}</span>`;
 
     const scoreText = hasScore ? ` <span style="color:var(--ink-soft);font-size:12px;">(${g.result.us}-${g.result.them})</span>` : '';
 

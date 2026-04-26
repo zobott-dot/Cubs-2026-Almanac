@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-26T01:12:49.257982+00:00",
+  "updatedAt": "2026-04-26T02:21:28.741057+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -9,7 +9,8 @@
       "result": {
         "us": 4,
         "them": 10
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-03-28",
@@ -19,7 +20,8 @@
       "result": {
         "us": 10,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-03-29",
@@ -29,7 +31,8 @@
       "result": {
         "us": 3,
         "them": 6
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-03-30",
@@ -39,7 +42,8 @@
       "result": {
         "us": 7,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-03-31",
@@ -49,7 +53,8 @@
       "result": {
         "us": 0,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-01",
@@ -59,7 +64,8 @@
       "result": {
         "us": 6,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-03",
@@ -69,7 +75,8 @@
       "result": {
         "us": 1,
         "them": 4
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-05",
@@ -79,7 +86,8 @@
       "result": {
         "us": 1,
         "them": 0
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-05",
@@ -89,7 +97,8 @@
       "result": {
         "us": 5,
         "them": 6
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-06",
@@ -99,7 +108,8 @@
       "result": {
         "us": 4,
         "them": 6
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-07",
@@ -109,7 +119,8 @@
       "result": {
         "us": 9,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-08",
@@ -119,7 +130,8 @@
       "result": {
         "us": 6,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-10",
@@ -129,7 +141,8 @@
       "result": {
         "us": 0,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-11",
@@ -139,7 +152,8 @@
       "result": {
         "us": 3,
         "them": 4
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-12",
@@ -149,7 +163,8 @@
       "result": {
         "us": 7,
         "them": 6
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-13",
@@ -159,7 +174,8 @@
       "result": {
         "us": 7,
         "them": 13
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-14",
@@ -169,7 +185,8 @@
       "result": {
         "us": 10,
         "them": 4
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-15",
@@ -179,7 +196,8 @@
       "result": {
         "us": 11,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-17",
@@ -189,7 +207,8 @@
       "result": {
         "us": 12,
         "them": 4
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-18",
@@ -199,7 +218,8 @@
       "result": {
         "us": 4,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-19",
@@ -209,7 +229,8 @@
       "result": {
         "us": 2,
         "them": 1
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-20",
@@ -219,7 +240,8 @@
       "result": {
         "us": 5,
         "them": 1
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-21",
@@ -229,7 +251,8 @@
       "result": {
         "us": 7,
         "them": 4
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-22",
@@ -239,7 +262,8 @@
       "result": {
         "us": 7,
         "them": 2
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-23",
@@ -249,7 +273,8 @@
       "result": {
         "us": 8,
         "them": 7
-      }
+      },
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-24",
@@ -259,7 +284,8 @@
       "result": {
         "us": 6,
         "them": 4
-      }
+      },
+      "broadcast": "Apple TV+"
     },
     {
       "date": "2026-04-25",
@@ -268,8 +294,9 @@
       "time": "6:15 PM",
       "result": {
         "us": 4,
-        "them": 8
+        "them": 12
       },
+      "broadcast": "FOX",
       "live": true
     },
     {
@@ -277,948 +304,1089 @@
       "opp": "LAD",
       "home": false,
       "time": "3:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-27",
       "opp": "SD",
       "home": false,
       "time": "8:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-28",
       "opp": "SD",
       "home": false,
       "time": "8:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-29",
       "opp": "SD",
       "home": false,
       "time": "3:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-01",
       "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-02",
       "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-03",
       "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-04",
       "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-05",
       "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-06",
       "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-07",
       "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-08",
       "opp": "TEX",
       "home": false,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-09",
       "opp": "TEX",
       "home": false,
       "time": "6:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-10",
       "opp": "TEX",
       "home": false,
       "time": "1:35 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-12",
       "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-13",
       "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-14",
       "opp": "ATL",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-15",
       "opp": "CWS",
       "home": false,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-16",
       "opp": "CWS",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-17",
       "opp": "CWS",
       "home": false,
       "time": "1:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-18",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-19",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-20",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-22",
       "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "Apple TV+"
     },
     {
       "date": "2026-05-23",
       "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-24",
       "opp": "HOU",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-25",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-26",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-27",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-28",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-29",
       "opp": "STL",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-05-30",
       "opp": "STL",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "FOX"
     },
     {
       "date": "2026-05-31",
       "opp": "STL",
       "home": false,
       "time": "6:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "NBC/Peacock"
     },
     {
       "date": "2026-06-02",
       "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-03",
       "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-04",
       "opp": "ATH",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-05",
       "opp": "SF",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-06",
       "opp": "SF",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-07",
       "opp": "SF",
       "home": true,
       "time": "7:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "NBC/Peacock"
     },
     {
       "date": "2026-06-09",
       "opp": "COL",
       "home": false,
       "time": "7:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-10",
       "opp": "COL",
       "home": false,
       "time": "7:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-11",
       "opp": "COL",
       "home": false,
       "time": "2:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-12",
       "opp": "SF",
       "home": false,
       "time": "9:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-13",
       "opp": "SF",
       "home": false,
       "time": "9:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-14",
       "opp": "SF",
       "home": false,
       "time": "2:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "ABC/ESPN"
     },
     {
       "date": "2026-06-15",
       "opp": "COL",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-16",
       "opp": "COL",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-17",
       "opp": "COL",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-19",
       "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-20",
       "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-21",
       "opp": "TOR",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-22",
       "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-23",
       "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-24",
       "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-25",
       "opp": "NYM",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-26",
       "opp": "MIL",
       "home": false,
       "time": "6:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "Apple TV+"
     },
     {
       "date": "2026-06-27",
       "opp": "MIL",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-28",
       "opp": "MIL",
       "home": false,
       "time": "1:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-29",
       "opp": "SD",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-06-30",
       "opp": "SD",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-01",
       "opp": "SD",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-03",
       "opp": "STL",
       "home": true,
       "time": "3:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-04",
       "opp": "STL",
       "home": true,
       "time": "7:08 PM",
-      "result": null
+      "result": null,
+      "broadcast": "FOX"
     },
     {
       "date": "2026-07-05",
       "opp": "STL",
       "home": true,
       "time": "1:30 PM",
-      "result": null
+      "result": null,
+      "broadcast": "NBC/Peacock"
     },
     {
       "date": "2026-07-07",
       "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-08",
       "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-09",
       "opp": "BAL",
       "home": false,
       "time": "5:35 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-10",
       "opp": "CIN",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-11",
       "opp": "CIN",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-12",
       "opp": "CIN",
       "home": false,
       "time": "12:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-17",
       "opp": "MIN",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-18",
       "opp": "MIN",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-19",
       "opp": "MIN",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-20",
       "opp": "DET",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-21",
       "opp": "DET",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-22",
       "opp": "DET",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": null
     },
     {
       "date": "2026-07-24",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-25",
       "opp": "PIT",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-26",
       "opp": "PIT",
       "home": false,
       "time": "12:35 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-27",
       "opp": "STL",
       "home": false,
       "time": "6:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-28",
       "opp": "STL",
       "home": false,
       "time": "6:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-29",
       "opp": "STL",
       "home": false,
       "time": "6:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-30",
       "opp": "STL",
       "home": false,
       "time": "1:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-07-31",
       "opp": "NYY",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-01",
       "opp": "NYY",
       "home": true,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "FOX"
     },
     {
       "date": "2026-08-02",
       "opp": "NYY",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-03",
       "opp": "LAD",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-04",
       "opp": "LAD",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-05",
       "opp": "LAD",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-07",
       "opp": "KC",
       "home": false,
       "time": "7:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-08",
       "opp": "KC",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-09",
       "opp": "KC",
       "home": false,
       "time": "1:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-11",
       "opp": "WSH",
       "home": false,
       "time": "5:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-12",
       "opp": "WSH",
       "home": false,
       "time": "5:45 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-13",
       "opp": "WSH",
       "home": false,
       "time": "3:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-14",
       "opp": "STL",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-15",
       "opp": "STL",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-16",
       "opp": "STL",
       "home": true,
       "time": "2:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "ABC/ESPN"
     },
     {
       "date": "2026-08-17",
       "opp": "CWS",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-18",
       "opp": "CWS",
       "home": true,
       "time": "7:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-19",
       "opp": "CWS",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-21",
       "opp": "SEA",
       "home": false,
       "time": "9:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-22",
       "opp": "SEA",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "FOX"
     },
     {
       "date": "2026-08-23",
       "opp": "SEA",
       "home": false,
       "time": "3:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-24",
       "opp": "AZ",
       "home": false,
       "time": "8:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-25",
       "opp": "AZ",
       "home": false,
       "time": "8:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-26",
       "opp": "AZ",
       "home": false,
       "time": "2:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-28",
       "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-29",
       "opp": "CIN",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-08-30",
       "opp": "CIN",
       "home": true,
       "time": "2:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "NBC/Peacock"
     },
     {
       "date": "2026-08-31",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-01",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-02",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-03",
       "opp": "MIL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-04",
       "opp": "MIA",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-05",
       "opp": "MIA",
       "home": false,
       "time": "3:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-06",
       "opp": "MIA",
       "home": false,
       "time": "12:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-07",
       "opp": "MIL",
       "home": false,
       "time": "1:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-08",
       "opp": "MIL",
       "home": false,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-09",
       "opp": "MIL",
       "home": false,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-11",
       "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-12",
       "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-13",
       "opp": "PIT",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-14",
       "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-15",
       "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-16",
       "opp": "ATL",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-18",
       "opp": "CIN",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-19",
       "opp": "CIN",
       "home": false,
       "time": "5:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-20",
       "opp": "CIN",
       "home": false,
       "time": "12:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-22",
       "opp": "MIA",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-23",
       "opp": "MIA",
       "home": true,
       "time": "6:40 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-24",
       "opp": "MIA",
       "home": true,
       "time": "1:20 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-25",
       "opp": "BOS",
       "home": false,
       "time": "6:10 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-09-26",
       "opp": "BOS",
       "home": false,
       "time": "6:15 PM",
-      "result": null
+      "result": null,
+      "broadcast": "FOX"
     },
     {
       "date": "2026-09-27",
       "opp": "BOS",
       "home": false,
       "time": "2:05 PM",
-      "result": null
+      "result": null,
+      "broadcast": "MARQUEE"
     }
   ],
   "standings": [
+    {
+      "team": "Reds",
+      "abbr": "",
+      "w": 18,
+      "l": 9
+    },
     {
       "team": "Cubs",
       "abbr": "",
@@ -1226,15 +1394,9 @@
       "l": 9
     },
     {
-      "team": "Reds",
-      "abbr": "",
-      "w": 17,
-      "l": 9
-    },
-    {
       "team": "Pirates",
       "abbr": "",
-      "w": 15,
+      "w": 16,
       "l": 11
     },
     {
@@ -1247,7 +1409,7 @@
       "team": "Brewers",
       "abbr": "",
       "w": 13,
-      "l": 12
+      "l": 13
     }
   ]
 }

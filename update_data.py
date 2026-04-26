@@ -18,6 +18,25 @@ SEASON_YEAR  = 2026
 NL_CENTRAL_DIVISION_ID = 205
 NL_LEAGUE_ID = 104
 
+# Marquee Sports Network broadcaster id. Hardcoded because IDs are stable
+# across the API while names drift; the Phase 1 probe confirmed this is the
+# right primitive for the in-market/blackout test.
+MARQUEE_BROADCAST_ID = 5580
+
+# Display-name normalization keyed by broadcaster id. The API name field has
+# parentheticals ("TBS (out-of-market only)") and brand drift ("Apple TV"
+# vs the official "Apple TV+"), so we don't display it verbatim. New ids
+# encountered (MLB Network, Roku, etc.) hit the warn path below.
+CHANNEL_NAME_BY_ID = {
+    5580: "MARQUEE",       # Marquee Sports Network
+    144:  "FOX",
+    5235: "TBS",
+    6019: "Apple TV+",
+    6021: "NBC/Peacock",
+    5725: "NBC/Peacock",   # API also issues this id ("NBCSN / Peacock") for some Peacock windows
+    5655: "ABC/ESPN",
+}
+
 # Map MLB API team abbreviations to the abbreviations used in the HTML.
 # Most match exactly; these are the exceptions.
 ABBR_MAP = {
@@ -75,6 +94,60 @@ def http_get_json(url: str):
         return json.loads(resp.read().decode("utf-8"))
 
 
+def resolve_broadcast(broadcasts, game_pk=None):
+    """Pick the channel string for a game from its broadcasts array.
+
+    Rules from the Phase 1 investigation:
+      - Filter to TV-only entries (skip AM/FM radio).
+      - Dedup by broadcaster id (national broadcasts appear twice, once
+        per home/away row).
+      - If Marquee Sports Network is present, the channel is MARQUEE
+        (Marquee carries every Cubs game except the four exclusive
+        national windows; its absence from the array IS the blackout
+        signal).
+      - Otherwise pick the first national broadcast and normalize via
+        CHANNEL_NAME_BY_ID.
+      - Otherwise return None and let the page fall through to its
+        default (Marquee).
+    """
+    if not broadcasts:
+        return None
+
+    seen_ids = set()
+    tv = []
+    for b in broadcasts:
+        if b.get("type") != "TV":
+            continue
+        bid = b.get("id")
+        if bid in seen_ids:
+            continue
+        seen_ids.add(bid)
+        tv.append(b)
+
+    if not tv:
+        return None
+
+    if any(b.get("id") == MARQUEE_BROADCAST_ID for b in tv):
+        return "MARQUEE"
+
+    nat = next((b for b in tv if b.get("isNational")), None)
+    if nat is None:
+        return None
+
+    bid = nat.get("id")
+    normalized = CHANNEL_NAME_BY_ID.get(bid)
+    if normalized:
+        return normalized
+
+    api_name = nat.get("name") or nat.get("callSign") or "Unknown"
+    print(
+        f"WARN: unknown national broadcaster id={bid} name={api_name!r} "
+        f"gamePk={game_pk} — add to CHANNEL_NAME_BY_ID",
+        file=sys.stderr,
+    )
+    return api_name
+
+
 def fetch_linescore(game_pk):
     """Fetch current home/away runs for a single in-progress game.
 
@@ -101,7 +174,7 @@ def fetch_schedule():
     url = (
         f"https://statsapi.mlb.com/api/v1/schedule"
         f"?sportId=1&teamId={CUBS_TEAM_ID}&season={SEASON_YEAR}&gameType=R"
-        f"&hydrate=team"
+        f"&hydrate=team,broadcasts(all)"
     )
     data = http_get_json(url)
     games = []
@@ -203,12 +276,26 @@ def fetch_schedule():
                         file=sys.stderr,
                     )
 
+            try:
+                broadcast = resolve_broadcast(
+                    g.get("broadcasts") or [],
+                    game_pk=g.get("gamePk"),
+                )
+            except Exception as e:
+                print(
+                    f"WARN: broadcast resolution failed for gamePk="
+                    f"{g.get('gamePk')} ({opp_abbr} {date_str}): {e}",
+                    file=sys.stderr,
+                )
+                broadcast = None
+
             game_obj = {
                 "date": date_str,
                 "opp": opp_abbr,
                 "home": is_home,
                 "time": time_str,
                 "result": result,
+                "broadcast": broadcast,
             }
             if live:
                 game_obj["live"] = True
