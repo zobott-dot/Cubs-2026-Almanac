@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-26T22:19:53.696207+00:00",
+  "updatedAt": "2026-04-26T23:04:55.829825+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -307,8 +307,7 @@
         "us": 0,
         "them": 6
       },
-      "broadcast": "MARQUEE",
-      "live": true
+      "broadcast": "MARQUEE"
     },
     {
       "date": "2026-04-27",
@@ -1394,7 +1393,7 @@
       "team": "Cubs",
       "abbr": "",
       "w": 17,
-      "l": 10
+      "l": 11
     },
     {
       "team": "Pirates",
