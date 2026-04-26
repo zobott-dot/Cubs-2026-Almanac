@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-26T20:03:20.466449+00:00",
+  "updatedAt": "2026-04-26T20:56:55.491284+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -305,7 +305,7 @@
       "time": "3:10 PM",
       "result": {
         "us": 0,
-        "them": 0
+        "them": 3
       },
       "broadcast": "MARQUEE",
       "live": true
@@ -1388,7 +1388,7 @@
       "team": "Reds",
       "abbr": "",
       "w": 18,
-      "l": 9
+      "l": 10
     },
     {
       "team": "Cubs",
@@ -1400,18 +1400,18 @@
       "team": "Pirates",
       "abbr": "",
       "w": 16,
-      "l": 11
-    },
-    {
-      "team": "Cardinals",
-      "abbr": "",
-      "w": 14,
       "l": 12
     },
     {
       "team": "Brewers",
       "abbr": "",
-      "w": 13,
+      "w": 14,
+      "l": 13
+    },
+    {
+      "team": "Cardinals",
+      "abbr": "",
+      "w": 14,
       "l": 13
     }
   ]
