@@ -373,11 +373,14 @@
   }
   .game {
     display: grid;
-    grid-template-columns: 70px 1fr auto;
+    grid-template-columns: 80px 1fr auto;
     gap: 14px;
     padding: 12px 0;
     border-bottom: 1px dotted var(--rule);
     align-items: center;
+  }
+  @media (max-width: 700px) {
+    .game { grid-template-columns: 96px 1fr auto; }
   }
   .game-date {
     font-family: 'JetBrains Mono', monospace;
@@ -2013,7 +2016,7 @@
 
   function formatShortDate(dateStr) {
     const d = new Date(dateStr + 'T12:00:00');
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
+    return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }).toUpperCase();
   }
 </script>
 </body>
