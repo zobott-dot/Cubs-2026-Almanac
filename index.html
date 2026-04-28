@@ -365,8 +365,12 @@
     font-variant-numeric: tabular-nums;
   }
   .standings td:first-child { text-align: left; font-weight: 600; }
-  .standings tr.cubs-row { background: rgba(122, 31, 43, 0.06); }
+  .standings tr.cubs-row {
+    background: rgba(122, 31, 43, 0.08);
+    border-left: 3px solid var(--accent);
+  }
   .standings tr.cubs-row td { color: var(--accent-deep); font-weight: 700; }
+  .standings tr.cubs-row td:first-child { padding-left: 10px; }
   .standings tr.cubs-row td:first-child::before {
     content: '▸ ';
     color: var(--accent);
