@@ -62,7 +62,7 @@ The look is an editorial almanac — think a 1968 Cubs game-day program, not a m
 ## Interaction model
 
 - Tap any section header to toggle that section's collapse state.
-- Floating **Refresh** and **Collapse All** buttons anchored bottom-right.
+- Icon-only floating cluster anchored bottom-right: refresh, expand/collapse toggle.
 
 ## Do not reintroduce
 
@@ -99,6 +99,7 @@ Rules about non-obvious behavior that must survive future edits.
 - Named subsection groups in Section V are universally collapsible with persistent open state. Date-sort months use `openMonths`; channel-sort groups use `openChannels`. Both are closure-scoped Sets that survive `renderSchedule()` re-renders, so filter clicks, sort toggles, and refreshes all preserve which groups the visitor opened. Initial state is collapsed for both — opt-in expansion only. If you add a new grouping mode (by opponent, by series, etc.), give it its own parallel Set and the same `month-collapsible` / `month-collapsed` chevron treatment; do not ship a grouping mode without collapsibility.
 - "You-are-here" markers across the page share a single visual vocabulary: an 8% maroon wash (`rgba(122, 31, 43, 0.08)`), a 3px solid `var(--accent)` left bar, and 10px of left padding to clear the bar. Section V's `.schedule-game.today` and Section II's `.standings tr.cubs-row` both use this treatment — the today-row marks the current date in the schedule, the cubs-row marks the visitor's team in the standings. Keep the two in lockstep: if you re-tune the wash opacity, bar weight, or padding offset on one, apply the same change to the other so the page reads as one consistent "this is your anchor" signal. The cubs-row layers additional cues on top (deep-maroon text via `--accent-deep`, 700 weight, red `▸` triangle prefix) because table rows are denser than schedule rows and need more help; those extras are cubs-row-specific and don't need to mirror anywhere.
 - The page refers to its in-market audience as "Chicagoland," never a specific suburb. The visitor base spans the Chicago suburbs, and naming any one town would exclude the others. This applies to Section IV's Marquee card, Section V's filter explanation, and any future copy that references where the viewer is watching from.
+- Refresh button enforces a 600ms minimum spin window: `fetchData` races the actual fetch against a 600ms timer via `Promise.all`, so the rotation registers even on localhost / fast networks where `data.json` returns in under ~50ms. Silent on-load fetches skip the floor. The error path must `await minSpin` before rendering the failure toast, or the icon freezes mid-rotation on fast failures. Don't replace the parallel race with a sequential `await fetch(); await minSpin;` — that stacks 600ms on top of every refresh instead of riding alongside it.
 
 ## Working with Dave
 
