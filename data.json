@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-04-29T00:06:19.286173+00:00",
+  "updatedAt": "2026-04-29T03:33:22.890893+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -325,8 +325,12 @@
       "opp": "SD",
       "home": false,
       "time": "8:40 PM",
-      "result": null,
-      "broadcast": "MARQUEE"
+      "result": {
+        "us": 4,
+        "them": 2
+      },
+      "broadcast": "MARQUEE",
+      "live": true
     },
     {
       "date": "2026-04-29",
@@ -1389,7 +1393,7 @@
     {
       "team": "Reds",
       "abbr": "",
-      "w": 18,
+      "w": 19,
       "l": 10
     },
     {
@@ -1399,21 +1403,21 @@
       "l": 12
     },
     {
-      "team": "Pirates",
+      "team": "Cardinals",
       "abbr": "",
       "w": 16,
       "l": 13
     },
     {
-      "team": "Cardinals",
+      "team": "Pirates",
       "abbr": "",
-      "w": 15,
-      "l": 13
+      "w": 16,
+      "l": 14
     },
     {
       "team": "Brewers",
       "abbr": "",
-      "w": 14,
+      "w": 15,
       "l": 13
     }
   ]
