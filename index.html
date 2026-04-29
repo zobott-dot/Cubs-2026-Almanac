@@ -773,53 +773,52 @@
     color: var(--accent);
   }
 
-  /* Floating control cluster (refresh + collapse all) */
+  /* Floating icon control cluster (refresh + collapse all) */
   .floating-controls {
     position: fixed;
     bottom: 24px;
     right: 24px;
     z-index: 100;
     display: flex;
-    gap: 8px;
+    gap: 6px;
   }
   .floating-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 10px 14px;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
     background: var(--ink);
     color: var(--paper);
     border: none;
-    border-top: 3px solid var(--accent);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    border-radius: 5px;
     cursor: pointer;
+    opacity: 0.7;
     box-shadow: 0 4px 14px rgba(14, 51, 134, 0.25);
-    transition: all 0.15s ease;
+    transition: opacity 0.1s ease;
   }
-  .floating-btn:hover:not(:disabled) {
-    background: var(--accent);
-    border-top-color: var(--ink);
-    box-shadow: 0 6px 18px rgba(204, 52, 51, 0.3);
-  }
-  .floating-btn:active:not(:disabled) {
-    transform: translateY(1px);
+  .floating-btn:hover:not(:disabled),
+  .floating-btn:active:not(:disabled),
+  .floating-btn:focus-visible {
+    opacity: 1;
   }
   .floating-btn:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: wait;
   }
   .floating-icon {
-    font-family: 'Source Serif 4', serif;
-    font-size: 14px;
-    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: var(--paper);
   }
-  .refresh-btn .floating-icon {
-    font-size: 16px;
-    display: inline-block;
+  .floating-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
   .refresh-btn.spinning .floating-icon {
     animation: spin 0.9s linear infinite;
@@ -863,11 +862,6 @@
     .floating-controls {
       bottom: 16px;
       right: 16px;
-    }
-    .floating-btn {
-      padding: 9px 11px;
-      font-size: 10px;
-      gap: 6px;
     }
     .refresh-status {
       bottom: 72px;
@@ -1096,13 +1090,23 @@
 </div>
 
 <div id="floatingControls" class="floating-controls">
-  <button id="refreshBtn" class="floating-btn refresh-btn" title="Fetch latest data from MLB">
-    <span class="floating-icon" id="refreshIcon">↻</span>
-    <span class="floating-label">Refresh</span>
+  <button id="refreshBtn" class="floating-btn refresh-btn" type="button" title="Refresh data" aria-label="Refresh data">
+    <span class="floating-icon" id="refreshIcon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+        <path d="M21 3v5h-5"/>
+        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+        <path d="M3 21v-5h5"/>
+      </svg>
+    </span>
   </button>
-  <button id="toggleAllBtn" class="floating-btn toggle-all" title="Collapse all sections">
-    <span class="floating-icon" id="toggleAllIcon">▾</span>
-    <span class="floating-label" id="toggleAllLabel">Collapse All</span>
+  <button id="toggleAllBtn" class="floating-btn toggle-all" type="button" title="Expand all sections" aria-label="Expand all sections">
+    <span class="floating-icon" id="toggleAllIcon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="7 6 12 11 17 6"/>
+        <polyline points="7 13 12 18 17 13"/>
+      </svg>
+    </span>
   </button>
 </div>
 
@@ -1148,21 +1152,22 @@
     });
   }
 
-  // Floating "Collapse All / Expand All" button
+  // Floating "Collapse All / Expand All" icon button
+  const ICON_CHEVRONS_DOWN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 6 12 11 17 6"/><polyline points="7 13 12 18 17 13"/></svg>';
+  const ICON_CHEVRONS_UP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 18 12 13 17 18"/><polyline points="7 11 12 6 17 11"/></svg>';
   function refreshToggleAllState() {
     const sections = document.querySelectorAll('.draggable-section');
     const anyExpanded = Array.from(sections).some(s => !s.classList.contains('collapsed'));
-    const label = document.getElementById('toggleAllLabel');
     const icon = document.getElementById('toggleAllIcon');
     const btn = document.getElementById('toggleAllBtn');
     if (anyExpanded) {
-      label.textContent = 'Collapse All';
-      icon.textContent = '▾';
+      icon.innerHTML = ICON_CHEVRONS_UP;
       btn.title = 'Collapse all sections';
+      btn.setAttribute('aria-label', 'Collapse all sections');
     } else {
-      label.textContent = 'Expand All';
-      icon.textContent = '▸';
+      icon.innerHTML = ICON_CHEVRONS_DOWN;
       btn.title = 'Expand all sections';
+      btn.setAttribute('aria-label', 'Expand all sections');
     }
   }
 
@@ -1983,7 +1988,12 @@
       showStatus('Loading latest data\u2026');
     }
 
-    try {
+    // Min-spin floor: race the fetch and a 600ms timer in parallel so
+    // the refresh icon rotation registers even when data.json comes
+    // back in a few ms (fast network or local serve).
+    const minSpin = silent ? Promise.resolve() : new Promise(r => setTimeout(r, 600));
+
+    const fetchTask = async () => {
       // Cache-buster ensures we get the freshest copy, not a stale CDN version
       const res = await fetch('./data.json?t=' + Date.now());
       if (!res.ok) throw new Error('data.json fetch failed (' + res.status + ')');
@@ -2007,9 +2017,15 @@
       renderAll();
 
       renderLastUpdated(data.updatedAt);
+    };
 
+    try {
+      await Promise.all([fetchTask(), minSpin]);
       if (!silent) showStatus('Updated.');
     } catch (err) {
+      // Hold off on the error toast until the spin window finishes, so
+      // the icon doesn't freeze mid-rotation when the fetch fails fast.
+      await minSpin;
       console.error(err);
       if (!silent) showStatus('Could not update \u2014 please try again later.', true);
     } finally {
