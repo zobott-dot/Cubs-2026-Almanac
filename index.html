@@ -827,6 +827,47 @@
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
   }
+  .floating-btn.is-active { opacity: 1; }
+
+  /* Settings panel — anchored above the cluster, distinct vertical band from the toast */
+  .settings-panel {
+    position: fixed;
+    bottom: 140px;
+    right: 24px;
+    z-index: 101;
+    width: 300px;
+    max-width: calc(100vw - 48px);
+    padding: 18px;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    box-shadow: 0 2px 12px rgba(14, 51, 134, 0.08);
+    opacity: 0;
+    transform: translateY(4px);
+    pointer-events: none;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  .settings-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .settings-section + .settings-section { margin-top: 14px; }
+  .settings-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .settings-body {
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
 
   /* Refresh status toast */
   .refresh-status {
@@ -865,6 +906,11 @@
     }
     .refresh-status {
       bottom: 72px;
+      right: 16px;
+      max-width: calc(100vw - 32px);
+    }
+    .settings-panel {
+      bottom: 132px;
       right: 16px;
       max-width: calc(100vw - 32px);
     }
@@ -1108,6 +1154,25 @@
       </svg>
     </span>
   </button>
+  <button id="settingsBtn" class="floating-btn settings-btn" type="button" title="Settings" aria-label="Settings" aria-expanded="false" aria-controls="settingsPanel">
+    <span class="floating-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+    </span>
+  </button>
+</div>
+
+<div id="settingsPanel" class="settings-panel" role="region" aria-label="Settings">
+  <div class="settings-section">
+    <div class="settings-label">Add to home screen</div>
+    <div class="settings-body">On iPhone, tap the share button in Safari, then &ldquo;Add to Home Screen.&rdquo; On Android, tap the menu button in Chrome, then &ldquo;Add to Home screen.&rdquo; The almanac will get its own icon and open like an app.</div>
+  </div>
+  <div class="settings-section">
+    <div class="settings-label">Loading the latest data</div>
+    <div class="settings-body">Tap the refresh button to load the latest scores, standings, and broadcast info. The page also updates on its own every fifteen minutes during the day and every few hours overnight.</div>
+  </div>
 </div>
 
 <div id="refreshStatus" class="refresh-status" aria-live="polite"></div>
@@ -2042,6 +2107,25 @@
   });
 
   document.getElementById('refreshBtn').onclick = () => fetchData(false);
+
+  // Settings panel toggle. Path-check outside-click via .contains() so
+  // the gear's own click doesn't immediately re-close the panel and so
+  // taps on refresh / expand-collapse remain functional with the panel open.
+  const settingsBtn = document.getElementById('settingsBtn');
+  const settingsPanel = document.getElementById('settingsPanel');
+  function setSettingsOpen(open) {
+    settingsPanel.classList.toggle('visible', open);
+    settingsBtn.classList.toggle('is-active', open);
+    settingsBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  settingsBtn.onclick = () => {
+    setSettingsOpen(!settingsPanel.classList.contains('visible'));
+  };
+  document.addEventListener('click', (e) => {
+    if (!settingsPanel.classList.contains('visible')) return;
+    if (settingsBtn.contains(e.target) || settingsPanel.contains(e.target)) return;
+    setSettingsOpen(false);
+  });
 
   // Try to load fresh data on page load, silently. If it fails, the page
   // shows the embedded data and no error toast appears.
