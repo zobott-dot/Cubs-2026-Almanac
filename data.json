@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-02T17:39:42.607902+00:00",
+  "updatedAt": "2026-05-02T18:34:26.024429+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -358,8 +358,12 @@
       "opp": "AZ",
       "home": true,
       "time": "1:20 PM",
-      "result": null,
-      "broadcast": "MARQUEE"
+      "result": {
+        "us": 0,
+        "them": 0
+      },
+      "broadcast": "MARQUEE",
+      "live": true
     },
     {
       "date": "2026-05-03",
