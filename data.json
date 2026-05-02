@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-02T18:34:26.024429+00:00",
+  "updatedAt": "2026-05-02T19:05:53.891652+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -359,7 +359,7 @@
       "home": true,
       "time": "1:20 PM",
       "result": {
-        "us": 0,
+        "us": 1,
         "them": 0
       },
       "broadcast": "MARQUEE",
