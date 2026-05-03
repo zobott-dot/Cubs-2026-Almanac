@@ -1847,7 +1847,7 @@
     const homeMark = g.home ? 'vs.' : '@';
     const todayStr = nowInChicago().date;
     const isToday = g.date === todayStr;
-    const isLive = g.live === true;
+    const isLive = !!g.live;
     const isComplete = g.result !== null && !isLive;
     const hasScore = g.result !== null;
 

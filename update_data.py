@@ -169,15 +169,165 @@ def fetch_linescore(game_pk):
     return None
 
 
+def fetch_live_inning_state(game_pk):
+    """Fetch (currentInning, inningHalf) from the linescore endpoint for
+    an in-progress game. Returns a dict or None on failure / missing data.
+
+    Used to populate the `live` block on today's in-progress game so the
+    Phase 2 game-day card can implement its end-of-second-inning hide
+    trigger. The boxscore endpoint does NOT carry linescore at top level
+    (verified 2026-05-03), so we hit the standalone linescore endpoint.
+    """
+    url = f"https://statsapi.mlb.com/api/v1/game/{game_pk}/linescore"
+    try:
+        data = http_get_json(url)
+    except Exception as e:
+        print(f"WARN: live-state fetch failed for gamePk={game_pk}: {e}", file=sys.stderr)
+        return None
+    inning = data.get("currentInning")
+    inning_half = data.get("inningHalf")
+    if inning is None or inning_half is None:
+        return None
+    return {"inning": inning, "inningHalf": inning_half}
+
+
+def fetch_boxscore(game_pk):
+    """Fetch a single game's boxscore. Returns parsed JSON or None on failure."""
+    url = f"https://statsapi.mlb.com/api/v1/game/{game_pk}/boxscore"
+    try:
+        return http_get_json(url)
+    except Exception as e:
+        print(f"WARN: boxscore fetch failed for gamePk={game_pk}: {e}", file=sys.stderr)
+        return None
+
+
+def fetch_pitcher_season_stats(player_id):
+    """Fallback for when a probable pitcher is missing from a boxscore's
+    players dict. Returns the season pitching stat dict or None.
+    """
+    url = (
+        f"https://statsapi.mlb.com/api/v1/people/{player_id}/stats"
+        f"?stats=season&group=pitching&season={SEASON_YEAR}"
+    )
+    try:
+        data = http_get_json(url)
+    except Exception as e:
+        print(f"WARN: pitcher stats fetch failed for id={player_id}: {e}", file=sys.stderr)
+        return None
+    for stats_block in data.get("stats", []):
+        splits = stats_block.get("splits") or []
+        if splits:
+            return splits[0].get("stat") or None
+    return None
+
+
+def slot_from_batting_order(s):
+    """Translate boxscore's `battingOrder` string ('100', '200', ..., '900')
+    into integer slot 1-9. In-game substitutes carry suffixes ('101', '102')
+    but for starters the slot is always (n // 100). Returns None for empty
+    / unparseable inputs."""
+    if not s:
+        return None
+    try:
+        return int(s) // 100
+    except (ValueError, TypeError):
+        return None
+
+
+def build_probable(pp_summary, box_team_players, fallback_to_people_endpoint=True):
+    """Build a probables.us/them entry from the schedule hydrate's
+    probablePitcher summary (always present once known: id + fullName)
+    and an optional boxscore players dict (carries boxscoreName +
+    seasonStats.pitching when available).
+
+    Falls back to /people/{id}/stats for season stats only when the
+    boxscore players dict didn't carry the pitcher record (shouldn't
+    happen since the probable starter is always on the active roster,
+    but guard for it).
+    """
+    if not pp_summary:
+        return None
+    pid = pp_summary.get("id")
+    out = {
+        "id": pid,
+        "name": pp_summary.get("fullName"),
+    }
+    season_stats = None
+    boxscore_name = None
+    if box_team_players and pid is not None:
+        p_record = box_team_players.get(f"ID{pid}")
+        if p_record:
+            boxscore_name = (p_record.get("person") or {}).get("boxscoreName")
+            season_stats = (p_record.get("seasonStats") or {}).get("pitching") or None
+    if boxscore_name:
+        out["boxscoreName"] = boxscore_name
+    if not season_stats and fallback_to_people_endpoint and box_team_players is not None and pid is not None:
+        # Only fall back when we actually opened a boxscore for this game.
+        # If we didn't, "no stats" is the intended state for far-future
+        # games — don't pile on extra HTTP calls.
+        season_stats = fetch_pitcher_season_stats(pid)
+    if season_stats:
+        out["seasonStats"] = season_stats
+    return out
+
+
+def build_lineup_side(box_team):
+    """Build a 9-entry lineup list from one side's boxscore team block.
+
+    Each entry: id, name, boxscoreName, slot (1-9), pos (per-game
+    position abbreviation, NOT primary), seasonStats (full
+    seasonStats.batting object).
+
+    Returns the list (may be shorter than 9 if the boxscore is half-baked
+    pre-game). Caller should sanity-check len() == 9 before emitting.
+    """
+    batting_order = box_team.get("battingOrder") or []
+    players = box_team.get("players") or {}
+    out = []
+    for pid in batting_order:
+        rec = players.get(f"ID{pid}")
+        if not rec:
+            continue
+        person = rec.get("person") or {}
+        slot = slot_from_batting_order(rec.get("battingOrder"))
+        season_batting = (rec.get("seasonStats") or {}).get("batting") or {}
+        pos = (rec.get("position") or {}).get("abbreviation")
+        out.append({
+            "id": person.get("id"),
+            "name": person.get("fullName"),
+            "boxscoreName": person.get("boxscoreName"),
+            "slot": slot,
+            "pos": pos,
+            "seasonStats": season_batting,
+        })
+    return out
+
+
+def today_in_chicago():
+    """Today's date as YYYY-MM-DD anchored to America/Chicago. The almanac's
+    'today' is the city's day, not UTC, not the runner's TZ."""
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(ZoneInfo("America/Chicago")).strftime("%Y-%m-%d")
+    except Exception:
+        from datetime import timedelta
+        # Fallback: assume CDT (UTC-5). Within the season this is right;
+        # off-season days drift by one hour, harmless.
+        return (datetime.now(timezone.utc) - timedelta(hours=5)).strftime("%Y-%m-%d")
+
+
 def fetch_schedule():
     """Fetch the Cubs' full regular-season schedule and return the parsed list."""
     url = (
         f"https://statsapi.mlb.com/api/v1/schedule"
         f"?sportId=1&teamId={CUBS_TEAM_ID}&season={SEASON_YEAR}&gameType=R"
-        f"&hydrate=team,broadcasts(all)"
+        f"&hydrate=team,broadcasts(all),lineups,probablePitcher"
     )
     data = http_get_json(url)
     games = []
+
+    # Anchor "today" to America/Chicago — the almanac's frame of reference.
+    today_str = today_in_chicago()
 
     for date_block in data.get("dates", []):
         for g in date_block.get("games", []):
@@ -238,11 +388,14 @@ def fetch_schedule():
                 except Exception:
                     pass
 
+            # Cache gamePk early — used by live-score fallback, by the
+            # boxscore enrichment pass below, and as a top-level field.
+            game_pk = g.get("gamePk")
+
             # Result if final or live. "Live" covers In Progress, Warmup,
             # Manager Challenge, Delayed, etc. — anything MLB considers
             # mid-game. Pregame ("Preview") and other states leave result=None.
             result = None
-            live = False
             status = g.get("status", {}).get("abstractGameState", "")
             if status == "Final":
                 home_score = g["teams"]["home"].get("score")
@@ -253,13 +406,11 @@ def fetch_schedule():
                     else:
                         result = {"us": away_score, "them": home_score}
             elif status == "Live":
-                live = True
                 # Prefer the schedule's running score; fall back to the
                 # per-game linescore endpoint if the schedule omits it.
                 home_score = g["teams"]["home"].get("score")
                 away_score = g["teams"]["away"].get("score")
                 if not (isinstance(home_score, int) and isinstance(away_score, int)):
-                    game_pk = g.get("gamePk")
                     if game_pk is not None:
                         scores = fetch_linescore(game_pk)
                         if scores:
@@ -271,7 +422,7 @@ def fetch_schedule():
                         result = {"us": away_score, "them": home_score}
                 else:
                     print(
-                        f"WARN: no live score available for gamePk={g.get('gamePk')} "
+                        f"WARN: no live score available for gamePk={game_pk} "
                         f"({opp_abbr} {date_str})",
                         file=sys.stderr,
                     )
@@ -279,12 +430,12 @@ def fetch_schedule():
             try:
                 broadcast = resolve_broadcast(
                     g.get("broadcasts") or [],
-                    game_pk=g.get("gamePk"),
+                    game_pk=game_pk,
                 )
             except Exception as e:
                 print(
                     f"WARN: broadcast resolution failed for gamePk="
-                    f"{g.get('gamePk')} ({opp_abbr} {date_str}): {e}",
+                    f"{game_pk} ({opp_abbr} {date_str}): {e}",
                     file=sys.stderr,
                 )
                 broadcast = None
@@ -296,9 +447,96 @@ def fetch_schedule():
                 "time": time_str,
                 "result": result,
                 "broadcast": broadcast,
+                "gamePk": game_pk,
             }
-            if live:
-                game_obj["live"] = True
+
+            # ---- Game-day card data (Phase 1) ------------------------------
+            #
+            # Three new optional blocks that the Phase 2 card UI will read:
+            #   - probables   : matchup pitchers + season stats
+            #   - lineup      : 9-batter starting order per side
+            #   - live        : current inning state (replaces the old
+            #                   `live: true` boolean — see index.html shim)
+            #
+            # The boxscore is the only source for per-game position, slot
+            # encoding, and embedded seasonStats. We fetch it conditionally:
+            # only for non-final games where lineup is announced or where
+            # we have probables + the schedule signals the game is within
+            # ~3 days (the `lineups` key being present in the entry).
+            # Past finals are skipped to avoid 100+ boxscore fetches per
+            # cron cycle later in the season; their lineup data is a
+            # separate backfill if ever wanted. See docs/lineup-investigation.md.
+
+            home_pp = g["teams"]["home"].get("probablePitcher")
+            away_pp = g["teams"]["away"].get("probablePitcher")
+            us_pp = home_pp if is_home else away_pp
+            them_pp = away_pp if is_home else home_pp
+
+            lineup_present = bool((g.get("lineups") or {}).get("homePlayers"))
+            lineups_key_present = "lineups" in g  # signals game is within ~3 days
+
+            is_final = (status == "Final")
+            is_in_progress = (status == "Live")
+
+            should_fetch_boxscore = False
+            if not is_final and game_pk is not None:
+                if lineup_present:
+                    should_fetch_boxscore = True
+                elif (us_pp or them_pp) and lineups_key_present:
+                    should_fetch_boxscore = True
+
+            box = fetch_boxscore(game_pk) if should_fetch_boxscore else None
+            box_teams = (box or {}).get("teams", {}) if box else {}
+            home_box = box_teams.get("home") or {}
+            away_box = box_teams.get("away") or {}
+            us_box = home_box if is_home else away_box
+            them_box = away_box if is_home else home_box
+
+            # Probables: emit whenever the schedule has them, with stats
+            # only when we opened a boxscore.
+            us_probable = build_probable(
+                us_pp,
+                us_box.get("players") if box else None,
+            )
+            them_probable = build_probable(
+                them_pp,
+                them_box.get("players") if box else None,
+            )
+            if us_probable or them_probable:
+                probables = {}
+                if us_probable:
+                    probables["us"] = us_probable
+                if them_probable:
+                    probables["them"] = them_probable
+                game_obj["probables"] = probables
+
+            # Lineup: only when both sides have a 9-batter order locked in.
+            if lineup_present and box:
+                us_lineup = build_lineup_side(us_box)
+                them_lineup = build_lineup_side(them_box)
+                if len(us_lineup) == 9 and len(them_lineup) == 9:
+                    game_obj["lineup"] = {"us": us_lineup, "them": them_lineup}
+
+            # Live: only on today's in-progress game. Object shape replaces
+            # the old `live: true` boolean. The renderer's truthy check
+            # (`!!g.live`) still trips, but anything checking `=== true`
+            # would break — see the shim in index.html.
+            if is_in_progress and date_str == today_str:
+                detailed = g.get("status", {}).get("detailedState", "Live")
+                inning_state = (
+                    fetch_live_inning_state(game_pk) if game_pk is not None else None
+                )
+                live_obj = {"status": detailed}
+                if inning_state:
+                    live_obj["inning"] = inning_state["inning"]
+                    live_obj["inningHalf"] = inning_state["inningHalf"]
+                game_obj["live"] = live_obj
+            elif is_in_progress:
+                # Game is "Live" per the API but isn't on today's CT date
+                # (rare timezone-edge case). Preserve a truthy live signal
+                # so the existing in-schedule live indicator still lights up.
+                game_obj["live"] = {"status": g.get("status", {}).get("detailedState", "Live")}
+
             games.append(game_obj)
 
     # Sort by date for determinism (the API usually returns sorted but make sure)
