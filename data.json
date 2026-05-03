@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-03T18:35:51.311202+00:00",
+  "updatedAt": "2026-05-03T19:05:28.242343+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -10,7 +10,18 @@
         "us": 4,
         "them": 10
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824704,
+      "probables": {
+        "us": {
+          "id": 571510,
+          "name": "Matthew Boyd"
+        },
+        "them": {
+          "id": 676917,
+          "name": "Cade Cavalli"
+        }
+      }
     },
     {
       "date": "2026-03-28",
@@ -21,7 +32,18 @@
         "us": 10,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824701,
+      "probables": {
+        "us": {
+          "id": 690990,
+          "name": "Cade Horton"
+        },
+        "them": {
+          "id": 571945,
+          "name": "Miles Mikolas"
+        }
+      }
     },
     {
       "date": "2026-03-29",
@@ -32,7 +54,18 @@
         "us": 3,
         "them": 6
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824700,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 663623,
+          "name": "Jake Irvin"
+        }
+      }
     },
     {
       "date": "2026-03-30",
@@ -43,7 +76,18 @@
         "us": 7,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824702,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 696270,
+          "name": "Ryan Johnson"
+        }
+      }
     },
     {
       "date": "2026-03-31",
@@ -54,7 +98,18 @@
         "us": 0,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824699,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 667755,
+          "name": "Jos\u00e9 Soriano"
+        }
+      }
     },
     {
       "date": "2026-04-01",
@@ -65,7 +120,18 @@
         "us": 6,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824698,
+      "probables": {
+        "us": {
+          "id": 571510,
+          "name": "Matthew Boyd"
+        },
+        "them": {
+          "id": 579328,
+          "name": "Yusei Kikuchi"
+        }
+      }
     },
     {
       "date": "2026-04-03",
@@ -76,7 +142,18 @@
         "us": 1,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824458,
+      "probables": {
+        "us": {
+          "id": 690990,
+          "name": "Cade Horton"
+        },
+        "them": {
+          "id": 676282,
+          "name": "Joey Cantillo"
+        }
+      }
     },
     {
       "date": "2026-04-05",
@@ -87,7 +164,18 @@
         "us": 1,
         "them": 0
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824459,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 677944,
+          "name": "Slade Cecconi"
+        }
+      }
     },
     {
       "date": "2026-04-05",
@@ -98,7 +186,18 @@
         "us": 5,
         "them": 6
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824460,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 800048,
+          "name": "Parker Messick"
+        }
+      }
     },
     {
       "date": "2026-04-06",
@@ -109,7 +208,18 @@
         "us": 4,
         "them": 6
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823002,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 663556,
+          "name": "Shane McClanahan"
+        }
+      }
     },
     {
       "date": "2026-04-07",
@@ -120,7 +230,18 @@
         "us": 9,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822999,
+      "probables": {
+        "us": {
+          "id": 665871,
+          "name": "Javier Assad"
+        },
+        "them": {
+          "id": 669438,
+          "name": "Mason Englert"
+        }
+      }
     },
     {
       "date": "2026-04-08",
@@ -131,7 +252,18 @@
         "us": 6,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823000,
+      "probables": {
+        "us": {
+          "id": 607067,
+          "name": "Colin Rea"
+        },
+        "them": {
+          "id": 671212,
+          "name": "Joe Boyle"
+        }
+      }
     },
     {
       "date": "2026-04-10",
@@ -142,7 +274,18 @@
         "us": 0,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824695,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 669387,
+          "name": "Carmen Mlodzinski"
+        }
+      }
     },
     {
       "date": "2026-04-11",
@@ -153,7 +296,18 @@
         "us": 3,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824697,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 677952,
+          "name": "Braxton Ashcraft"
+        }
+      }
     },
     {
       "date": "2026-04-12",
@@ -164,7 +318,18 @@
         "us": 7,
         "them": 6
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824696,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 696149,
+          "name": "Bubba Chandler"
+        }
+      }
     },
     {
       "date": "2026-04-13",
@@ -175,7 +340,18 @@
         "us": 7,
         "them": 13
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823481,
+      "probables": {
+        "us": {
+          "id": 665871,
+          "name": "Javier Assad"
+        },
+        "them": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez"
+        }
+      }
     },
     {
       "date": "2026-04-14",
@@ -186,7 +362,18 @@
         "us": 10,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823478,
+      "probables": {
+        "us": {
+          "id": 702303,
+          "name": "Riley Martin"
+        },
+        "them": {
+          "id": 605400,
+          "name": "Aaron Nola"
+        }
+      }
     },
     {
       "date": "2026-04-15",
@@ -197,7 +384,18 @@
         "us": 11,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823477,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 666200,
+          "name": "Jes\u00fas Luzardo"
+        }
+      }
     },
     {
       "date": "2026-04-17",
@@ -208,7 +406,18 @@
         "us": 12,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824693,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 673540,
+          "name": "Kodai Senga"
+        }
+      }
     },
     {
       "date": "2026-04-18",
@@ -219,7 +428,18 @@
         "us": 4,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824694,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 642547,
+          "name": "Freddy Peralta"
+        }
+      }
     },
     {
       "date": "2026-04-19",
@@ -230,7 +450,18 @@
         "us": 2,
         "them": 1
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824691,
+      "probables": {
+        "us": {
+          "id": 665871,
+          "name": "Javier Assad"
+        },
+        "them": {
+          "id": 668964,
+          "name": "Tobias Myers"
+        }
+      }
     },
     {
       "date": "2026-04-20",
@@ -241,7 +472,18 @@
         "us": 5,
         "them": 1
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824692,
+      "probables": {
+        "us": {
+          "id": 607067,
+          "name": "Colin Rea"
+        },
+        "them": {
+          "id": 605400,
+          "name": "Aaron Nola"
+        }
+      }
     },
     {
       "date": "2026-04-21",
@@ -252,7 +494,18 @@
         "us": 7,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824690,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 666200,
+          "name": "Jes\u00fas Luzardo"
+        }
+      }
     },
     {
       "date": "2026-04-22",
@@ -263,7 +516,18 @@
         "us": 7,
         "them": 2
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824688,
+      "probables": {
+        "us": {
+          "id": 571510,
+          "name": "Matthew Boyd"
+        },
+        "them": {
+          "id": 679775,
+          "name": "Kyle Backhus"
+        }
+      }
     },
     {
       "date": "2026-04-23",
@@ -274,7 +538,18 @@
         "us": 8,
         "them": 7
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824689,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 650911,
+          "name": "Cristopher S\u00e1nchez"
+        }
+      }
     },
     {
       "date": "2026-04-24",
@@ -285,7 +560,18 @@
         "us": 6,
         "them": 4
       },
-      "broadcast": "Apple TV+"
+      "broadcast": "Apple TV+",
+      "gamePk": 823962,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 686218,
+          "name": "Emmet Sheehan"
+        }
+      }
     },
     {
       "date": "2026-04-25",
@@ -296,7 +582,18 @@
         "us": 4,
         "them": 12
       },
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 823960,
+      "probables": {
+        "us": {
+          "id": 607067,
+          "name": "Colin Rea"
+        },
+        "them": {
+          "id": 808963,
+          "name": "Roki Sasaki"
+        }
+      }
     },
     {
       "date": "2026-04-26",
@@ -307,7 +604,18 @@
         "us": 0,
         "them": 6
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823959,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 680736,
+          "name": "Justin Wrobleski"
+        }
+      }
     },
     {
       "date": "2026-04-27",
@@ -318,7 +626,18 @@
         "us": 7,
         "them": 9
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823311,
+      "probables": {
+        "us": {
+          "id": 571510,
+          "name": "Matthew Boyd"
+        },
+        "them": {
+          "id": 681190,
+          "name": "Randy V\u00e1squez"
+        }
+      }
     },
     {
       "date": "2026-04-28",
@@ -329,7 +648,18 @@
         "us": 8,
         "them": 3
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823310,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera"
+        },
+        "them": {
+          "id": 621111,
+          "name": "Walker Buehler"
+        }
+      }
     },
     {
       "date": "2026-04-29",
@@ -340,7 +670,18 @@
         "us": 5,
         "them": 4
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823312,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon"
+        },
+        "them": {
+          "id": 663362,
+          "name": "Matt Waldron"
+        }
+      }
     },
     {
       "date": "2026-05-01",
@@ -351,7 +692,18 @@
         "us": 6,
         "them": 5
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824686,
+      "probables": {
+        "us": {
+          "id": 607067,
+          "name": "Colin Rea"
+        },
+        "them": {
+          "id": 668678,
+          "name": "Zac Gallen"
+        }
+      }
     },
     {
       "date": "2026-05-02",
@@ -362,7 +714,18 @@
         "us": 2,
         "them": 0
       },
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824685,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga"
+        },
+        "them": {
+          "id": 669194,
+          "name": "Ryne Nelson"
+        }
+      }
     },
     {
       "date": "2026-05-03",
@@ -370,11 +733,992 @@
       "home": true,
       "time": "1:20 PM",
       "result": {
-        "us": 0,
-        "them": 0
+        "us": 1,
+        "them": 2
       },
       "broadcast": "MARQUEE",
-      "live": true
+      "gamePk": 824687,
+      "probables": {
+        "us": {
+          "id": 571510,
+          "name": "Matthew Boyd",
+          "boxscoreName": "Boyd",
+          "seasonStats": {
+            "gamesPlayed": 5,
+            "gamesStarted": 5,
+            "flyOuts": 7,
+            "groundOuts": 15,
+            "airOuts": 17,
+            "runs": 17,
+            "doubles": 7,
+            "triples": 0,
+            "homeRuns": 2,
+            "strikeOuts": 29,
+            "baseOnBalls": 5,
+            "intentionalWalks": 0,
+            "hits": 24,
+            "hitByPitch": 0,
+            "atBats": 85,
+            "obp": ".322",
+            "caughtStealing": 1,
+            "stolenBases": 0,
+            "stolenBasePercentage": ".000",
+            "caughtStealingPercentage": "1.000",
+            "numberOfPitches": 385,
+            "era": "6.86",
+            "inningsPitched": "21.0",
+            "wins": 1,
+            "losses": 1,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 16,
+            "whip": "1.38",
+            "battersFaced": 90,
+            "outs": 63,
+            "gamesPitched": 5,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 385,
+            "balls": 128,
+            "strikes": 257,
+            "strikePercentage": ".670",
+            "hitBatsmen": 0,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 1,
+            "groundOutsToAirouts": "0.88",
+            "rbi": 2,
+            "winPercentage": ".500",
+            "pitchesPerInning": "18.33",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "5.80",
+            "strikeoutsPer9Inn": "12.43",
+            "walksPer9Inn": "2.14",
+            "hitsPer9Inn": "10.29",
+            "runsScoredPer9": "7.29",
+            "homeRunsPer9": "0.86",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 0,
+            "passedBall": 0,
+            "popOuts": 4,
+            "lineOuts": 6
+          }
+        },
+        "them": {
+          "id": 518876,
+          "name": "Merrill Kelly",
+          "boxscoreName": "Kelly, Me",
+          "seasonStats": {
+            "gamesPlayed": 4,
+            "gamesStarted": 4,
+            "flyOuts": 12,
+            "groundOuts": 16,
+            "airOuts": 18,
+            "runs": 16,
+            "doubles": 5,
+            "triples": 1,
+            "homeRuns": 5,
+            "strikeOuts": 12,
+            "baseOnBalls": 12,
+            "intentionalWalks": 1,
+            "hits": 26,
+            "hitByPitch": 0,
+            "atBats": 70,
+            "obp": ".458",
+            "caughtStealing": 2,
+            "stolenBases": 1,
+            "stolenBasePercentage": ".333",
+            "caughtStealingPercentage": ".667",
+            "numberOfPitches": 330,
+            "era": "8.64",
+            "inningsPitched": "16.2",
+            "wins": 1,
+            "losses": 2,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 16,
+            "whip": "2.28",
+            "battersFaced": 84,
+            "outs": 50,
+            "gamesPitched": 4,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 330,
+            "balls": 144,
+            "strikes": 186,
+            "strikePercentage": ".560",
+            "hitBatsmen": 0,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "0.89",
+            "rbi": 1,
+            "winPercentage": ".333",
+            "pitchesPerInning": "19.80",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "1.00",
+            "strikeoutsPer9Inn": "6.48",
+            "walksPer9Inn": "6.48",
+            "hitsPer9Inn": "14.04",
+            "runsScoredPer9": "8.64",
+            "homeRunsPer9": "2.70",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 1,
+            "sacFlies": 1,
+            "passedBall": 0,
+            "popOuts": 1,
+            "lineOuts": 5
+          }
+        }
+      },
+      "lineup": {
+        "us": [
+          {
+            "id": 663538,
+            "name": "Nico Hoerner",
+            "boxscoreName": "Hoerner",
+            "slot": 1,
+            "pos": "2B",
+            "seasonStats": {
+              "gamesPlayed": 33,
+              "flyOuts": 26,
+              "groundOuts": 28,
+              "airOuts": 51,
+              "runs": 17,
+              "doubles": 9,
+              "triples": 0,
+              "homeRuns": 4,
+              "strikeOuts": 14,
+              "baseOnBalls": 13,
+              "intentionalWalks": 0,
+              "hits": 39,
+              "hitByPitch": 4,
+              "avg": ".300",
+              "atBats": 130,
+              "obp": ".376",
+              "slg": ".462",
+              "ops": ".838",
+              "caughtStealing": 0,
+              "stolenBases": 7,
+              "stolenBasePercentage": "1.000",
+              "caughtStealingPercentage": ".000",
+              "groundIntoDoublePlay": 1,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 149,
+              "totalBases": 60,
+              "rbi": 26,
+              "leftOnBase": 53,
+              "sacBunts": 0,
+              "sacFlies": 2,
+              "babip": ".307",
+              "groundOutsToAirouts": "0.55",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "32.50",
+              "popOuts": 12,
+              "lineOuts": 13
+            }
+          },
+          {
+            "id": 694208,
+            "name": "Mois\u00e9s Ballesteros",
+            "boxscoreName": "Ballesteros",
+            "slot": 2,
+            "pos": "DH",
+            "seasonStats": {
+              "gamesPlayed": 30,
+              "flyOuts": 12,
+              "groundOuts": 18,
+              "airOuts": 23,
+              "runs": 12,
+              "doubles": 5,
+              "triples": 0,
+              "homeRuns": 5,
+              "strikeOuts": 14,
+              "baseOnBalls": 8,
+              "intentionalWalks": 0,
+              "hits": 25,
+              "hitByPitch": 0,
+              "avg": ".316",
+              "atBats": 79,
+              "obp": ".375",
+              "slg": ".570",
+              "ops": ".945",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 0,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 88,
+              "totalBases": 45,
+              "rbi": 16,
+              "leftOnBase": 27,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".328",
+              "groundOutsToAirouts": "0.78",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "15.80",
+              "popOuts": 3,
+              "lineOuts": 8
+            }
+          },
+          {
+            "id": 608324,
+            "name": "Alex Bregman",
+            "boxscoreName": "Bregman",
+            "slot": 3,
+            "pos": "3B",
+            "seasonStats": {
+              "gamesPlayed": 34,
+              "flyOuts": 22,
+              "groundOuts": 34,
+              "airOuts": 44,
+              "runs": 11,
+              "doubles": 4,
+              "triples": 1,
+              "homeRuns": 3,
+              "strikeOuts": 23,
+              "baseOnBalls": 17,
+              "intentionalWalks": 1,
+              "hits": 33,
+              "hitByPitch": 1,
+              "avg": ".248",
+              "atBats": 133,
+              "obp": ".336",
+              "slg": ".361",
+              "ops": ".697",
+              "caughtStealing": 0,
+              "stolenBases": 1,
+              "stolenBasePercentage": "1.000",
+              "caughtStealingPercentage": ".000",
+              "groundIntoDoublePlay": 7,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 152,
+              "totalBases": 48,
+              "rbi": 12,
+              "leftOnBase": 73,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".278",
+              "groundOutsToAirouts": "0.77",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "44.33",
+              "popOuts": 13,
+              "lineOuts": 9
+            }
+          },
+          {
+            "id": 664023,
+            "name": "Ian Happ",
+            "boxscoreName": "Happ",
+            "slot": 4,
+            "pos": "LF",
+            "seasonStats": {
+              "gamesPlayed": 32,
+              "flyOuts": 17,
+              "groundOuts": 26,
+              "airOuts": 23,
+              "runs": 23,
+              "doubles": 6,
+              "triples": 1,
+              "homeRuns": 8,
+              "strikeOuts": 41,
+              "baseOnBalls": 22,
+              "intentionalWalks": 2,
+              "hits": 29,
+              "hitByPitch": 2,
+              "avg": ".244",
+              "atBats": 119,
+              "obp": ".371",
+              "slg": ".513",
+              "ops": ".884",
+              "caughtStealing": 0,
+              "stolenBases": 1,
+              "stolenBasePercentage": "1.000",
+              "caughtStealingPercentage": ".000",
+              "groundIntoDoublePlay": 3,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 143,
+              "totalBases": 61,
+              "rbi": 15,
+              "leftOnBase": 74,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "babip": ".300",
+              "groundOutsToAirouts": "1.13",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "14.88",
+              "popOuts": 2,
+              "lineOuts": 4
+            }
+          },
+          {
+            "id": 673548,
+            "name": "Seiya Suzuki",
+            "boxscoreName": "Suzuki",
+            "slot": 5,
+            "pos": "RF",
+            "seasonStats": {
+              "gamesPlayed": 21,
+              "flyOuts": 12,
+              "groundOuts": 13,
+              "airOuts": 19,
+              "runs": 14,
+              "doubles": 1,
+              "triples": 0,
+              "homeRuns": 5,
+              "strikeOuts": 21,
+              "baseOnBalls": 11,
+              "intentionalWalks": 1,
+              "hits": 22,
+              "hitByPitch": 2,
+              "avg": ".297",
+              "atBats": 74,
+              "obp": ".398",
+              "slg": ".514",
+              "ops": ".912",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 2,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 88,
+              "totalBases": 38,
+              "rbi": 10,
+              "leftOnBase": 54,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".347",
+              "groundOutsToAirouts": "0.68",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "14.80",
+              "popOuts": 4,
+              "lineOuts": 3
+            }
+          },
+          {
+            "id": 683737,
+            "name": "Michael Busch",
+            "boxscoreName": "Busch",
+            "slot": 6,
+            "pos": "1B",
+            "seasonStats": {
+              "gamesPlayed": 33,
+              "flyOuts": 24,
+              "groundOuts": 33,
+              "airOuts": 32,
+              "runs": 15,
+              "doubles": 7,
+              "triples": 0,
+              "homeRuns": 2,
+              "strikeOuts": 32,
+              "baseOnBalls": 16,
+              "intentionalWalks": 0,
+              "hits": 26,
+              "hitByPitch": 2,
+              "avg": ".213",
+              "atBats": 122,
+              "obp": ".312",
+              "slg": ".320",
+              "ops": ".632",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 2,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 141,
+              "totalBases": 39,
+              "rbi": 13,
+              "leftOnBase": 67,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".270",
+              "groundOutsToAirouts": "1.03",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "61.00",
+              "popOuts": 4,
+              "lineOuts": 4
+            }
+          },
+          {
+            "id": 608348,
+            "name": "Carson Kelly",
+            "boxscoreName": "Kelly, C",
+            "slot": 7,
+            "pos": "C",
+            "seasonStats": {
+              "gamesPlayed": 25,
+              "flyOuts": 8,
+              "groundOuts": 18,
+              "airOuts": 21,
+              "runs": 13,
+              "doubles": 4,
+              "triples": 0,
+              "homeRuns": 2,
+              "strikeOuts": 15,
+              "baseOnBalls": 12,
+              "intentionalWalks": 0,
+              "hits": 26,
+              "hitByPitch": 1,
+              "avg": ".325",
+              "atBats": 80,
+              "obp": ".419",
+              "slg": ".450",
+              "ops": ".869",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 2,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 93,
+              "totalBases": 36,
+              "rbi": 12,
+              "leftOnBase": 44,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "babip": ".381",
+              "groundOutsToAirouts": "0.86",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "40.00",
+              "popOuts": 7,
+              "lineOuts": 6
+            }
+          },
+          {
+            "id": 691718,
+            "name": "Pete Crow-Armstrong",
+            "boxscoreName": "Crow-Armstrong",
+            "slot": 8,
+            "pos": "CF",
+            "seasonStats": {
+              "gamesPlayed": 34,
+              "flyOuts": 20,
+              "groundOuts": 25,
+              "airOuts": 31,
+              "runs": 20,
+              "doubles": 4,
+              "triples": 1,
+              "homeRuns": 3,
+              "strikeOuts": 39,
+              "baseOnBalls": 10,
+              "intentionalWalks": 1,
+              "hits": 30,
+              "hitByPitch": 2,
+              "avg": ".242",
+              "atBats": 124,
+              "obp": ".309",
+              "slg": ".363",
+              "ops": ".672",
+              "caughtStealing": 3,
+              "stolenBases": 6,
+              "stolenBasePercentage": ".667",
+              "caughtStealingPercentage": ".333",
+              "groundIntoDoublePlay": 2,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 137,
+              "totalBases": 45,
+              "rbi": 13,
+              "leftOnBase": 62,
+              "sacBunts": 1,
+              "sacFlies": 0,
+              "babip": ".329",
+              "groundOutsToAirouts": "0.81",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "41.33",
+              "popOuts": 9,
+              "lineOuts": 2
+            }
+          },
+          {
+            "id": 621020,
+            "name": "Dansby Swanson",
+            "boxscoreName": "Swanson",
+            "slot": 9,
+            "pos": "SS",
+            "seasonStats": {
+              "gamesPlayed": 33,
+              "flyOuts": 18,
+              "groundOuts": 30,
+              "airOuts": 27,
+              "runs": 24,
+              "doubles": 2,
+              "triples": 1,
+              "homeRuns": 6,
+              "strikeOuts": 29,
+              "baseOnBalls": 20,
+              "intentionalWalks": 0,
+              "hits": 23,
+              "hitByPitch": 1,
+              "avg": ".217",
+              "atBats": 106,
+              "obp": ".338",
+              "slg": ".425",
+              "ops": ".763",
+              "caughtStealing": 0,
+              "stolenBases": 2,
+              "stolenBasePercentage": "1.000",
+              "caughtStealingPercentage": ".000",
+              "groundIntoDoublePlay": 1,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 130,
+              "totalBases": 45,
+              "rbi": 24,
+              "leftOnBase": 55,
+              "sacBunts": 0,
+              "sacFlies": 3,
+              "babip": ".230",
+              "groundOutsToAirouts": "1.11",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "17.67",
+              "popOuts": 4,
+              "lineOuts": 5
+            }
+          }
+        ],
+        "them": [
+          {
+            "id": 606466,
+            "name": "Ketel Marte",
+            "boxscoreName": "Marte, K",
+            "slot": 1,
+            "pos": "2B",
+            "seasonStats": {
+              "gamesPlayed": 32,
+              "flyOuts": 13,
+              "groundOuts": 39,
+              "airOuts": 31,
+              "runs": 17,
+              "doubles": 3,
+              "triples": 0,
+              "homeRuns": 5,
+              "strikeOuts": 26,
+              "baseOnBalls": 10,
+              "intentionalWalks": 0,
+              "hits": 27,
+              "hitByPitch": 0,
+              "avg": ".220",
+              "atBats": 123,
+              "obp": ".278",
+              "slg": ".366",
+              "ops": ".644",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 3,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 133,
+              "totalBases": 45,
+              "rbi": 11,
+              "leftOnBase": 42,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "babip": ".239",
+              "groundOutsToAirouts": "1.26",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "24.60",
+              "popOuts": 3,
+              "lineOuts": 15
+            }
+          },
+          {
+            "id": 672695,
+            "name": "Geraldo Perdomo",
+            "boxscoreName": "Perdomo",
+            "slot": 2,
+            "pos": "SS",
+            "seasonStats": {
+              "gamesPlayed": 30,
+              "flyOuts": 15,
+              "groundOuts": 37,
+              "airOuts": 27,
+              "runs": 12,
+              "doubles": 4,
+              "triples": 3,
+              "homeRuns": 2,
+              "strikeOuts": 15,
+              "baseOnBalls": 18,
+              "intentionalWalks": 0,
+              "hits": 25,
+              "hitByPitch": 0,
+              "avg": ".250",
+              "atBats": 100,
+              "obp": ".358",
+              "slg": ".410",
+              "ops": ".768",
+              "caughtStealing": 3,
+              "stolenBases": 6,
+              "stolenBasePercentage": ".667",
+              "caughtStealingPercentage": ".333",
+              "groundIntoDoublePlay": 5,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 122,
+              "totalBases": 41,
+              "rbi": 9,
+              "leftOnBase": 44,
+              "sacBunts": 2,
+              "sacFlies": 2,
+              "babip": ".271",
+              "groundOutsToAirouts": "1.37",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "50.00",
+              "popOuts": 4,
+              "lineOuts": 8
+            }
+          },
+          {
+            "id": 682998,
+            "name": "Corbin Carroll",
+            "boxscoreName": "Carroll",
+            "slot": 3,
+            "pos": "RF",
+            "seasonStats": {
+              "gamesPlayed": 31,
+              "flyOuts": 10,
+              "groundOuts": 25,
+              "airOuts": 19,
+              "runs": 20,
+              "doubles": 7,
+              "triples": 4,
+              "homeRuns": 4,
+              "strikeOuts": 36,
+              "baseOnBalls": 16,
+              "intentionalWalks": 0,
+              "hits": 30,
+              "hitByPitch": 1,
+              "avg": ".275",
+              "atBats": 109,
+              "obp": ".370",
+              "slg": ".523",
+              "ops": ".893",
+              "caughtStealing": 0,
+              "stolenBases": 4,
+              "stolenBasePercentage": "1.000",
+              "caughtStealingPercentage": ".000",
+              "groundIntoDoublePlay": 1,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 127,
+              "totalBases": 57,
+              "rbi": 18,
+              "leftOnBase": 33,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".371",
+              "groundOutsToAirouts": "1.32",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "27.25",
+              "popOuts": 5,
+              "lineOuts": 4
+            }
+          },
+          {
+            "id": 545121,
+            "name": "Ildemaro Vargas",
+            "boxscoreName": "Vargas, I",
+            "slot": 4,
+            "pos": "1B",
+            "seasonStats": {
+              "gamesPlayed": 26,
+              "flyOuts": 8,
+              "groundOuts": 29,
+              "airOuts": 22,
+              "runs": 19,
+              "doubles": 6,
+              "triples": 2,
+              "homeRuns": 6,
+              "strikeOuts": 11,
+              "baseOnBalls": 4,
+              "intentionalWalks": 0,
+              "hits": 38,
+              "hitByPitch": 0,
+              "avg": ".384",
+              "atBats": 99,
+              "obp": ".408",
+              "slg": ".667",
+              "ops": "1.075",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 0,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 105,
+              "totalBases": 66,
+              "rbi": 21,
+              "leftOnBase": 31,
+              "sacBunts": 1,
+              "sacFlies": 0,
+              "babip": ".390",
+              "groundOutsToAirouts": "1.32",
+              "catchersInterference": 1,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "16.50",
+              "popOuts": 6,
+              "lineOuts": 8
+            }
+          },
+          {
+            "id": 571448,
+            "name": "Nolan Arenado",
+            "boxscoreName": "Arenado",
+            "slot": 5,
+            "pos": "3B",
+            "seasonStats": {
+              "gamesPlayed": 31,
+              "flyOuts": 11,
+              "groundOuts": 22,
+              "airOuts": 32,
+              "runs": 16,
+              "doubles": 3,
+              "triples": 0,
+              "homeRuns": 5,
+              "strikeOuts": 23,
+              "baseOnBalls": 6,
+              "intentionalWalks": 0,
+              "hits": 30,
+              "hitByPitch": 0,
+              "avg": ".283",
+              "atBats": 106,
+              "obp": ".319",
+              "slg": ".453",
+              "ops": ".772",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 4,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 113,
+              "totalBases": 48,
+              "rbi": 17,
+              "leftOnBase": 41,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".316",
+              "groundOutsToAirouts": "0.69",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "21.20",
+              "popOuts": 12,
+              "lineOuts": 9
+            }
+          },
+          {
+            "id": 666971,
+            "name": "Lourdes Gurriel Jr.",
+            "boxscoreName": "Gurriel Jr.",
+            "slot": 6,
+            "pos": "LF",
+            "seasonStats": {
+              "gamesPlayed": 11,
+              "flyOuts": 5,
+              "groundOuts": 12,
+              "airOuts": 13,
+              "runs": 2,
+              "doubles": 2,
+              "triples": 0,
+              "homeRuns": 0,
+              "strikeOuts": 8,
+              "baseOnBalls": 2,
+              "intentionalWalks": 0,
+              "hits": 8,
+              "hitByPitch": 0,
+              "avg": ".195",
+              "atBats": 41,
+              "obp": ".233",
+              "slg": ".244",
+              "ops": ".477",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 0,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 43,
+              "totalBases": 10,
+              "rbi": 4,
+              "leftOnBase": 18,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "babip": ".242",
+              "groundOutsToAirouts": "0.92",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "-.--",
+              "popOuts": 4,
+              "lineOuts": 4
+            }
+          },
+          {
+            "id": 672515,
+            "name": "Gabriel Moreno",
+            "boxscoreName": "Moreno",
+            "slot": 7,
+            "pos": "C",
+            "seasonStats": {
+              "gamesPlayed": 15,
+              "flyOuts": 11,
+              "groundOuts": 7,
+              "airOuts": 17,
+              "runs": 7,
+              "doubles": 5,
+              "triples": 0,
+              "homeRuns": 1,
+              "strikeOuts": 11,
+              "baseOnBalls": 3,
+              "intentionalWalks": 0,
+              "hits": 12,
+              "hitByPitch": 1,
+              "avg": ".261",
+              "atBats": 46,
+              "obp": ".314",
+              "slg": ".435",
+              "ops": ".749",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 0,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 51,
+              "totalBases": 20,
+              "rbi": 7,
+              "leftOnBase": 19,
+              "sacBunts": 0,
+              "sacFlies": 1,
+              "babip": ".314",
+              "groundOutsToAirouts": "0.41",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "46.00",
+              "popOuts": 3,
+              "lineOuts": 3
+            }
+          },
+          {
+            "id": 699912,
+            "name": "Jose Fernandez",
+            "boxscoreName": "Fernandez, Jo",
+            "slot": 8,
+            "pos": "DH",
+            "seasonStats": {
+              "gamesPlayed": 28,
+              "flyOuts": 6,
+              "groundOuts": 19,
+              "airOuts": 23,
+              "runs": 19,
+              "doubles": 3,
+              "triples": 0,
+              "homeRuns": 3,
+              "strikeOuts": 20,
+              "baseOnBalls": 4,
+              "intentionalWalks": 0,
+              "hits": 28,
+              "hitByPitch": 0,
+              "avg": ".311",
+              "atBats": 90,
+              "obp": ".340",
+              "slg": ".444",
+              "ops": ".784",
+              "caughtStealing": 1,
+              "stolenBases": 1,
+              "stolenBasePercentage": ".500",
+              "caughtStealingPercentage": ".500",
+              "groundIntoDoublePlay": 1,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 94,
+              "totalBases": 40,
+              "rbi": 12,
+              "leftOnBase": 24,
+              "sacBunts": 0,
+              "sacFlies": 0,
+              "babip": ".373",
+              "groundOutsToAirouts": "0.83",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "30.00",
+              "popOuts": 11,
+              "lineOuts": 6
+            }
+          },
+          {
+            "id": 678489,
+            "name": "Jorge Barrosa",
+            "boxscoreName": "Barrosa",
+            "slot": 9,
+            "pos": "CF",
+            "seasonStats": {
+              "gamesPlayed": 26,
+              "flyOuts": 8,
+              "groundOuts": 21,
+              "airOuts": 13,
+              "runs": 9,
+              "doubles": 9,
+              "triples": 1,
+              "homeRuns": 1,
+              "strikeOuts": 22,
+              "baseOnBalls": 3,
+              "intentionalWalks": 0,
+              "hits": 14,
+              "hitByPitch": 1,
+              "avg": ".206",
+              "atBats": 68,
+              "obp": ".250",
+              "slg": ".412",
+              "ops": ".662",
+              "caughtStealing": 0,
+              "stolenBases": 0,
+              "stolenBasePercentage": ".---",
+              "caughtStealingPercentage": ".---",
+              "groundIntoDoublePlay": 1,
+              "groundIntoTriplePlay": 0,
+              "plateAppearances": 74,
+              "totalBases": 28,
+              "rbi": 7,
+              "leftOnBase": 21,
+              "sacBunts": 2,
+              "sacFlies": 0,
+              "babip": ".289",
+              "groundOutsToAirouts": "1.62",
+              "catchersInterference": 0,
+              "pickoffs": 0,
+              "atBatsPerHomeRun": "68.00",
+              "popOuts": 1,
+              "lineOuts": 4
+            }
+          }
+        ]
+      },
+      "live": {
+        "status": "In Progress",
+        "inning": 3,
+        "inningHalf": "Bottom"
+      }
     },
     {
       "date": "2026-05-04",
@@ -382,7 +1726,149 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824684,
+      "probables": {
+        "us": {
+          "id": 665795,
+          "name": "Edward Cabrera",
+          "boxscoreName": "Cabrera, E",
+          "seasonStats": {
+            "gamesPlayed": 6,
+            "gamesStarted": 6,
+            "flyOuts": 18,
+            "groundOuts": 36,
+            "airOuts": 36,
+            "runs": 14,
+            "doubles": 5,
+            "triples": 0,
+            "homeRuns": 3,
+            "strikeOuts": 29,
+            "baseOnBalls": 12,
+            "intentionalWalks": 0,
+            "hits": 30,
+            "hitByPitch": 1,
+            "atBats": 128,
+            "obp": ".301",
+            "caughtStealing": 2,
+            "stolenBases": 6,
+            "stolenBasePercentage": ".750",
+            "caughtStealingPercentage": ".250",
+            "numberOfPitches": 548,
+            "era": "3.06",
+            "inningsPitched": "35.1",
+            "wins": 3,
+            "losses": 0,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 12,
+            "whip": "1.19",
+            "battersFaced": 144,
+            "outs": 106,
+            "gamesPitched": 6,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 548,
+            "balls": 204,
+            "strikes": 344,
+            "strikePercentage": ".630",
+            "hitBatsmen": 1,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "1.00",
+            "rbi": 0,
+            "winPercentage": "1.000",
+            "pitchesPerInning": "15.51",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "2.42",
+            "strikeoutsPer9Inn": "7.39",
+            "walksPer9Inn": "3.06",
+            "hitsPer9Inn": "7.64",
+            "runsScoredPer9": "3.57",
+            "homeRunsPer9": "0.76",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 1,
+            "sacFlies": 2,
+            "passedBall": 0,
+            "popOuts": 6,
+            "lineOuts": 12
+          }
+        },
+        "them": {
+          "id": 695534,
+          "name": "Chase Petty",
+          "boxscoreName": "Petty",
+          "seasonStats": {
+            "gamesPlayed": 0,
+            "gamesStarted": 0,
+            "flyOuts": 0,
+            "groundOuts": 0,
+            "airOuts": 0,
+            "runs": 0,
+            "doubles": 0,
+            "triples": 0,
+            "homeRuns": 0,
+            "strikeOuts": 0,
+            "baseOnBalls": 0,
+            "intentionalWalks": 0,
+            "hits": 0,
+            "hitByPitch": 0,
+            "atBats": 0,
+            "obp": ".000",
+            "caughtStealing": 0,
+            "stolenBases": 0,
+            "stolenBasePercentage": ".---",
+            "caughtStealingPercentage": ".---",
+            "numberOfPitches": 0,
+            "era": "-.--",
+            "inningsPitched": "0.0",
+            "wins": 0,
+            "losses": 0,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 0,
+            "whip": "-",
+            "battersFaced": 0,
+            "outs": 0,
+            "gamesPitched": 0,
+            "completeGames": 0,
+            "shutouts": 0,
+            "balls": 0,
+            "strikes": 0,
+            "strikePercentage": "-.--",
+            "hitBatsmen": 0,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "-.--",
+            "rbi": 0,
+            "winPercentage": ".---",
+            "pitchesPerInning": "-.--",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "-.--",
+            "strikeoutsPer9Inn": "-.--",
+            "walksPer9Inn": "-.--",
+            "hitsPer9Inn": "-.--",
+            "runsScoredPer9": "-.--",
+            "homeRunsPer9": "-.--",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 0,
+            "passedBall": 0,
+            "popOuts": 0,
+            "lineOuts": 0
+          }
+        }
+      }
     },
     {
       "date": "2026-05-05",
@@ -390,7 +1876,150 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824682,
+      "probables": {
+        "us": {
+          "id": 592791,
+          "name": "Jameson Taillon",
+          "boxscoreName": "Taillon",
+          "seasonStats": {
+            "gamesPlayed": 6,
+            "gamesStarted": 6,
+            "flyOuts": 24,
+            "groundOuts": 25,
+            "airOuts": 44,
+            "runs": 18,
+            "doubles": 5,
+            "triples": 0,
+            "homeRuns": 9,
+            "strikeOuts": 31,
+            "baseOnBalls": 13,
+            "intentionalWalks": 1,
+            "hits": 27,
+            "hitByPitch": 1,
+            "atBats": 127,
+            "obp": ".291",
+            "caughtStealing": 2,
+            "stolenBases": 7,
+            "stolenBasePercentage": ".778",
+            "caughtStealingPercentage": ".222",
+            "numberOfPitches": 550,
+            "era": "4.41",
+            "inningsPitched": "34.2",
+            "wins": 2,
+            "losses": 1,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 17,
+            "whip": "1.15",
+            "battersFaced": 141,
+            "outs": 104,
+            "gamesPitched": 6,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 550,
+            "balls": 206,
+            "strikes": 344,
+            "strikePercentage": ".630",
+            "hitBatsmen": 1,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "0.57",
+            "rbi": 0,
+            "winPercentage": ".667",
+            "pitchesPerInning": "15.87",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "2.38",
+            "strikeoutsPer9Inn": "8.05",
+            "walksPer9Inn": "3.38",
+            "hitsPer9Inn": "7.01",
+            "runsScoredPer9": "4.67",
+            "homeRunsPer9": "2.34",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 0,
+            "passedBall": 0,
+            "popOuts": 11,
+            "lineOuts": 9
+          }
+        },
+        "them": {
+          "id": 671096,
+          "name": "Andrew Abbott",
+          "boxscoreName": "Abbott, A",
+          "seasonStats": {
+            "gamesPlayed": 7,
+            "gamesStarted": 7,
+            "flyOuts": 18,
+            "groundOuts": 38,
+            "airOuts": 38,
+            "runs": 24,
+            "doubles": 5,
+            "triples": 1,
+            "homeRuns": 5,
+            "strikeOuts": 24,
+            "baseOnBalls": 15,
+            "intentionalWalks": 0,
+            "hits": 43,
+            "hitByPitch": 0,
+            "atBats": 142,
+            "obp": ".367",
+            "caughtStealing": 1,
+            "stolenBases": 7,
+            "stolenBasePercentage": ".875",
+            "caughtStealingPercentage": ".125",
+            "numberOfPitches": 605,
+            "era": "5.97",
+            "inningsPitched": "34.2",
+            "wins": 1,
+            "losses": 2,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 23,
+            "whip": "1.67",
+            "battersFaced": 158,
+            "outs": 104,
+            "gamesPitched": 7,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 605,
+            "balls": 233,
+            "strikes": 372,
+            "strikePercentage": ".610",
+            "hitBatsmen": 0,
+            "balks": 0,
+            "wildPitches": 0,
+            "pickoffs": 1,
+            "groundOutsToAirouts": "1.00",
+            "rbi": 0,
+            "winPercentage": ".333",
+            "pitchesPerInning": "17.45",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "1.60",
+            "strikeoutsPer9Inn": "6.23",
+            "walksPer9Inn": "3.89",
+            "hitsPer9Inn": "11.16",
+            "runsScoredPer9": "6.23",
+            "homeRunsPer9": "1.30",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 1,
+            "passedBall": 0,
+            "popOuts": 9,
+            "lineOuts": 11
+          }
+        }
+      }
     },
     {
       "date": "2026-05-06",
@@ -398,7 +2027,150 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824683,
+      "probables": {
+        "us": {
+          "id": 607067,
+          "name": "Colin Rea",
+          "boxscoreName": "Rea",
+          "seasonStats": {
+            "gamesPlayed": 7,
+            "gamesStarted": 4,
+            "flyOuts": 19,
+            "groundOuts": 40,
+            "airOuts": 28,
+            "runs": 16,
+            "doubles": 4,
+            "triples": 0,
+            "homeRuns": 3,
+            "strikeOuts": 30,
+            "baseOnBalls": 9,
+            "intentionalWalks": 0,
+            "hits": 34,
+            "hitByPitch": 1,
+            "atBats": 130,
+            "obp": ".312",
+            "caughtStealing": 0,
+            "stolenBases": 3,
+            "stolenBasePercentage": "1.000",
+            "caughtStealingPercentage": ".000",
+            "numberOfPitches": 551,
+            "era": "4.41",
+            "inningsPitched": "32.2",
+            "wins": 4,
+            "losses": 1,
+            "saves": 1,
+            "saveOpportunities": 1,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 16,
+            "whip": "1.32",
+            "battersFaced": 142,
+            "outs": 98,
+            "gamesPitched": 7,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 551,
+            "balls": 190,
+            "strikes": 361,
+            "strikePercentage": ".660",
+            "hitBatsmen": 1,
+            "balks": 0,
+            "wildPitches": 1,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "1.43",
+            "rbi": 0,
+            "winPercentage": ".800",
+            "pitchesPerInning": "16.87",
+            "gamesFinished": 1,
+            "strikeoutWalkRatio": "3.33",
+            "strikeoutsPer9Inn": "8.27",
+            "walksPer9Inn": "2.48",
+            "hitsPer9Inn": "9.37",
+            "runsScoredPer9": "4.41",
+            "homeRunsPer9": "0.83",
+            "inheritedRunners": 1,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 1,
+            "sacFlies": 1,
+            "passedBall": 0,
+            "popOuts": 3,
+            "lineOuts": 6
+          }
+        },
+        "them": {
+          "id": 663903,
+          "name": "Brady Singer",
+          "boxscoreName": "Singer",
+          "seasonStats": {
+            "gamesPlayed": 7,
+            "gamesStarted": 7,
+            "flyOuts": 22,
+            "groundOuts": 34,
+            "airOuts": 41,
+            "runs": 21,
+            "doubles": 7,
+            "triples": 2,
+            "homeRuns": 7,
+            "strikeOuts": 20,
+            "baseOnBalls": 9,
+            "intentionalWalks": 0,
+            "hits": 47,
+            "hitByPitch": 2,
+            "atBats": 141,
+            "obp": ".379",
+            "caughtStealing": 2,
+            "stolenBases": 1,
+            "stolenBasePercentage": ".333",
+            "caughtStealingPercentage": ".667",
+            "numberOfPitches": 563,
+            "era": "5.57",
+            "inningsPitched": "32.1",
+            "wins": 2,
+            "losses": 2,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 20,
+            "whip": "1.73",
+            "battersFaced": 153,
+            "outs": 97,
+            "gamesPitched": 7,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 563,
+            "balls": 206,
+            "strikes": 357,
+            "strikePercentage": ".630",
+            "hitBatsmen": 2,
+            "balks": 0,
+            "wildPitches": 1,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "0.83",
+            "rbi": 0,
+            "winPercentage": ".500",
+            "pitchesPerInning": "17.41",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "2.22",
+            "strikeoutsPer9Inn": "5.57",
+            "walksPer9Inn": "2.51",
+            "hitsPer9Inn": "13.08",
+            "runsScoredPer9": "5.85",
+            "homeRunsPer9": "1.95",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 1,
+            "passedBall": 0,
+            "popOuts": 5,
+            "lineOuts": 14
+          }
+        }
+      }
     },
     {
       "date": "2026-05-07",
@@ -406,7 +2178,80 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824681,
+      "probables": {
+        "us": {
+          "id": 684007,
+          "name": "Shota Imanaga",
+          "boxscoreName": "Imanaga",
+          "seasonStats": {
+            "gamesPlayed": 7,
+            "gamesStarted": 7,
+            "flyOuts": 30,
+            "groundOuts": 31,
+            "airOuts": 50,
+            "runs": 12,
+            "doubles": 9,
+            "triples": 1,
+            "homeRuns": 3,
+            "strikeOuts": 43,
+            "baseOnBalls": 10,
+            "intentionalWalks": 0,
+            "hits": 25,
+            "hitByPitch": 0,
+            "atBats": 148,
+            "obp": ".220",
+            "caughtStealing": 0,
+            "stolenBases": 2,
+            "stolenBasePercentage": "1.000",
+            "caughtStealingPercentage": ".000",
+            "numberOfPitches": 645,
+            "era": "2.40",
+            "inningsPitched": "41.1",
+            "wins": 3,
+            "losses": 2,
+            "saves": 0,
+            "saveOpportunities": 0,
+            "holds": 0,
+            "blownSaves": 0,
+            "earnedRuns": 11,
+            "whip": "0.85",
+            "battersFaced": 159,
+            "outs": 124,
+            "gamesPitched": 7,
+            "completeGames": 0,
+            "shutouts": 0,
+            "pitchesThrown": 645,
+            "balls": 233,
+            "strikes": 412,
+            "strikePercentage": ".640",
+            "hitBatsmen": 0,
+            "balks": 0,
+            "wildPitches": 3,
+            "pickoffs": 0,
+            "groundOutsToAirouts": "0.62",
+            "rbi": 0,
+            "winPercentage": ".600",
+            "pitchesPerInning": "15.60",
+            "gamesFinished": 0,
+            "strikeoutWalkRatio": "4.30",
+            "strikeoutsPer9Inn": "9.36",
+            "walksPer9Inn": "2.18",
+            "hitsPer9Inn": "5.44",
+            "runsScoredPer9": "2.61",
+            "homeRunsPer9": "0.65",
+            "inheritedRunners": 0,
+            "inheritedRunnersScored": 0,
+            "catchersInterference": 0,
+            "sacBunts": 0,
+            "sacFlies": 1,
+            "passedBall": 0,
+            "popOuts": 10,
+            "lineOuts": 10
+          }
+        }
+      }
     },
     {
       "date": "2026-05-08",
@@ -414,7 +2259,8 @@
       "home": false,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822904
     },
     {
       "date": "2026-05-09",
@@ -422,7 +2268,8 @@
       "home": false,
       "time": "6:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822905
     },
     {
       "date": "2026-05-10",
@@ -430,7 +2277,8 @@
       "home": false,
       "time": "1:35 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822902
     },
     {
       "date": "2026-05-12",
@@ -438,7 +2286,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824927
     },
     {
       "date": "2026-05-13",
@@ -446,7 +2295,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824928
     },
     {
       "date": "2026-05-14",
@@ -454,7 +2304,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824926
     },
     {
       "date": "2026-05-15",
@@ -462,7 +2313,8 @@
       "home": false,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824601
     },
     {
       "date": "2026-05-16",
@@ -470,7 +2322,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824600
     },
     {
       "date": "2026-05-17",
@@ -478,7 +2331,8 @@
       "home": false,
       "time": "1:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824599
     },
     {
       "date": "2026-05-18",
@@ -486,7 +2340,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824680
     },
     {
       "date": "2026-05-19",
@@ -494,7 +2349,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824677
     },
     {
       "date": "2026-05-20",
@@ -502,7 +2358,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824678
     },
     {
       "date": "2026-05-22",
@@ -510,7 +2367,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "Apple TV+"
+      "broadcast": "Apple TV+",
+      "gamePk": 824679
     },
     {
       "date": "2026-05-23",
@@ -518,7 +2376,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824674
     },
     {
       "date": "2026-05-24",
@@ -526,7 +2385,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824676
     },
     {
       "date": "2026-05-25",
@@ -534,7 +2394,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823380
     },
     {
       "date": "2026-05-26",
@@ -542,7 +2403,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823379
     },
     {
       "date": "2026-05-27",
@@ -550,7 +2412,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823376
     },
     {
       "date": "2026-05-28",
@@ -558,7 +2421,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823378
     },
     {
       "date": "2026-05-29",
@@ -566,7 +2430,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823055
     },
     {
       "date": "2026-05-30",
@@ -574,7 +2439,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 823054
     },
     {
       "date": "2026-05-31",
@@ -582,7 +2448,8 @@
       "home": false,
       "time": "6:20 PM",
       "result": null,
-      "broadcast": "NBC/Peacock"
+      "broadcast": "NBC/Peacock",
+      "gamePk": 823053
     },
     {
       "date": "2026-06-02",
@@ -590,7 +2457,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824675
     },
     {
       "date": "2026-06-03",
@@ -598,7 +2466,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824671
     },
     {
       "date": "2026-06-04",
@@ -606,7 +2475,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824672
     },
     {
       "date": "2026-06-05",
@@ -614,7 +2484,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824673
     },
     {
       "date": "2026-06-06",
@@ -622,7 +2493,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824669
     },
     {
       "date": "2026-06-07",
@@ -630,7 +2502,8 @@
       "home": true,
       "time": "7:20 PM",
       "result": null,
-      "broadcast": "NBC/Peacock"
+      "broadcast": "NBC/Peacock",
+      "gamePk": 824670
     },
     {
       "date": "2026-06-09",
@@ -638,7 +2511,8 @@
       "home": false,
       "time": "7:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824347
     },
     {
       "date": "2026-06-10",
@@ -646,7 +2520,8 @@
       "home": false,
       "time": "7:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824348
     },
     {
       "date": "2026-06-11",
@@ -654,7 +2529,8 @@
       "home": false,
       "time": "2:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824346
     },
     {
       "date": "2026-06-12",
@@ -662,7 +2538,8 @@
       "home": false,
       "time": "9:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823211
     },
     {
       "date": "2026-06-13",
@@ -670,7 +2547,8 @@
       "home": false,
       "time": "9:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823213
     },
     {
       "date": "2026-06-14",
@@ -678,7 +2556,8 @@
       "home": false,
       "time": "2:10 PM",
       "result": null,
-      "broadcast": "ABC/ESPN"
+      "broadcast": "ABC/ESPN",
+      "gamePk": 823212
     },
     {
       "date": "2026-06-15",
@@ -686,7 +2565,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824666
     },
     {
       "date": "2026-06-16",
@@ -694,7 +2574,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824667
     },
     {
       "date": "2026-06-17",
@@ -702,7 +2583,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824668
     },
     {
       "date": "2026-06-19",
@@ -710,7 +2592,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824663
     },
     {
       "date": "2026-06-20",
@@ -718,7 +2601,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824665
     },
     {
       "date": "2026-06-21",
@@ -726,7 +2610,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824664
     },
     {
       "date": "2026-06-22",
@@ -734,7 +2619,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823613
     },
     {
       "date": "2026-06-23",
@@ -742,7 +2628,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823614
     },
     {
       "date": "2026-06-24",
@@ -750,7 +2637,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823611
     },
     {
       "date": "2026-06-25",
@@ -758,7 +2646,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823612
     },
     {
       "date": "2026-06-26",
@@ -766,7 +2655,8 @@
       "home": false,
       "time": "6:45 PM",
       "result": null,
-      "broadcast": "Apple TV+"
+      "broadcast": "Apple TV+",
+      "gamePk": 823773
     },
     {
       "date": "2026-06-27",
@@ -774,7 +2664,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823770
     },
     {
       "date": "2026-06-28",
@@ -782,7 +2673,8 @@
       "home": false,
       "time": "1:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823769
     },
     {
       "date": "2026-06-29",
@@ -790,7 +2682,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824662
     },
     {
       "date": "2026-06-30",
@@ -798,7 +2691,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824661
     },
     {
       "date": "2026-07-01",
@@ -806,7 +2700,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824660
     },
     {
       "date": "2026-07-03",
@@ -814,7 +2709,8 @@
       "home": true,
       "time": "3:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824659
     },
     {
       "date": "2026-07-04",
@@ -822,7 +2718,8 @@
       "home": true,
       "time": "7:08 PM",
       "result": null,
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 824658
     },
     {
       "date": "2026-07-05",
@@ -830,7 +2727,8 @@
       "home": true,
       "time": "1:30 PM",
       "result": null,
-      "broadcast": "NBC/Peacock"
+      "broadcast": "NBC/Peacock",
+      "gamePk": 824656
     },
     {
       "date": "2026-07-07",
@@ -838,7 +2736,8 @@
       "home": false,
       "time": "5:35 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824820
     },
     {
       "date": "2026-07-08",
@@ -846,7 +2745,8 @@
       "home": false,
       "time": "5:35 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824815
     },
     {
       "date": "2026-07-09",
@@ -854,7 +2754,8 @@
       "home": false,
       "time": "5:35 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824816
     },
     {
       "date": "2026-07-10",
@@ -862,7 +2763,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824493
     },
     {
       "date": "2026-07-11",
@@ -870,7 +2772,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824492
     },
     {
       "date": "2026-07-12",
@@ -878,7 +2781,8 @@
       "home": false,
       "time": "12:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824491
     },
     {
       "date": "2026-07-17",
@@ -886,7 +2790,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824655
     },
     {
       "date": "2026-07-18",
@@ -894,7 +2799,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824657
     },
     {
       "date": "2026-07-19",
@@ -902,7 +2808,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824653
     },
     {
       "date": "2026-07-20",
@@ -910,7 +2817,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824654
     },
     {
       "date": "2026-07-21",
@@ -918,7 +2826,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824652
     },
     {
       "date": "2026-07-22",
@@ -926,7 +2835,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": null
+      "broadcast": null,
+      "gamePk": 824650
     },
     {
       "date": "2026-07-24",
@@ -934,7 +2844,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823352
     },
     {
       "date": "2026-07-25",
@@ -942,7 +2853,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823355
     },
     {
       "date": "2026-07-26",
@@ -950,7 +2862,8 @@
       "home": false,
       "time": "12:35 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823354
     },
     {
       "date": "2026-07-27",
@@ -958,7 +2871,8 @@
       "home": false,
       "time": "6:45 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823025
     },
     {
       "date": "2026-07-28",
@@ -966,7 +2880,8 @@
       "home": false,
       "time": "6:45 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823026
     },
     {
       "date": "2026-07-29",
@@ -974,7 +2889,8 @@
       "home": false,
       "time": "6:45 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823022
     },
     {
       "date": "2026-07-30",
@@ -982,7 +2898,8 @@
       "home": false,
       "time": "1:15 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823023
     },
     {
       "date": "2026-07-31",
@@ -990,7 +2907,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824651
     },
     {
       "date": "2026-08-01",
@@ -998,7 +2916,8 @@
       "home": true,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 824649
     },
     {
       "date": "2026-08-02",
@@ -1006,7 +2925,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824648
     },
     {
       "date": "2026-08-03",
@@ -1014,7 +2934,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824647
     },
     {
       "date": "2026-08-04",
@@ -1022,7 +2943,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824645
     },
     {
       "date": "2026-08-05",
@@ -1030,7 +2952,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824646
     },
     {
       "date": "2026-08-07",
@@ -1038,7 +2961,8 @@
       "home": false,
       "time": "7:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824081
     },
     {
       "date": "2026-08-08",
@@ -1046,7 +2970,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824079
     },
     {
       "date": "2026-08-09",
@@ -1054,7 +2979,8 @@
       "home": false,
       "time": "1:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824078
     },
     {
       "date": "2026-08-11",
@@ -1062,7 +2988,8 @@
       "home": false,
       "time": "5:45 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822697
     },
     {
       "date": "2026-08-12",
@@ -1070,7 +2997,8 @@
       "home": false,
       "time": "5:45 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822698
     },
     {
       "date": "2026-08-13",
@@ -1078,7 +3006,8 @@
       "home": false,
       "time": "3:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 822696
     },
     {
       "date": "2026-08-14",
@@ -1086,7 +3015,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824643
     },
     {
       "date": "2026-08-15",
@@ -1094,7 +3024,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824644
     },
     {
       "date": "2026-08-16",
@@ -1102,7 +3033,8 @@
       "home": true,
       "time": "2:10 PM",
       "result": null,
-      "broadcast": "ABC/ESPN"
+      "broadcast": "ABC/ESPN",
+      "gamePk": 824642
     },
     {
       "date": "2026-08-17",
@@ -1110,7 +3042,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824641
     },
     {
       "date": "2026-08-18",
@@ -1118,7 +3051,8 @@
       "home": true,
       "time": "7:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824639
     },
     {
       "date": "2026-08-19",
@@ -1126,7 +3060,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824640
     },
     {
       "date": "2026-08-21",
@@ -1134,7 +3069,8 @@
       "home": false,
       "time": "9:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823101
     },
     {
       "date": "2026-08-22",
@@ -1142,7 +3078,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 823100
     },
     {
       "date": "2026-08-23",
@@ -1150,7 +3087,8 @@
       "home": false,
       "time": "3:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823099
     },
     {
       "date": "2026-08-24",
@@ -1158,7 +3096,8 @@
       "home": false,
       "time": "8:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 825041
     },
     {
       "date": "2026-08-25",
@@ -1166,7 +3105,8 @@
       "home": false,
       "time": "8:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 825042
     },
     {
       "date": "2026-08-26",
@@ -1174,7 +3114,8 @@
       "home": false,
       "time": "2:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 825039
     },
     {
       "date": "2026-08-28",
@@ -1182,7 +3123,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824638
     },
     {
       "date": "2026-08-29",
@@ -1190,7 +3132,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824637
     },
     {
       "date": "2026-08-30",
@@ -1198,7 +3141,8 @@
       "home": true,
       "time": "2:10 PM",
       "result": null,
-      "broadcast": "NBC/Peacock"
+      "broadcast": "NBC/Peacock",
+      "gamePk": 824636
     },
     {
       "date": "2026-08-31",
@@ -1206,7 +3150,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824635
     },
     {
       "date": "2026-09-01",
@@ -1214,7 +3159,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824633
     },
     {
       "date": "2026-09-02",
@@ -1222,7 +3168,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824634
     },
     {
       "date": "2026-09-03",
@@ -1230,7 +3177,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824632
     },
     {
       "date": "2026-09-04",
@@ -1238,7 +3186,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823824
     },
     {
       "date": "2026-09-05",
@@ -1246,7 +3195,8 @@
       "home": false,
       "time": "3:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823823
     },
     {
       "date": "2026-09-06",
@@ -1254,7 +3204,8 @@
       "home": false,
       "time": "12:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823822
     },
     {
       "date": "2026-09-07",
@@ -1262,7 +3213,8 @@
       "home": false,
       "time": "1:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823742
     },
     {
       "date": "2026-09-08",
@@ -1270,7 +3222,8 @@
       "home": false,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823738
     },
     {
       "date": "2026-09-09",
@@ -1278,7 +3231,8 @@
       "home": false,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 823739
     },
     {
       "date": "2026-09-11",
@@ -1286,7 +3240,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824631
     },
     {
       "date": "2026-09-12",
@@ -1294,7 +3249,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824630
     },
     {
       "date": "2026-09-13",
@@ -1302,7 +3258,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824628
     },
     {
       "date": "2026-09-14",
@@ -1310,7 +3267,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824629
     },
     {
       "date": "2026-09-15",
@@ -1318,7 +3276,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824627
     },
     {
       "date": "2026-09-16",
@@ -1326,7 +3285,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824626
     },
     {
       "date": "2026-09-18",
@@ -1334,7 +3294,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824463
     },
     {
       "date": "2026-09-19",
@@ -1342,7 +3303,8 @@
       "home": false,
       "time": "5:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824461
     },
     {
       "date": "2026-09-20",
@@ -1350,7 +3312,8 @@
       "home": false,
       "time": "12:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824462
     },
     {
       "date": "2026-09-22",
@@ -1358,7 +3321,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824624
     },
     {
       "date": "2026-09-23",
@@ -1366,7 +3330,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824625
     },
     {
       "date": "2026-09-24",
@@ -1374,7 +3339,8 @@
       "home": true,
       "time": "1:20 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824623
     },
     {
       "date": "2026-09-25",
@@ -1382,7 +3348,8 @@
       "home": false,
       "time": "6:10 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824706
     },
     {
       "date": "2026-09-26",
@@ -1390,7 +3357,8 @@
       "home": false,
       "time": "6:15 PM",
       "result": null,
-      "broadcast": "FOX"
+      "broadcast": "FOX",
+      "gamePk": 824705
     },
     {
       "date": "2026-09-27",
@@ -1398,7 +3366,8 @@
       "home": false,
       "time": "2:05 PM",
       "result": null,
-      "broadcast": "MARQUEE"
+      "broadcast": "MARQUEE",
+      "gamePk": 824703
     }
   ],
   "standings": [
