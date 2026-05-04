@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-04T15:55:08.210134+00:00",
+  "updatedAt": "2026-05-04T16:49:42.624712+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -753,7 +753,7 @@
       "date": "2026-05-04",
       "opp": "CIN",
       "home": true,
-      "time": "6:40 PM",
+      "time": "6:10 PM",
       "result": null,
       "broadcast": "MARQUEE",
       "gamePk": 824684,
