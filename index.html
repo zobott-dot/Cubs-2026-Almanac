@@ -915,6 +915,155 @@
       max-width: calc(100vw - 32px);
     }
   }
+
+  /* Game-day card — sits between hero band and main sections.
+     Hero-band-class, not section-class: defaults open, quieter chrome. */
+  #game-day-card {
+    border-top: 1px solid var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding: 14px 0 18px;
+    margin: 0 0 32px;
+  }
+  #game-day-card.is-empty { display: none; }
+  .gdc-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: opacity 0.15s ease;
+  }
+  .gdc-header:hover { opacity: 0.7; }
+  .gdc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .gdc-summary {
+    flex: 1;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  #game-day-card:not(.collapsed) .gdc-summary { display: none; }
+  .gdc-chevron {
+    margin-left: auto;
+    background: none;
+    border: none;
+    padding: 2px 4px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--accent);
+    cursor: pointer;
+    pointer-events: none;
+  }
+  .gdc-body { margin-top: 14px; }
+  #game-day-card.collapsed .gdc-body { display: none; }
+
+  .gdc-pitchers {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .gdc-pitcher {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .gdc-pitcher-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .gdc-pitcher-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+  .gdc-bullet {
+    color: var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .gdc-divider-mark {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--rule);
+    text-align: center;
+    letter-spacing: 0.5em;
+    margin: 16px 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .gdc-lineup-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .gdc-lineup-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0 10px;
+    flex-wrap: wrap;
+    padding: 4px 0;
+  }
+  .gdc-row-id {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  .gdc-slot {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    min-width: 14px;
+  }
+  .gdc-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .gdc-pos {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  .gdc-stats {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .gdc-fallback {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    padding: 4px 0;
+  }
+
+  @media (max-width: 600px) {
+    .gdc-pitcher-name { font-size: 18px; }
+    .gdc-name { font-size: 15px; }
+    .gdc-lineup-row { gap: 0 8px; }
+  }
 </style>
 </head>
 <body>
@@ -931,6 +1080,8 @@
   </header>
 
   <div class="hero-band is-empty" id="heroBand"></div>
+
+  <div id="game-day-card" class="is-empty"></div>
 
   <div id="sectionsContainer"></div>
 
@@ -1776,6 +1927,164 @@
     }
   }
 
+  // ============================================================
+  // GAME-DAY CARD — appears below the hero band on game days during
+  // the pre-game / very-early-game window. Hides when first run is
+  // scored or end of 2nd inning is reached, whichever comes first.
+  // ============================================================
+  let gameDayCardCollapsed = true;
+  let lastGameDayCardGamePk = null;
+
+  function gameDayCardShouldShow(g) {
+    if (!g) return false;
+    if (!g.lineup || !Array.isArray(g.lineup.us) || g.lineup.us.length === 0) return false;
+    if (isFinal(g)) return false;
+    if (g.result && (g.result.us > 0 || g.result.them > 0)) return false;
+    if (g.live && typeof g.live === 'object' && typeof g.live.inning === 'number' && g.live.inning >= 3) return false;
+    return true;
+  }
+
+  // Doubleheader-aware: walk today's games in first-pitch order and
+  // return the first one for which the card should show. Single-game
+  // days fall out of this naturally.
+  function pickGameDayCardGame() {
+    if (!Array.isArray(fullSchedule) || fullSchedule.length === 0) return null;
+    const { date: todayDate } = nowInChicago();
+    const gamesToday = fullSchedule.filter(g => g.date === todayDate);
+    if (gamesToday.length === 0) return null;
+    const sorted = gamesToday.slice().sort((a, b) =>
+      (parseGameTime(a.time) || '').localeCompare(parseGameTime(b.time) || '')
+    );
+    for (const g of sorted) {
+      if (gameDayCardShouldShow(g)) return g;
+    }
+    return null;
+  }
+
+  function gdcLastNamePart(s) {
+    if (!s) return '';
+    const i = s.indexOf(',');
+    return i > 0 ? s.slice(0, i) : s;
+  }
+
+  function gdcRenderPitcherLine(p) {
+    if (!p) return `<div class="gdc-pitcher"><span class="gdc-pitcher-name">TBD</span></div>`;
+    const name = p.boxscoreName || p.name || 'TBD';
+    const s = p.seasonStats || {};
+    const w = (s.wins != null) ? s.wins : 0;
+    const l = (s.losses != null) ? s.losses : 0;
+    const era = s.era || '-.--';
+    const ip = s.inningsPitched || '0.0';
+    return `
+      <div class="gdc-pitcher">
+        <span class="gdc-pitcher-name">${name}</span>
+        <span class="gdc-pitcher-stats">${w}-${l} <span class="gdc-bullet">·</span> ${era} <span class="gdc-bullet">·</span> ${ip} IP</span>
+      </div>`;
+  }
+
+  function gdcRenderPitcherBlock(g) {
+    const us = g.probables && g.probables.us;
+    const them = g.probables && g.probables.them;
+    return `
+      <div class="gdc-pitchers">
+        ${gdcRenderPitcherLine(us)}
+        ${gdcRenderPitcherLine(them)}
+      </div>`;
+  }
+
+  function gdcRenderLineupBlock(g, side) {
+    const players = g.lineup && g.lineup[side];
+    const label = side === 'us' ? 'CUBS' : (g.opp || '');
+    if (!Array.isArray(players) || players.length === 0) {
+      return `
+        <div class="gdc-lineup">
+          <div class="gdc-lineup-label">${label}</div>
+          <div class="gdc-fallback">Lineup not yet posted</div>
+        </div>`;
+    }
+    const rows = players.map(p => {
+      const name = p.boxscoreName || p.name || '';
+      const s = p.seasonStats || {};
+      const avg = s.avg || '.---';
+      const hr = (s.homeRuns != null) ? s.homeRuns : 0;
+      const rbi = (s.rbi != null) ? s.rbi : 0;
+      return `
+        <div class="gdc-lineup-row">
+          <span class="gdc-row-id">
+            <span class="gdc-slot">${p.slot}</span>
+            <span class="gdc-name">${name}</span>
+            <span class="gdc-pos">${p.pos || ''}</span>
+          </span>
+          <span class="gdc-bullet">·</span>
+          <span class="gdc-stats">${avg}&nbsp;&nbsp;${hr} HR&nbsp;&nbsp;${rbi} RBI</span>
+        </div>`;
+    }).join('');
+    return `
+      <div class="gdc-lineup">
+        <div class="gdc-lineup-label">${label}</div>
+        ${rows}
+      </div>`;
+  }
+
+  function renderGameDayCard() {
+    const card = document.getElementById('game-day-card');
+    if (!card) return;
+    let g;
+    try {
+      g = pickGameDayCardGame();
+    } catch {
+      g = null;
+    }
+    if (!g) {
+      card.classList.add('is-empty');
+      card.innerHTML = '';
+      lastGameDayCardGamePk = null;
+      return;
+    }
+    if (g.gamePk !== lastGameDayCardGamePk) {
+      gameDayCardCollapsed = true;
+      lastGameDayCardGamePk = g.gamePk;
+    }
+    card.classList.remove('is-empty');
+    card.classList.toggle('collapsed', gameDayCardCollapsed);
+
+    const us = g.probables && g.probables.us;
+    const them = g.probables && g.probables.them;
+    const summary = `${gdcLastNamePart(us && (us.boxscoreName || us.name)) || 'TBD'} vs ${gdcLastNamePart(them && (them.boxscoreName || them.name)) || 'TBD'}`;
+
+    card.innerHTML = `
+      <div class="gdc-header" role="button" tabindex="0" aria-expanded="${gameDayCardCollapsed ? 'false' : 'true'}" aria-controls="gdc-body">
+        <span class="gdc-label">Today's Card</span>
+        <span class="gdc-summary">${summary}</span>
+        <span class="gdc-chevron" aria-hidden="true">${gameDayCardCollapsed ? '▸' : '▾'}</span>
+      </div>
+      <div class="gdc-body" id="gdc-body">
+        ${gdcRenderPitcherBlock(g)}
+        <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
+        ${gdcRenderLineupBlock(g, 'us')}
+        <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
+        ${gdcRenderLineupBlock(g, 'them')}
+      </div>`;
+
+    const header = card.querySelector('.gdc-header');
+    if (header) {
+      const toggle = () => {
+        gameDayCardCollapsed = !gameDayCardCollapsed;
+        card.classList.toggle('collapsed', gameDayCardCollapsed);
+        const ch = card.querySelector('.gdc-chevron');
+        if (ch) ch.textContent = gameDayCardCollapsed ? '▸' : '▾';
+        header.setAttribute('aria-expanded', gameDayCardCollapsed ? 'false' : 'true');
+      };
+      header.addEventListener('click', toggle);
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    }
+  }
+
   function renderProjection() {
     const played = fullSchedule.filter(isFinal);
     if (played.length === 0) {
@@ -1815,6 +2124,7 @@
   function renderAll() {
     renderMasthead();
     renderHero();
+    renderGameDayCard();
     renderPulseStrip();
     renderStandings();
     renderRecent();
