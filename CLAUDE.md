@@ -18,29 +18,114 @@ Earlier attempts called the MLB Stats API directly from the browser. CORS blocks
 
 ```
 {
-  "updatedAt": "2026-04-19T18:57:00Z",
+  "updatedAt": "2026-05-04T18:00:00+00:00",
   "schedule": [
     {
-      "date": "2026-04-05",
-      "opp": "CLE",
+      "date": "2026-05-04",
+      "opp": "MIL",
       "home": true,
-      "time": "1:20 PM CT",
-      "result": "W 5-3"
+      "time": "1:20 PM",
+      "result": null,
+      "broadcast": "MARQUEE",
+      "gamePk": 824459,
+      "probables": {
+        "us":   { "id": 668678, "name": "Justin Steele",  "boxscoreName": "Steele",    "seasonStats": { "wins": 3, "losses": 1, "era": "2.45", "inningsPitched": "44.0" } },
+        "them": { "id": 605400, "name": "Freddy Peralta", "boxscoreName": "Peralta, F", "seasonStats": { "wins": 4, "losses": 2, "era": "3.12", "inningsPitched": "52.0" } }
+      },
+      "lineup": {
+        "us":   [ { "slot": 1, "id": 663457, "name": "Ian Happ", "boxscoreName": "Happ", "pos": "LF", "seasonStats": { "avg": ".278", "homeRuns": 6, "rbi": 22, "ops": ".812" } } ],
+        "them": []
+      },
+      "live": { "inning": 3, "inningHalf": "Top", "status": "In Progress" }
     }
   ],
   "standings": [
-    {
-      "team": "Cubs",
-      "w": 10,
-      "l": 5,
-      "pct": ".667",
-      "gb": "-"
-    }
+    { "team": "Cincinnati Reds", "abbr": "CIN", "w": 12, "l": 8 }
   ]
 }
 ```
 
-`result` is `null` for unplayed games. `home` is boolean. `standings` covers the five NL Central clubs.
+Field notes:
+
+- `result` is `null` for unplayed games, or `{ "us": <int>, "them": <int> }` for finals and live in-progress games.
+- `home: true` means at Wrigley.
+- `broadcast` is the API-derived display string for the channel ("MARQUEE", "FOX", "Apple TV+", "NBC/Peacock", "ABC/ESPN", "TBS"), or `null` if the API has no recognized broadcast for the game.
+- `gamePk` is the MLB Stats API's primary key (integer); always populated. Used to fetch boxscore and linescore.
+- `probables` is populated for ~38 games in any snapshot (today through ~3 days out, plus completed games). `us`/`them` each carry `id`, `name`, `boxscoreName`, and `seasonStats` (wins, losses, era, inningsPitched, plus the full pitching stats dict stored verbatim at the top level — *not* nested under a `pitching` sub-key). For probables MLB has named but who haven't pitched yet this season, `seasonStats` is present but populated with zeros and dash placeholders (`era: "-.--"`, `wins: 0`). Completed games carry the simpler `{id, name}` shape only — no boxscoreName, no seasonStats — since the boxscore re-fetch is gated to non-final games. `null` for games where MLB hasn't named a probable yet (typically more than ~3 days out).
+- `lineup` is populated only when `lineup_present` is true on the API hydrate AND the game isn't final. Typically only today's game pre-first-pitch through end-of-game. Each player object has `slot`, `id`, `name`, `boxscoreName`, `pos` (per-game position from boxscore, not primary), and `seasonStats` (avg, homeRuns, rbi, ops, plus the full batting stats dict stored verbatim at the top level — *not* nested under a `batting` sub-key).
+- `live` has two coexisting shapes (transition state, both work via `!!g.live`):
+  - Rich object form (today's in-progress game): `{ "inning": <int>, "inningHalf": "Top"|"Bottom", "status": <detailedState string> }`
+  - Simpler form (rare timezone-edge case where API status says "Live" but game isn't on today's CT date): `{ "status": <detailedState string> }`
+  - Legacy `live: true` boolean has been retired by the schema change but the index.html shim handles both via truthy check; cleanup safe to do later.
+- `standings` covers the five NL Central clubs, sorted wins-desc / losses-asc (first-place team first).
+
+## Game-day card system (designed May 3, 2026; Phase 1 deployed May 3, 2026; Phase 2 pending)
+
+A new feature: a card that appears below the hero band on game days during the pre-game window, showing the pitcher matchup and starting lineups for both teams. Built in two phases by deliberate decision — Phase 1 (data pipeline) ships first, Phase 2 (card UI) follows after several days of real-world data accumulation so the visual design is built against observed behavior rather than predicted behavior.
+
+### Phase 0: lineup data investigation (complete)
+
+Investigation report at `docs/lineup-investigation.md`. Establishes endpoint findings, schema proposal, lifecycle states, and adjacent data inventory. Reference this report for any data-shape question rather than re-investigating. Two corrections to the report were surfaced during Phase 1 build (see Phase 1 outcomes below).
+
+### Phase 1: data pipeline (deployed May 3, 2026; verified by data audit May 4, 2026)
+
+Two commits on `main`: `ebcdc78` (cron schedule shift to 9 AM Central) and `5182f35` (schema additions and pipeline changes in `update_data.py` plus a one-line `index.html` shim for the `live` field shape change).
+
+**Verification (May 4, 2026):** Live `data.json` audited against the spec. All new fields landing correctly: `gamePk` populated 162/162, `probables` populated for today + next 3 days with full season stats, `lineup` populated for today's pre-game window with both teams. The `us`/`them` naming convention matched the existing codebase pattern (consistent with the `result: { us, them }` shape that's been there since v1) — this differed from the investigation report's predicted `home`/`away` keys but is the correct call. Yesterday's final game (May 3, AZ) showed the boxscore-gating decision working as designed: kept `gamePk` and simple-shape `probables` ({id, name} only), no `lineup` re-fetch. Phase 1 considered fully verified.
+
+**What landed:**
+- Cron start moved from 12 PM to 9 AM Central
+- Schedule hydrate extended from `team,broadcasts(all)` to `team,broadcasts(all),lineups,probablePitcher`
+- `gamePk` extracted to top-level field on every schedule entry (162/162 populated)
+- `probables` extracted from schedule hydrate, stats embedded from boxscore players dict (~38 games carry probables in any given snapshot — today through ~3 days out, plus completed games)
+- `lineup` extracted from boxscore once `lineup_present` is true on the schedule hydrate (typically only today's game pre-first-pitch through end of game)
+- `live` object replaces the legacy `live: true` boolean for in-progress games on today's date; carries `inning`, `inningHalf`, `status`
+- Index.html shim: `g.live === true` → `!!g.live` so the existing live-indicator logic trips on both old boolean and new object shapes during the transition window
+
+**Architectural decisions made during build, worth knowing for Phase 2:**
+
+- **Boxscore fetch is gated to non-final games only.** The investigation report's spec, read literally, would have us fetch the boxscore for every game where `lineup_present` is true — including completed games, which is wasteful since their lineups are settled facts that don't change. The fetch is gated to non-final games, meaning past finals don't get the `lineup` field populated through the cron. If Phase 2 ever wants historical lineups for a season-ledger feature, that's a one-time backfill, not a per-cron concern.
+
+- **Standalone `/api/v1/game/{gamePk}/linescore` endpoint is used for live inning state**, not `boxscore.linescore`. The investigation report claimed `linescore` was a sub-key of the boxscore response; it isn't. The standalone endpoint exists, returns `{currentInning, currentInningOrdinal, inningState, inningHalf, isTopInning, ...}`, and is the cleaner contract anyway since `fetch_linescore()` already exists in the file for live-score capture. Investigation report §3 would benefit from a one-line correction.
+
+- **The `live` field shape change required the index.html shim.** The Phase 1 prompt's "no UI changes" guideline was almost achievable but not quite — the strict-equality check in `index.html` (`g.live === true`) had to become a truthy check (`!!g.live`) to handle both the legacy boolean form and the new object form. One-line change.
+
+- **`live` field has two coexisting shapes by design.** Today's in-progress game gets the rich object form (`{inning, inningHalf, status}`); the rare timezone-edge case where a game's API status says "Live" but it isn't on today's CT date falls back to a simpler `{status}` object. Both are truthy under `!!g.live`. Future cleanup may unify them; not urgent.
+
+- **`status` field in the `live` object carries the API's `detailedState`** (typical values: `"Live"`, `"In Progress"`, `"Pre-Game"`, `"Final"`), not `abstractGameState` (which would be `"Live"`, `"Final"`, `"Preview"`). The Phase 1 prompt's example showed `"status": "Live"` but the schema's field-level note pointed at `detailedState`; the implementation followed the note, which is the source of truth. If Phase 2 wants the abstract state instead, it's a one-line change.
+
+### Phase 2: card UI (pending — pause is short but acceptable)
+
+The intentional pause between phases lets real-world data accumulate (day games, night games, doubleheaders, occasional scratches) so the visual design is built against observed behavior rather than predicted behavior. The April 5 doubleheader (CLE, gamePks 824459 and 824460) is already in the rear-view but a useful test case to inspect when designing for the doubleheader-handling problem.
+
+### Design decisions (settled, May 3, 2026)
+
+**Lifecycle.** Card appears below the hero band when `lineup` becomes truthy in today's schedule entry. Card disappears when first run is scored OR end of second inning is reached, whichever comes first. Card hides for postponements, rainouts, and any state where the data is ambiguous. Card never coexists with the in-progress hero band beyond the first-run/end-of-2nd cutoff — the hero band carries the in-game job.
+
+**Defaults open, can be collapsed.** During the visibility window the card renders open by default — its purpose is answering "who's pitching, what's the lineup" the moment the page loads, so it shouldn't hide behind a tap. After reading, the user can collapse it via a control matching the existing section disclosure pattern. Collapse state persists for the rest of the visibility window via a single boolean (one card at a time — Set is overkill). This is structurally distinct from the page's six main sections (which start collapsed because their content is optional reading); the card is closer to a hero-band-class element than a section-class element.
+
+**Pitcher matchup (top of card).** Two pitchers, each rendered as name + W-L · ERA · IP on a single line. Three numbers chosen for editorial restraint — WHIP and K push the card toward fantasy-baseball density that fights the almanac voice. Full `seasonStats` pitching shape (flat at top level, not nested under `pitching`) is stored in `data.json` for future flexibility; only the three numbers render.
+
+**Lineups (stacked sections).** Cubs lineup first, opponent lineup second, with a typographic divider between. Each row is a single line: slot number, name (`boxscoreName` from API), per-game position, AVG, HR, RBI — natural inline spacing, no forced columns or right-aligned stat blocks. Long names (Crow-Armstrong, Ballesteros) push stats further right; short names (Happ, Hoerner) pull them left. Reads as prose rather than spreadsheet, which fits the editorial voice.
+
+**Per-game position vs primary position.** The card shows per-game position (Ballesteros at DH today even if he primaries as C), which means the pipeline must fetch the boxscore in addition to the schedule hydrate when `lineup_present` is true. Editorial accuracy was judged worth the cost; primary-position-only would ship cards that read wrong to anyone who knows the team.
+
+**Score-line problem from the May 2 hero-band screenshot ("Cubs 1, Diamondbacks 0" wrapping awkwardly):** subsumed into the card design rather than fixed standalone. The post-game hero band state ("Cubs 2, Diamondbacks 0 · FINAL") is the canonical post-game treatment; the card has already disappeared by then. No score-line typography fix needed at the hero band.
+
+### Open questions resolved during the design conversation
+
+The investigation report's §9 listed 10 open questions. All resolved:
+
+1. **Card visibility window** — first run scored OR end of second inning, whichever first. Not the originally-proposed "first pitch" trigger; the card stays useful through early innings.
+2. **Per-game position vs primary position** — per-game (requires boxscore call).
+3. **Pitcher stats on card** — W-L, ERA, IP only (full shape stored).
+4. **Batter stats on card** — AVG, HR, RBI only (full shape stored).
+5. **Scratch tolerance** — 15 minutes accepted; matches existing pipeline staleness model.
+6. **Cron start-time change** — confirmed 9:00 AM Central. Deployed.
+7. **Doubleheaders** — defensive default for v1: card renders for the first game whose first-pitch UTC has not passed, switches to second game's data when first game has hidden, hides if second game's lineup not yet available. Revisit when reality forces it.
+8. **Initial-render ordering** — no copy adjustment for "lineup announced X ago"; masthead's existing UPDATED line is sufficient ambient freshness signaling.
+9. **Posted-time copy** — dropped. No "Lineup posted at 10:42 AM" feature; would have required new schema (first-seen timestamps) for editorial value that wasn't load-bearing.
+10. **Card on rainout/postponed** — defensive default: existing pipeline filters postponed games, so card hides automatically. Card hides cleanly for any ambiguous data state.
 
 ## Visual identity
 
