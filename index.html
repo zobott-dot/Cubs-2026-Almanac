@@ -128,17 +128,46 @@
   .pennant-w { background: var(--ink); }
   .pennant-l { background: var(--accent); }
 
-  /* Hero band — between masthead and section I */
+  /* Hero band — between masthead and section I.
+     On game days where the lineup has been posted the band is also a
+     disclosure surface: tap to expand the pitcher matchup + lineups
+     body. The chevron is absolutely positioned so it stays anchored
+     top-right whether the head is one row or wraps to a column on
+     mobile. */
   .hero-band {
     border-top: 2px solid var(--ink);
     padding: 18px 0;
     margin: -8px 0 32px;
+    position: relative;
+  }
+  .hero-band.is-empty { display: none; }
+  .hero-band-head {
     display: flex;
     align-items: baseline;
     gap: 14px;
     flex-wrap: wrap;
   }
-  .hero-band.is-empty { display: none; }
+  .hero-band.has-body .hero-band-head {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    transition: opacity 0.15s ease;
+    padding-right: 24px;
+  }
+  .hero-band.has-body .hero-band-head:hover { opacity: 0.7; }
+  .hero-chevron {
+    position: absolute;
+    top: 18px;
+    right: 0;
+    font-family: 'Source Serif 4', serif;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--accent);
+    pointer-events: none;
+    user-select: none;
+  }
+  .hero-band-body { margin-top: 16px; }
+  .hero-band.collapsed .hero-band-body { display: none; }
   .hero-primary, .hero-secondary {
     display: flex;
     align-items: baseline;
@@ -194,7 +223,7 @@
     color: var(--ink-soft);
   }
   @media (max-width: 600px) {
-    .hero-band { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .hero-band-head { flex-direction: column; align-items: flex-start; gap: 6px; }
     .hero-secondary::before { display: none; }
   }
   @media (max-width: 400px) {
@@ -916,56 +945,10 @@
     }
   }
 
-  /* Game-day card — sits between hero band and main sections.
-     Hero-band-class, not section-class: defaults open, quieter chrome. */
-  #game-day-card {
-    border-top: 1px solid var(--accent);
-    border-bottom: 1px solid var(--accent);
-    padding: 14px 0 18px;
-    margin: 0 0 32px;
-  }
-  #game-day-card.is-empty { display: none; }
-  .gdc-header {
-    display: flex;
-    align-items: baseline;
-    gap: 14px;
-    cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    transition: opacity 0.15s ease;
-  }
-  .gdc-header:hover { opacity: 0.7; }
-  .gdc-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-  .gdc-summary {
-    flex: 1;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 16px;
-    color: var(--ink);
-  }
-  #game-day-card:not(.collapsed) .gdc-summary { display: none; }
-  .gdc-chevron {
-    margin-left: auto;
-    background: none;
-    border: none;
-    padding: 2px 4px;
-    font-family: 'Source Serif 4', serif;
-    font-size: 14px;
-    line-height: 1;
-    color: var(--accent);
-    cursor: pointer;
-    pointer-events: none;
-  }
-  .gdc-body { margin-top: 14px; }
-  #game-day-card.collapsed .gdc-body { display: none; }
-
+  /* Game-day body — pitcher matchup + lineups, rendered inside the
+     hero band's expand container. The card-level chrome (border, label,
+     summary, chevron) lives on the hero band itself; only the body
+     content rules are here. */
   .gdc-pitchers {
     display: flex;
     flex-direction: column;
@@ -1080,8 +1063,6 @@
   </header>
 
   <div class="hero-band is-empty" id="heroBand"></div>
-
-  <div id="game-day-card" class="is-empty"></div>
 
   <div id="sectionsContainer"></div>
 
@@ -1862,23 +1843,12 @@
         const score = cubsWon
           ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
           : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
-        secondary = `<span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
       } else if (state === 'inprogress') {
-        const hasLiveScore = g.result
-          && typeof g.result.us === 'number'
-          && typeof g.result.them === 'number';
-        if (hasLiveScore) {
-          // Match the final-case typography: leader listed first. On a
-          // tie, Cubs lead (this is a Cubs almanac — their frame).
-          const cubsLead = g.result.us >= g.result.them;
-          const oppName = ABBR_TO_NICKNAME[g.opp] || g.opp;
-          const score = cubsLead
-            ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
-            : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
-          secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
-        } else {
-          secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span><span class="hero-state">in progress</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
-        }
+        // Status-only: no inning, no score. The page no longer reads
+        // mid-game data into the hero band — keeps the band honest when
+        // the cron lags during long games or rain delays.
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-state">in progress</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       } else {
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       }
@@ -1909,39 +1879,25 @@
     return { primary, secondary };
   }
 
-  function renderHero() {
-    const band = document.getElementById('heroBand');
-    if (!band) return;
-    try {
-      const content = computeHeroContent();
-      if (!content || !content.primary) {
-        band.classList.add('is-empty');
-        band.innerHTML = '';
-        return;
-      }
-      band.classList.remove('is-empty');
-      band.innerHTML = `<div class="hero-primary">${content.primary}</div><div class="hero-secondary">${content.secondary}</div>`;
-    } catch {
-      band.classList.add('is-empty');
-      band.innerHTML = '';
-    }
-  }
-
   // ============================================================
-  // GAME-DAY CARD — appears below the hero band on game days during
-  // the pre-game / very-early-game window. Hides when first run is
-  // scored or end of 2nd inning is reached, whichever comes first.
+  // HERO BAND + GAME-DAY BODY
+  //
+  // The hero band is the today/next/season-complete announcement strip
+  // between the masthead and the sections. On game days where the
+  // lineup has been posted, it doubles as a disclosure control: tap to
+  // expand a body containing the pitcher matchup and both lineups.
+  //
+  // Body persists across pre-game, in-progress, and final — settled
+  // facts stay settled. The page deliberately reads no mid-game data
+  // into the body or the head, so cron lag (rain delays, Action
+  // failures) doesn't leave the page looking broken.
   // ============================================================
   let gameDayCardCollapsed = true;
   let lastGameDayCardGamePk = null;
 
   function gameDayCardShouldShow(g) {
     if (!g) return false;
-    if (!g.lineup || !Array.isArray(g.lineup.us) || g.lineup.us.length === 0) return false;
-    if (isFinal(g)) return false;
-    if (g.result && (g.result.us > 0 || g.result.them > 0)) return false;
-    if (g.live && typeof g.live === 'object' && typeof g.live.inning === 'number' && g.live.inning >= 3) return false;
-    return true;
+    return !!(g.lineup && Array.isArray(g.lineup.us) && g.lineup.us.length > 0);
   }
 
   // Doubleheader-aware: walk today's games in first-pitch order and
@@ -1959,12 +1915,6 @@
       if (gameDayCardShouldShow(g)) return g;
     }
     return null;
-  }
-
-  function gdcLastNamePart(s) {
-    if (!s) return '';
-    const i = s.indexOf(',');
-    return i > 0 ? s.slice(0, i) : s;
   }
 
   function gdcRenderPitcherLine(p) {
@@ -2026,62 +1976,81 @@
       </div>`;
   }
 
-  function renderGameDayCard() {
-    const card = document.getElementById('game-day-card');
-    if (!card) return;
-    let g;
-    try {
-      g = pickGameDayCardGame();
-    } catch {
-      g = null;
-    }
-    if (!g) {
-      card.classList.add('is-empty');
-      card.innerHTML = '';
+  function gdcRenderBody(g) {
+    return `
+      ${gdcRenderPitcherBlock(g)}
+      <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
+      ${gdcRenderLineupBlock(g, 'us')}
+      <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
+      ${gdcRenderLineupBlock(g, 'them')}`;
+  }
+
+  function renderHero() {
+    const band = document.getElementById('heroBand');
+    if (!band) return;
+
+    let content = null;
+    try { content = computeHeroContent(); } catch { content = null; }
+    if (!content || !content.primary) {
+      band.classList.add('is-empty');
+      band.classList.remove('has-body');
+      band.innerHTML = '';
       lastGameDayCardGamePk = null;
       return;
     }
-    if (g.gamePk !== lastGameDayCardGamePk) {
-      gameDayCardCollapsed = true;
-      lastGameDayCardGamePk = g.gamePk;
+    band.classList.remove('is-empty');
+
+    let bodyGame = null;
+    try { bodyGame = pickGameDayCardGame(); } catch { bodyGame = null; }
+
+    if (bodyGame) {
+      if (bodyGame.gamePk !== lastGameDayCardGamePk) {
+        gameDayCardCollapsed = true;
+        lastGameDayCardGamePk = bodyGame.gamePk;
+      }
+    } else {
+      lastGameDayCardGamePk = null;
     }
-    card.classList.remove('is-empty');
-    card.classList.toggle('collapsed', gameDayCardCollapsed);
 
-    const us = g.probables && g.probables.us;
-    const them = g.probables && g.probables.them;
-    const summary = `${gdcLastNamePart(us && (us.boxscoreName || us.name)) || 'TBD'} vs ${gdcLastNamePart(them && (them.boxscoreName || them.name)) || 'TBD'}`;
+    band.classList.toggle('has-body', !!bodyGame);
+    band.classList.toggle('collapsed', !!bodyGame && gameDayCardCollapsed);
 
-    card.innerHTML = `
-      <div class="gdc-header" role="button" tabindex="0" aria-expanded="${gameDayCardCollapsed ? 'false' : 'true'}" aria-controls="gdc-body">
-        <span class="gdc-label">Today's Card</span>
-        <span class="gdc-summary">${summary}</span>
-        <span class="gdc-chevron" aria-hidden="true">${gameDayCardCollapsed ? '▸' : '▾'}</span>
+    const headAttrs = bodyGame
+      ? ` role="button" tabindex="0" aria-expanded="${gameDayCardCollapsed ? 'false' : 'true'}" aria-controls="hero-band-body"`
+      : '';
+    const chevron = bodyGame
+      ? `<span class="hero-chevron" aria-hidden="true">${gameDayCardCollapsed ? '▸' : '▾'}</span>`
+      : '';
+    const body = bodyGame
+      ? `<div class="hero-band-body" id="hero-band-body">${gdcRenderBody(bodyGame)}</div>`
+      : '';
+
+    band.innerHTML = `
+      <div class="hero-band-head"${headAttrs}>
+        <div class="hero-primary">${content.primary}</div>
+        <div class="hero-secondary">${content.secondary}</div>
+        ${chevron}
       </div>
-      <div class="gdc-body" id="gdc-body">
-        ${gdcRenderPitcherBlock(g)}
-        <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
-        ${gdcRenderLineupBlock(g, 'us')}
-        <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
-        ${gdcRenderLineupBlock(g, 'them')}
-      </div>`;
+      ${body}`;
 
-    const header = card.querySelector('.gdc-header');
-    if (header) {
-      const toggle = () => {
-        gameDayCardCollapsed = !gameDayCardCollapsed;
-        card.classList.toggle('collapsed', gameDayCardCollapsed);
-        const ch = card.querySelector('.gdc-chevron');
-        if (ch) ch.textContent = gameDayCardCollapsed ? '▸' : '▾';
-        header.setAttribute('aria-expanded', gameDayCardCollapsed ? 'false' : 'true');
-      };
-      header.addEventListener('click', toggle);
-      header.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggle();
-        }
-      });
+    if (bodyGame) {
+      const head = band.querySelector('.hero-band-head');
+      if (head) {
+        const toggle = () => {
+          gameDayCardCollapsed = !gameDayCardCollapsed;
+          band.classList.toggle('collapsed', gameDayCardCollapsed);
+          const ch = band.querySelector('.hero-chevron');
+          if (ch) ch.textContent = gameDayCardCollapsed ? '▸' : '▾';
+          head.setAttribute('aria-expanded', gameDayCardCollapsed ? 'false' : 'true');
+        };
+        head.addEventListener('click', toggle);
+        head.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggle();
+          }
+        });
+      }
     }
   }
 
@@ -2124,7 +2093,6 @@
   function renderAll() {
     renderMasthead();
     renderHero();
-    renderGameDayCard();
     renderPulseStrip();
     renderStandings();
     renderRecent();

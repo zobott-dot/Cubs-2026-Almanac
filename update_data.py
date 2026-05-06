@@ -303,6 +303,33 @@ def build_lineup_side(box_team):
     return out
 
 
+def load_prior_data():
+    """Read the existing data.json (if present) and return a dict mapping
+    gamePk -> game_obj from the previous write.
+
+    Used to carry forward settled facts (lineup + rich-shape probables) on
+    games that have just gone Final. The boxscore fetch is gated to
+    non-final games to bound API calls, so without carry-over, the cron
+    cycle that flips a game to Final would also drop its lineup and
+    reduce probables to the bare {id, name} schedule shape — making the
+    game-day card body lose content the moment the game ends.
+
+    Empty dict on first-ever run or any read/parse error: carry-over is
+    a best-effort enhancement, never a failure path.
+    """
+    try:
+        with open("data.json", "r") as f:
+            prior = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return {}
+    out = {}
+    for g in prior.get("schedule", []):
+        pk = g.get("gamePk")
+        if pk is not None:
+            out[pk] = g
+    return out
+
+
 def today_in_chicago():
     """Today's date as YYYY-MM-DD anchored to America/Chicago. The almanac's
     'today' is the city's day, not UTC, not the runner's TZ."""
@@ -328,6 +355,10 @@ def fetch_schedule():
 
     # Anchor "today" to America/Chicago — the almanac's frame of reference.
     today_str = today_in_chicago()
+
+    # Prior write (gamePk-keyed) for the lineup + probables carry-over on
+    # games that have just gone Final. See load_prior_data() docstring.
+    prior_by_gamepk = load_prior_data()
 
     for date_block in data.get("dates", []):
         for g in date_block.get("games", []):
@@ -516,6 +547,26 @@ def fetch_schedule():
                 them_lineup = build_lineup_side(them_box)
                 if len(us_lineup) == 9 and len(them_lineup) == 9:
                     game_obj["lineup"] = {"us": us_lineup, "them": them_lineup}
+
+            # Carry-over for finals: settled facts (lineup + rich-shape
+            # probables) from the prior cycle persist across the cron run
+            # that flips a game to Final, since the boxscore fetch is gated
+            # to non-final games. Without this the game-day card body would
+            # lose content the moment the last out is recorded.
+            if is_final:
+                prior = prior_by_gamepk.get(game_pk)
+                if prior:
+                    if prior.get("lineup") and "lineup" not in game_obj:
+                        game_obj["lineup"] = prior["lineup"]
+                    prior_probables = prior.get("probables") or {}
+                    if prior_probables:
+                        game_obj.setdefault("probables", {})
+                        for side in ("us", "them"):
+                            ps = prior_probables.get(side)
+                            if ps and ("boxscoreName" in ps or "seasonStats" in ps):
+                                game_obj["probables"][side] = ps
+                        if not game_obj["probables"]:
+                            game_obj.pop("probables", None)
 
             # Live: only on today's in-progress game. Object shape replaces
             # the old `live: true` boolean. The renderer's truthy check
