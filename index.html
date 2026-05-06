@@ -1047,6 +1047,40 @@
     .gdc-name { font-size: 15px; }
     .gdc-lineup-row { gap: 0 8px; }
   }
+
+  /* Section VII — Further Afield: curated external links. Plain
+     typographic list; quietest section on the page by design. */
+  .further-group + .further-group { margin-top: 28px; }
+  .further-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .further-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .further-list li {
+    line-height: 1.4;
+  }
+  .further-list a {
+    display: block;
+    min-height: 44px;
+    padding: 10px 0;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .further-list a:hover,
+  .further-list a:focus {
+    text-decoration: underline;
+  }
 </style>
 </head>
 <body>
@@ -1227,6 +1261,65 @@
   </section>
   </template>
 
+  <template id="t-section-further">
+  <section class="draggable-section" data-section-id="further">
+    <div class="section-head">
+      <span class="section-roman">VII.</span>
+      <span class="section-title">Further Afield</span>
+      <span class="section-rule"></span>
+      <button class="collapse-toggle" title="Collapse">▾</button>
+    </div>
+    <div class="section-body">
+      <div class="further-group">
+        <div class="further-label">Video &amp; Broadcasts</div>
+        <ul class="further-list">
+          <li><a href="https://www.youtube.com/@Cubs" target="_blank" rel="noopener noreferrer">Chicago Cubs on YouTube</a></li>
+          <li><a href="https://www.youtube.com/@WatchMarquee" target="_blank" rel="noopener noreferrer">Marquee Sports Network on YouTube</a></li>
+        </ul>
+      </div>
+      <div class="further-group">
+        <div class="further-label">Box Scores &amp; Stats</div>
+        <ul class="further-list">
+          <li><a href="https://www.baseball-reference.com/teams/CHC/2026.shtml" target="_blank" rel="noopener noreferrer">Baseball-Reference: Chicago Cubs</a></li>
+          <li><a href="https://www.fangraphs.com/teams/cubs" target="_blank" rel="noopener noreferrer">FanGraphs: Chicago Cubs</a></li>
+          <li><a href="https://baseballsavant.mlb.com/team/112" target="_blank" rel="noopener noreferrer">Baseball Savant: Cubs</a></li>
+        </ul>
+      </div>
+      <div class="further-group">
+        <div class="further-label">Official</div>
+        <ul class="further-list">
+          <li><a href="https://www.mlb.com/cubs" target="_blank" rel="noopener noreferrer">MLB.com: Chicago Cubs</a></li>
+          <li><a href="https://www.mlb.com/cubs/schedule" target="_blank" rel="noopener noreferrer">Cubs.com Schedule</a></li>
+          <li><a href="https://www.mlb.com/standings" target="_blank" rel="noopener noreferrer">MLB.com Standings</a></li>
+        </ul>
+      </div>
+      <div class="further-group">
+        <div class="further-label">Beat Coverage</div>
+        <ul class="further-list">
+          <li><a href="https://www.nytimes.com/athletic/team/cubs/" target="_blank" rel="noopener noreferrer">The Athletic: Cubs</a></li>
+          <li><a href="https://chicago.suntimes.com/cubs" target="_blank" rel="noopener noreferrer">Chicago Sun-Times: Cubs</a></li>
+          <li><a href="https://www.chicagotribune.com/sports/cubs/" target="_blank" rel="noopener noreferrer">Chicago Tribune: Cubs</a></li>
+        </ul>
+      </div>
+      <div class="further-group">
+        <div class="further-label">Fan Voices &amp; Analysis</div>
+        <ul class="further-list">
+          <li><a href="https://www.bleedcubbieblue.com/" target="_blank" rel="noopener noreferrer">Bleed Cubbie Blue</a></li>
+          <li><a href="https://www.cubsinsider.com/" target="_blank" rel="noopener noreferrer">Cubs Insider</a></li>
+          <li><a href="https://www.bleachernation.com/cubs/" target="_blank" rel="noopener noreferrer">Bleacher Nation: Cubs</a></li>
+        </ul>
+      </div>
+      <div class="further-group">
+        <div class="further-label">League-Wide Context</div>
+        <ul class="further-list">
+          <li><a href="https://www.mlbtraderumors.com/" target="_blank" rel="noopener noreferrer">MLB Trade Rumors</a></li>
+          <li><a href="https://www.baseballprospectus.com/" target="_blank" rel="noopener noreferrer">Baseball Prospectus</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  </template>
+
   <template id="t-section-arithmetic">
   <section class="draggable-section" data-section-id="arithmetic">
     <div class="section-head">
@@ -1314,7 +1407,7 @@
   // SECTION FRAMEWORK: instantiate templates into container,
   // then enable collapse + drag-to-reorder.
   // ============================================================
-  const SECTION_ORDER = ['pulse', 'standings', 'recap', 'watch', 'slate', 'arithmetic'];
+  const SECTION_ORDER = ['pulse', 'standings', 'recap', 'watch', 'slate', 'arithmetic', 'further'];
   const sectionsContainer = document.getElementById('sectionsContainer');
 
   SECTION_ORDER.forEach(id => {
