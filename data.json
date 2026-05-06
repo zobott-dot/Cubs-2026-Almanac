@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-06T22:41:18.954037+00:00",
+  "updatedAt": "2026-05-06T23:34:40.217524+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -798,7 +798,10 @@
       "opp": "CIN",
       "home": true,
       "time": "6:40 PM",
-      "result": null,
+      "result": {
+        "us": 0,
+        "them": 0
+      },
       "broadcast": "MARQUEE",
       "gamePk": 824683,
       "probables": {
@@ -1776,6 +1779,11 @@
             }
           }
         ]
+      },
+      "live": {
+        "status": "Warmup",
+        "inning": 1,
+        "inningHalf": "Top"
       }
     },
     {
