@@ -1081,6 +1081,37 @@
   .further-list a:focus {
     text-decoration: underline;
   }
+
+  /* Desktop two-column treatment (≥768px) — applies only to today's
+     lineups (Cubs/visitor side-by-side, batting-slot rows aligned via
+     subgrid) and Section VII's six category groups (down-then-across
+     in two columns). All other sections retain their layouts. */
+  @media (min-width: 768px) {
+    .gdc-lineups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(10, auto);
+      column-gap: 48px;
+    }
+    .gdc-lineups .gdc-lineup {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: 1 / -1;
+    }
+    .gdc-lineup-divider { display: none; }
+
+    [data-section-id="further"] .section-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, auto);
+      grid-auto-flow: column;
+      column-gap: 48px;
+      row-gap: 28px;
+    }
+    [data-section-id="further"] .further-group + .further-group {
+      margin-top: 0;
+    }
+  }
 </style>
 </head>
 <body>
@@ -2073,9 +2104,11 @@
     return `
       ${gdcRenderPitcherBlock(g)}
       <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
-      ${gdcRenderLineupBlock(g, 'us')}
-      <div class="gdc-divider-mark" aria-hidden="true">· · ·</div>
-      ${gdcRenderLineupBlock(g, 'them')}`;
+      <div class="gdc-lineups">
+        ${gdcRenderLineupBlock(g, 'us')}
+        <div class="gdc-divider-mark gdc-lineup-divider" aria-hidden="true">· · ·</div>
+        ${gdcRenderLineupBlock(g, 'them')}
+      </div>`;
   }
 
   function renderHero() {
