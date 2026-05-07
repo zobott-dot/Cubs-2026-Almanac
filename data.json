@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-07T20:50:14.111128+00:00",
+  "updatedAt": "2026-05-07T21:48:17.335002+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -1788,7 +1788,7 @@
       "time": "1:20 PM",
       "result": {
         "us": 8,
-        "them": 2
+        "them": 3
       },
       "broadcast": "MARQUEE",
       "gamePk": 824681,
@@ -2767,11 +2767,6 @@
             }
           }
         ]
-      },
-      "live": {
-        "status": "In Progress",
-        "inning": 8,
-        "inningHalf": "Top"
       }
     },
     {
@@ -4251,7 +4246,7 @@
     {
       "team": "Cubs",
       "abbr": "",
-      "w": 25,
+      "w": 26,
       "l": 12
     },
     {
@@ -4270,7 +4265,7 @@
       "team": "Reds",
       "abbr": "",
       "w": 20,
-      "l": 17
+      "l": 18
     },
     {
       "team": "Brewers",
