@@ -254,10 +254,13 @@ def build_probable(pp_summary, box_team_players, fallback_to_people_endpoint=Tru
     }
     season_stats = None
     boxscore_name = None
+    pitch_hand = None
     if box_team_players and pid is not None:
         p_record = box_team_players.get(f"ID{pid}")
         if p_record:
-            boxscore_name = (p_record.get("person") or {}).get("boxscoreName")
+            person = p_record.get("person") or {}
+            boxscore_name = person.get("boxscoreName")
+            pitch_hand = (person.get("pitchHand") or {}).get("code")
             season_stats = (p_record.get("seasonStats") or {}).get("pitching") or None
     if boxscore_name:
         out["boxscoreName"] = boxscore_name
@@ -268,6 +271,8 @@ def build_probable(pp_summary, box_team_players, fallback_to_people_endpoint=Tru
         season_stats = fetch_pitcher_season_stats(pid)
     if season_stats:
         out["seasonStats"] = season_stats
+    if pitch_hand:
+        out["pitchHand"] = pitch_hand
     return out
 
 

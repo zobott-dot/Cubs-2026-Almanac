@@ -973,6 +973,12 @@
     color: var(--ink-soft);
     letter-spacing: 0.04em;
   }
+  .gdc-pitcher-hand {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
   .gdc-bullet {
     color: var(--rule);
     font-family: 'JetBrains Mono', monospace;
@@ -2050,9 +2056,12 @@
     const l = (s.losses != null) ? s.losses : 0;
     const era = s.era || '-.--';
     const ip = s.inningsPitched || '0.0';
+    const handLabel = p.pitchHand === 'L' ? '(LHP)' : p.pitchHand === 'R' ? '(RHP)' : '';
+    const handMarkup = handLabel ? `<span class="gdc-pitcher-hand">${handLabel}</span>` : '';
     return `
       <div class="gdc-pitcher">
         <span class="gdc-pitcher-name">${name}</span>
+        ${handMarkup}
         <span class="gdc-pitcher-stats">${w}-${l} <span class="gdc-bullet">·</span> ${era} <span class="gdc-bullet">·</span> ${ip} IP</span>
       </div>`;
   }
