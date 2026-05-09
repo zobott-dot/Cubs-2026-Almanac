@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-09T15:56:40.811851+00:00",
+  "updatedAt": "2026-05-09T16:34:22.545662+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -15,11 +15,13 @@
       "probables": {
         "us": {
           "id": 571510,
-          "name": "Matthew Boyd"
+          "name": "Matthew Boyd",
+          "pitchHand": "L"
         },
         "them": {
           "id": 676917,
-          "name": "Cade Cavalli"
+          "name": "Cade Cavalli",
+          "pitchHand": "R"
         }
       }
     },
@@ -37,11 +39,13 @@
       "probables": {
         "us": {
           "id": 690990,
-          "name": "Cade Horton"
+          "name": "Cade Horton",
+          "pitchHand": "R"
         },
         "them": {
           "id": 571945,
-          "name": "Miles Mikolas"
+          "name": "Miles Mikolas",
+          "pitchHand": "R"
         }
       }
     },
@@ -59,11 +63,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 663623,
-          "name": "Jake Irvin"
+          "name": "Jake Irvin",
+          "pitchHand": "R"
         }
       }
     },
@@ -81,11 +87,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 696270,
-          "name": "Ryan Johnson"
+          "name": "Ryan Johnson",
+          "pitchHand": "R"
         }
       }
     },
@@ -103,11 +111,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 667755,
-          "name": "Jos\u00e9 Soriano"
+          "name": "Jos\u00e9 Soriano",
+          "pitchHand": "R"
         }
       }
     },
@@ -125,11 +135,13 @@
       "probables": {
         "us": {
           "id": 571510,
-          "name": "Matthew Boyd"
+          "name": "Matthew Boyd",
+          "pitchHand": "L"
         },
         "them": {
           "id": 579328,
-          "name": "Yusei Kikuchi"
+          "name": "Yusei Kikuchi",
+          "pitchHand": "L"
         }
       }
     },
@@ -147,11 +159,13 @@
       "probables": {
         "us": {
           "id": 690990,
-          "name": "Cade Horton"
+          "name": "Cade Horton",
+          "pitchHand": "R"
         },
         "them": {
           "id": 676282,
-          "name": "Joey Cantillo"
+          "name": "Joey Cantillo",
+          "pitchHand": "L"
         }
       }
     },
@@ -169,11 +183,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 677944,
-          "name": "Slade Cecconi"
+          "name": "Slade Cecconi",
+          "pitchHand": "R"
         }
       }
     },
@@ -191,11 +207,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 800048,
-          "name": "Parker Messick"
+          "name": "Parker Messick",
+          "pitchHand": "L"
         }
       }
     },
@@ -213,11 +231,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 663556,
-          "name": "Shane McClanahan"
+          "name": "Shane McClanahan",
+          "pitchHand": "L"
         }
       }
     },
@@ -235,11 +255,13 @@
       "probables": {
         "us": {
           "id": 665871,
-          "name": "Javier Assad"
+          "name": "Javier Assad",
+          "pitchHand": "R"
         },
         "them": {
           "id": 669438,
-          "name": "Mason Englert"
+          "name": "Mason Englert",
+          "pitchHand": "R"
         }
       }
     },
@@ -257,11 +279,13 @@
       "probables": {
         "us": {
           "id": 607067,
-          "name": "Colin Rea"
+          "name": "Colin Rea",
+          "pitchHand": "R"
         },
         "them": {
           "id": 671212,
-          "name": "Joe Boyle"
+          "name": "Joe Boyle",
+          "pitchHand": "R"
         }
       }
     },
@@ -279,11 +303,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 669387,
-          "name": "Carmen Mlodzinski"
+          "name": "Carmen Mlodzinski",
+          "pitchHand": "R"
         }
       }
     },
@@ -301,11 +327,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 677952,
-          "name": "Braxton Ashcraft"
+          "name": "Braxton Ashcraft",
+          "pitchHand": "R"
         }
       }
     },
@@ -323,11 +351,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 696149,
-          "name": "Bubba Chandler"
+          "name": "Bubba Chandler",
+          "pitchHand": "R"
         }
       }
     },
@@ -345,11 +375,13 @@
       "probables": {
         "us": {
           "id": 665871,
-          "name": "Javier Assad"
+          "name": "Javier Assad",
+          "pitchHand": "R"
         },
         "them": {
           "id": 650911,
-          "name": "Cristopher S\u00e1nchez"
+          "name": "Cristopher S\u00e1nchez",
+          "pitchHand": "L"
         }
       }
     },
@@ -367,11 +399,13 @@
       "probables": {
         "us": {
           "id": 702303,
-          "name": "Riley Martin"
+          "name": "Riley Martin",
+          "pitchHand": "L"
         },
         "them": {
           "id": 605400,
-          "name": "Aaron Nola"
+          "name": "Aaron Nola",
+          "pitchHand": "R"
         }
       }
     },
@@ -389,11 +423,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 666200,
-          "name": "Jes\u00fas Luzardo"
+          "name": "Jes\u00fas Luzardo",
+          "pitchHand": "L"
         }
       }
     },
@@ -411,11 +447,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 673540,
-          "name": "Kodai Senga"
+          "name": "Kodai Senga",
+          "pitchHand": "R"
         }
       }
     },
@@ -433,11 +471,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 642547,
-          "name": "Freddy Peralta"
+          "name": "Freddy Peralta",
+          "pitchHand": "R"
         }
       }
     },
@@ -455,11 +495,13 @@
       "probables": {
         "us": {
           "id": 665871,
-          "name": "Javier Assad"
+          "name": "Javier Assad",
+          "pitchHand": "R"
         },
         "them": {
           "id": 668964,
-          "name": "Tobias Myers"
+          "name": "Tobias Myers",
+          "pitchHand": "R"
         }
       }
     },
@@ -477,11 +519,13 @@
       "probables": {
         "us": {
           "id": 607067,
-          "name": "Colin Rea"
+          "name": "Colin Rea",
+          "pitchHand": "R"
         },
         "them": {
           "id": 605400,
-          "name": "Aaron Nola"
+          "name": "Aaron Nola",
+          "pitchHand": "R"
         }
       }
     },
@@ -499,11 +543,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 666200,
-          "name": "Jes\u00fas Luzardo"
+          "name": "Jes\u00fas Luzardo",
+          "pitchHand": "L"
         }
       }
     },
@@ -521,11 +567,13 @@
       "probables": {
         "us": {
           "id": 571510,
-          "name": "Matthew Boyd"
+          "name": "Matthew Boyd",
+          "pitchHand": "L"
         },
         "them": {
           "id": 679775,
-          "name": "Kyle Backhus"
+          "name": "Kyle Backhus",
+          "pitchHand": "L"
         }
       }
     },
@@ -543,11 +591,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 650911,
-          "name": "Cristopher S\u00e1nchez"
+          "name": "Cristopher S\u00e1nchez",
+          "pitchHand": "L"
         }
       }
     },
@@ -565,11 +615,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 686218,
-          "name": "Emmet Sheehan"
+          "name": "Emmet Sheehan",
+          "pitchHand": "R"
         }
       }
     },
@@ -587,11 +639,13 @@
       "probables": {
         "us": {
           "id": 607067,
-          "name": "Colin Rea"
+          "name": "Colin Rea",
+          "pitchHand": "R"
         },
         "them": {
           "id": 808963,
-          "name": "Roki Sasaki"
+          "name": "Roki Sasaki",
+          "pitchHand": "R"
         }
       }
     },
@@ -609,11 +663,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 680736,
-          "name": "Justin Wrobleski"
+          "name": "Justin Wrobleski",
+          "pitchHand": "L"
         }
       }
     },
@@ -631,11 +687,13 @@
       "probables": {
         "us": {
           "id": 571510,
-          "name": "Matthew Boyd"
+          "name": "Matthew Boyd",
+          "pitchHand": "L"
         },
         "them": {
           "id": 681190,
-          "name": "Randy V\u00e1squez"
+          "name": "Randy V\u00e1squez",
+          "pitchHand": "R"
         }
       }
     },
@@ -653,11 +711,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 621111,
-          "name": "Walker Buehler"
+          "name": "Walker Buehler",
+          "pitchHand": "R"
         }
       }
     },
@@ -675,11 +735,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 663362,
-          "name": "Matt Waldron"
+          "name": "Matt Waldron",
+          "pitchHand": "R"
         }
       }
     },
@@ -697,11 +759,13 @@
       "probables": {
         "us": {
           "id": 607067,
-          "name": "Colin Rea"
+          "name": "Colin Rea",
+          "pitchHand": "R"
         },
         "them": {
           "id": 668678,
-          "name": "Zac Gallen"
+          "name": "Zac Gallen",
+          "pitchHand": "R"
         }
       }
     },
@@ -719,11 +783,13 @@
       "probables": {
         "us": {
           "id": 684007,
-          "name": "Shota Imanaga"
+          "name": "Shota Imanaga",
+          "pitchHand": "L"
         },
         "them": {
           "id": 669194,
-          "name": "Ryne Nelson"
+          "name": "Ryne Nelson",
+          "pitchHand": "R"
         }
       }
     },
@@ -741,11 +807,13 @@
       "probables": {
         "us": {
           "id": 571510,
-          "name": "Matthew Boyd"
+          "name": "Matthew Boyd",
+          "pitchHand": "L"
         },
         "them": {
           "id": 518876,
-          "name": "Merrill Kelly"
+          "name": "Merrill Kelly",
+          "pitchHand": "R"
         }
       }
     },
@@ -763,11 +831,13 @@
       "probables": {
         "us": {
           "id": 665795,
-          "name": "Edward Cabrera"
+          "name": "Edward Cabrera",
+          "pitchHand": "R"
         },
         "them": {
           "id": 695534,
-          "name": "Chase Petty"
+          "name": "Chase Petty",
+          "pitchHand": "R"
         }
       }
     },
@@ -785,11 +855,13 @@
       "probables": {
         "us": {
           "id": 592791,
-          "name": "Jameson Taillon"
+          "name": "Jameson Taillon",
+          "pitchHand": "R"
         },
         "them": {
           "id": 671096,
-          "name": "Andrew Abbott"
+          "name": "Andrew Abbott",
+          "pitchHand": "L"
         }
       }
     },
@@ -873,7 +945,8 @@
             "passedBall": 0,
             "popOuts": 4,
             "lineOuts": 6
-          }
+          },
+          "pitchHand": "R"
         },
         "them": {
           "id": 663903,
@@ -943,7 +1016,8 @@
             "passedBall": 0,
             "popOuts": 5,
             "lineOuts": 15
-          }
+          },
+          "pitchHand": "R"
         }
       },
       "lineup": {
@@ -1861,7 +1935,8 @@
             "passedBall": 0,
             "popOuts": 10,
             "lineOuts": 10
-          }
+          },
+          "pitchHand": "L"
         },
         "them": {
           "id": 695076,
@@ -1931,7 +2006,8 @@
             "passedBall": 0,
             "popOuts": 7,
             "lineOuts": 10
-          }
+          },
+          "pitchHand": "R"
         }
       },
       "lineup": {
@@ -2849,7 +2925,8 @@
             "passedBall": 0,
             "popOuts": 7,
             "lineOuts": 8
-          }
+          },
+          "pitchHand": "R"
         },
         "them": {
           "id": 677958,
@@ -2919,7 +2996,8 @@
             "passedBall": 0,
             "popOuts": 6,
             "lineOuts": 11
-          }
+          },
+          "pitchHand": "R"
         }
       },
       "lineup": {
@@ -3834,7 +3912,8 @@
             "passedBall": 0,
             "popOuts": 6,
             "lineOuts": 14
-          }
+          },
+          "pitchHand": "R"
         },
         "them": {
           "id": 683004,
@@ -3904,7 +3983,8 @@
             "passedBall": 0,
             "popOuts": 3,
             "lineOuts": 7
-          }
+          },
+          "pitchHand": "R"
         }
       }
     },
@@ -3985,7 +4065,8 @@
             "passedBall": 0,
             "popOuts": 11,
             "lineOuts": 9
-          }
+          },
+          "pitchHand": "R"
         },
         "them": {
           "id": 594798,
@@ -4055,7 +4136,8 @@
             "passedBall": 0,
             "popOuts": 6,
             "lineOuts": 13
-          }
+          },
+          "pitchHand": "R"
         }
       }
     },
