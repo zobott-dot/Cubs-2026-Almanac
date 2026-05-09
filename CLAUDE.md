@@ -157,7 +157,17 @@ The look is an editorial almanac — think a 1968 Cubs game-day program, not a m
 
 - Palette: cream `#faf6ec`, royal Cubs blue `#0e3386`, Cubs red `#cc3433`.
 - Typography: Playfair Display for headings, Source Serif 4 for body, JetBrains Mono for stats.
-- **Do not add** purple gradients, ivy textures, or brick-wall imagery.
+- **Do not add** purple gradients or brick-wall imagery. Muted ivy green is now the page's background pattern (see "Page background" below).
+
+### Page background
+
+The page has a full-bleed, fixed-position ivy pattern under all content — the almanac's Wrigley wallpaper voice. Implementation lives on `body::before`:
+
+- Asset: `Ivy_back.jpg` at the repo root, 1672×941 JPEG, preprocessed for seamless tiling so `background-repeat: repeat` produces no visible seam at any viewport width.
+- Properties: `background-size: auto` (native pixel size), `background-attachment: fixed` (pattern stays put on scroll), `background-position: top left`, `background-repeat: repeat`. The combination produces approximately the same per-leaf physical size on mobile portrait and desktop.
+- `opacity: 0.92` softens the leaves about 8% — the cream paper underneath shows through, which warms the leaves slightly. This is the one-knob tuning control if the pattern ever needs to feel more prominent or more recessive.
+- Layered at `z-index: 1`; `.container` sits above at `z-index: 2`.
+- Don't switch to `background-size: cover` (would scale leaves bigger on desktop, breaking same-magnification across viewports). Don't add a `background-color` to the rule (the paper color is already the body background and showing through is the point).
 
 ## Page sections (in order)
 
