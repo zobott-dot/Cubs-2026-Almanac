@@ -221,6 +221,23 @@ def fetch_pitcher_season_stats(player_id):
     return None
 
 
+def fetch_pitcher_hand(player_id):
+    """Fetch a pitcher's throwing hand from the player-detail endpoint.
+    Returns 'L', 'R', 'S', or None. The boxscore's nested `person` object
+    does not carry `pitchHand`; the player-detail endpoint does.
+    """
+    url = f"https://statsapi.mlb.com/api/v1/people/{player_id}"
+    try:
+        data = http_get_json(url)
+    except Exception as e:
+        print(f"WARN: pitcher hand fetch failed for id={player_id}: {e}", file=sys.stderr)
+        return None
+    people = data.get("people") or []
+    if not people:
+        return None
+    return (people[0].get("pitchHand") or {}).get("code")
+
+
 def slot_from_batting_order(s):
     """Translate boxscore's `battingOrder` string ('100', '200', ..., '900')
     into integer slot 1-9. In-game substitutes carry suffixes ('101', '102')
@@ -258,9 +275,7 @@ def build_probable(pp_summary, box_team_players, fallback_to_people_endpoint=Tru
     if box_team_players and pid is not None:
         p_record = box_team_players.get(f"ID{pid}")
         if p_record:
-            person = p_record.get("person") or {}
-            boxscore_name = person.get("boxscoreName")
-            pitch_hand = (person.get("pitchHand") or {}).get("code")
+            boxscore_name = (p_record.get("person") or {}).get("boxscoreName")
             season_stats = (p_record.get("seasonStats") or {}).get("pitching") or None
     if boxscore_name:
         out["boxscoreName"] = boxscore_name
@@ -271,7 +286,12 @@ def build_probable(pp_summary, box_team_players, fallback_to_people_endpoint=Tru
         season_stats = fetch_pitcher_season_stats(pid)
     if season_stats:
         out["seasonStats"] = season_stats
-    if pitch_hand:
+    if pid is not None:
+        # Handedness lives on /people/{id}, not on the boxscore's nested
+        # person object. Fetch it for every probable so far-future-game
+        # probables (no boxscore opened) still carry pitchHand.
+        pitch_hand = fetch_pitcher_hand(pid)
+    if pitch_hand in ("L", "R"):
         out["pitchHand"] = pitch_hand
     return out
 
@@ -569,7 +589,13 @@ def fetch_schedule():
                         for side in ("us", "them"):
                             ps = prior_probables.get(side)
                             if ps and ("boxscoreName" in ps or "seasonStats" in ps):
+                                # Preserve freshly-fetched pitchHand through
+                                # the carry-over so handedness lands on finals
+                                # too, not just on lookahead probables.
+                                fresh_hand = (game_obj["probables"].get(side) or {}).get("pitchHand")
                                 game_obj["probables"][side] = ps
+                                if fresh_hand and "pitchHand" not in ps:
+                                    game_obj["probables"][side] = {**ps, "pitchHand": fresh_hand}
                         if not game_obj["probables"]:
                             game_obj.pop("probables", None)
 
