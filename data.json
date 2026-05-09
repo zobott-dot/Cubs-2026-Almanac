@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-09T21:59:43.849309+00:00",
+  "updatedAt": "2026-05-09T22:52:03.732619+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -3840,7 +3840,10 @@
       "opp": "TEX",
       "home": false,
       "time": "6:05 PM",
-      "result": null,
+      "result": {
+        "us": 0,
+        "them": 0
+      },
       "broadcast": "MARQUEE",
       "gamePk": 822905,
       "probables": {
@@ -4820,6 +4823,11 @@
             }
           }
         ]
+      },
+      "live": {
+        "status": "Warmup",
+        "inning": 1,
+        "inningHalf": "Top"
       }
     },
     {
@@ -6085,16 +6093,16 @@
       "l": 18
     },
     {
+      "team": "Reds",
+      "abbr": "",
+      "w": 21,
+      "l": 19
+    },
+    {
       "team": "Brewers",
       "abbr": "",
       "w": 20,
       "l": 16
-    },
-    {
-      "team": "Reds",
-      "abbr": "",
-      "w": 20,
-      "l": 19
     }
   ]
 }
