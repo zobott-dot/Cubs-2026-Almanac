@@ -220,6 +220,10 @@
     content: '★ ';
     color: var(--national);
   }
+  .hero-channel-radio {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
   .hero-standing {
     font-family: 'Source Serif 4', serif;
     font-size: 14px;
@@ -301,6 +305,10 @@
   .game-channel.national::before {
     content: '★ ';
     color: var(--national);
+  }
+  .game-channel-radio {
+    color: var(--ink-soft);
+    font-weight: 400;
   }
   .section-roman {
     font-family: 'Playfair Display', serif;
@@ -444,9 +452,13 @@
   .game-result.L { color: var(--accent); }
   .watch-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
     margin-top: 8px;
+  }
+  @media (max-width: 1100px) and (min-width: 701px) {
+    .watch-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .watch-grid > .watch-card:nth-child(3) { grid-column: 1 / -1; }
   }
   @media (max-width: 700px) { .watch-grid { grid-template-columns: 1fr; } }
   .watch-card {
@@ -630,7 +642,7 @@
       gap: 10px;
       font-size: 13px;
     }
-    .schedule-game .sched-time, .schedule-game .sched-channel { display: none; }
+    .schedule-game .sched-time, .schedule-game .sched-channel-cell { display: none; }
     .schedule-game .sched-subline { display: block; }
   }
   .schedule-game.played { color: var(--ink-soft); }
@@ -669,6 +681,8 @@
   }
   .sched-channel.national { color: var(--ink); font-weight: 700; }
   .sched-channel.national::before { content: '★ '; color: var(--national); }
+  .sched-channel-radio { color: var(--ink-soft); font-weight: 400; }
+  .sched-channel-cell { text-align: right; }
   .sched-subline {
     display: none;
     font-family: 'JetBrains Mono', monospace;
@@ -681,6 +695,7 @@
   }
   .sched-subline-channel.national { color: var(--ink); font-weight: 700; }
   .sched-subline-channel.national::before { content: '★ '; color: var(--national); }
+  .sched-subline-channel-radio { color: var(--ink-soft); font-weight: 400; }
   .sched-result {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -1188,16 +1203,13 @@
   <section class="draggable-section" data-section-id="watch">
     <div class="section-head">
       <span class="section-roman">IV.</span>
-      <span class="section-title">Where to Watch</span>
+      <span class="section-title">Where to Catch the Game</span>
       <span class="section-rule"></span>
       <button class="collapse-toggle" title="Collapse">▾</button>
     </div>
     <div class="section-body">
       <p class="lede" style="font-size: 16px;">
-        Of the 162 regular-season games, roughly 145 air on Marquee Sports Network, the
-        Cubs' regional home. The remaining games are claimed by national broadcasters —
-        Fox, ESPN, NBC/Peacock, Apple TV+, and TBS — under windows announced piecemeal,
-        usually a few weeks ahead. Below: the lay of the land.
+        Two parallel pathways. <strong>Television</strong> varies — roughly 145 of 162 regular-season games air on Marquee Sports Network, with the remainder claimed by national broadcasters (Fox, ESPN, NBC/Peacock, Apple TV+, TBS) under windows announced piecemeal. <strong>Radio</strong> is constant — every game airs on WSCR 670 AM, with Pat Hughes in his 31st season calling play-by-play. Below: the lay of the land for both.
       </p>
       <div class="watch-grid">
         <div class="watch-card">
@@ -1233,6 +1245,22 @@
             If you have YouTube TV or Fubo, all of the cable/OTA national windows above
             are already covered. Peacock, Apple TV+, and HBO Max each require a separate
             subscription for their exclusive games.
+          </div>
+        </div>
+        <div class="watch-card">
+          <h3>Radio</h3>
+          <div class="market">All 162 Games</div>
+          <p>The Cubs' radio voice is <strong>WSCR 670 AM "The Score"</strong> in Chicago, flagship of the Cubs Radio Network — 30 affiliate stations across the Midwest carrying every regular-season and postseason game. Booth: Pat Hughes (PxP, in his 31st season; 2023 Ford C. Frick Award and Hall of Fame), Ron Coomer (analyst, former Cub and now in his 13th season alongside Hughes), Zach Zaidman (pre/post-game host on Cubs Central; takes over PxP for the fifth inning of most games).</p>
+          <ul class="watch-list">
+            <li><span class="name">WSCR 670 AM</span><span class="price">terrestrial</span></li>
+            <li><span class="name">Audacy app</span><span class="price">free</span></li>
+            <li><span class="name">iHeartRadio app</span><span class="price">free</span></li>
+            <li><span class="name">MLB At Bat audio</span><span class="price">~$20/yr</span></li>
+            <li><span class="name">Cubs Radio Network affiliates</span><span class="price">terrestrial</span></li>
+            <li><span class="name">WRTO 1200 AM</span><span class="price">español</span></li>
+          </ul>
+          <div class="watch-note">
+            Spanish-language broadcasts on WRTO 1200 AM "Deportes Radio Chicago" cover a partial schedule each season, with Omar Ramos (PxP since 2010) and Miguel Esparza (since 2018) in the booth. Check WRTO's listings for the games they're carrying.
           </div>
         </div>
       </div>
@@ -1295,7 +1323,7 @@
         </div>
       </div>
       <p style="font-size: 13px; color: var(--ink-soft); font-style: italic; margin: -12px 0 18px; line-height: 1.6;">
-        <strong style="font-weight: 700; font-style: normal; color: var(--ink);">Marquee</strong> carries the great majority — both home and road games — through your cable, Hulu+Live, Fubo, the Marquee app, or Prime Video. National windows (★) supersede Marquee for that game. In-market viewers don't need MLB.TV; out-of-market viewers do.
+        <strong style="font-weight: 700; font-style: normal; color: var(--ink);">Marquee</strong> carries the great majority — both home and road games — through your cable, Hulu+Live, Fubo, the Marquee app, or Prime Video. National windows (★) supersede Marquee for that game. In-market viewers don't need MLB.TV; out-of-market viewers do. Each game also lists <strong style="font-weight: 700; font-style: normal; color: var(--ink);">WSCR 670</strong> as the radio companion — Pat Hughes calling all 162.
       </p>
       <div id="fullSchedule"></div>
     </div>
@@ -1778,18 +1806,19 @@
     });
   }
 
-  // Resolve which channel to display for a game.
-  // Priority: manual tvNational override > API broadcast field > Marquee default.
-  // Returns { text, isNational } so callers can pick the right CSS class.
-  // Marquee from the API arrives as "MARQUEE" (canonical for storage); we
-  // display "Marquee" to match the existing visual style of the page.
+  // Resolve TV + radio for a game.
+  // TV priority: manual tvNational override > API broadcast field > Marquee default.
+  // Radio is uniform — every regular-season game on WSCR 670 — so it's a
+  // render-time constant rather than a per-game field. Returns
+  // { tv, radio, isNational }; isNational refers to TV only.
   function resolveChannel(g) {
-    if (g.tvNational) return { text: g.tvNational, isNational: true };
+    const radio = 'WSCR 670';
+    if (g.tvNational) return { tv: g.tvNational, radio, isNational: true };
     if (g.broadcast) {
-      if (g.broadcast === 'MARQUEE') return { text: 'Marquee', isNational: false };
-      return { text: g.broadcast, isNational: true };
+      if (g.broadcast === 'MARQUEE') return { tv: 'Marquee', radio, isNational: false };
+      return { tv: g.broadcast, radio, isNational: true };
     }
-    return { text: 'Marquee', isNational: false };
+    return { tv: 'Marquee', radio, isNational: false };
   }
 
   function renderRecent() {
@@ -1803,8 +1832,7 @@
       const result = g.result.us > g.result.them ? 'W' : 'L';
       const homeMark = g.home ? 'vs.' : '@';
       const ch = resolveChannel(g);
-      const channelClass = ch.isNational ? 'national' : '';
-      const channelText = ch.text;
+      const tvClass = ch.isNational ? 'national' : '';
       const div = document.createElement('div');
       div.className = 'game';
       div.innerHTML = `
@@ -1812,7 +1840,7 @@
         <div class="game-matchup">
           <span class="home-mark">${homeMark}</span> ${g.opp}
           <span class="vs">\u2014</span> ${g.result.us}-${g.result.them}
-          <div class="game-channel ${channelClass}">${channelText}</div>
+          <div class="game-channel"><span class="game-channel ${tvClass}">${ch.tv}</span> <span class="game-channel game-channel-radio">/ ${ch.radio}</span></div>
         </div>
         <div class="game-result ${result}">${result}</div>`;
       recentDiv.appendChild(div);
@@ -1826,15 +1854,14 @@
     upcoming.forEach(g => {
       const homeMark = g.home ? 'vs.' : '@';
       const ch = resolveChannel(g);
-      const channelClass = ch.isNational ? 'national' : '';
-      const channelText = ch.text;
+      const tvClass = ch.isNational ? 'national' : '';
       const div = document.createElement('div');
       div.className = 'game';
       div.innerHTML = `
         <div class="game-date">${formatShortDate(g.date)}</div>
         <div class="game-matchup">
           <span class="home-mark">${homeMark}</span> ${g.opp}
-          <div class="game-channel ${channelClass}">${channelText}</div>
+          <div class="game-channel"><span class="game-channel ${tvClass}">${ch.tv}</span> <span class="game-channel game-channel-radio">/ ${ch.radio}</span></div>
         </div>
         <div class="game-result" style="border:none; color:var(--ink-soft); font-weight:400;">${g.time}</div>`;
       upDiv.appendChild(div);
@@ -1951,8 +1978,8 @@
 
   function heroChannelMarkup(g) {
     const ch = resolveChannel(g);
-    const cls = ch.isNational ? 'hero-channel national' : 'hero-channel';
-    return `<span class="${cls}">${ch.text}</span>`;
+    const tvCls = ch.isNational ? 'hero-channel national' : 'hero-channel';
+    return `<span class="${tvCls}">${ch.tv}</span> <span class="hero-channel hero-channel-radio">/ ${ch.radio}</span>`;
   }
 
   function heroMatchupMarkup(g) {
@@ -2249,7 +2276,7 @@
 
   function viewingGroup(g) {
     const ch = resolveChannel(g);
-    if (ch.isNational) return { key: 'national', label: 'National Broadcast', subtitle: 'Available without Marquee — see Where to Watch above' };
+    if (ch.isNational) return { key: 'national', label: 'National Broadcast', subtitle: 'Available without Marquee — see Where to Catch the Game above' };
     return { key: 'marquee', label: 'Marquee Sports Network', subtitle: 'Cable, Hulu+Live, Fubo, Marquee app, or Prime Video' };
   }
 
@@ -2277,12 +2304,14 @@
     }
 
     const ch = resolveChannel(g);
-    const channel = ch.isNational
-      ? `<span class="sched-channel national">${ch.text}</span>`
-      : `<span class="sched-channel">${ch.text}</span>`;
-    const sublineChannel = ch.isNational
-      ? `<span class="sched-subline-channel national">${ch.text}</span>`
-      : `<span class="sched-subline-channel">${ch.text}</span>`;
+    const tvSpan = ch.isNational
+      ? `<span class="sched-channel national">${ch.tv}</span>`
+      : `<span class="sched-channel">${ch.tv}</span>`;
+    const channel = `<span class="sched-channel-cell">${tvSpan} <span class="sched-channel sched-channel-radio">/ ${ch.radio}</span></span>`;
+    const tvSublineSpan = ch.isNational
+      ? `<span class="sched-subline-channel national">${ch.tv}</span>`
+      : `<span class="sched-subline-channel">${ch.tv}</span>`;
+    const sublineChannel = `${tvSublineSpan} <span class="sched-subline-channel sched-subline-channel-radio">/ ${ch.radio}</span>`;
 
     const scoreText = hasScore ? ` <span style="color:var(--ink-soft);font-size:12px;">(${g.result.us}-${g.result.them})</span>` : '';
 
