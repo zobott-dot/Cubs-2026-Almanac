@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-10T01:25:01.915952+00:00",
+  "updatedAt": "2026-05-10T03:40:04.606541+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -4823,11 +4823,6 @@
             }
           }
         ]
-      },
-      "live": {
-        "status": "In Progress",
-        "inning": 7,
-        "inningHalf": "Bottom"
       }
     },
     {
@@ -6078,13 +6073,19 @@
       "team": "Cubs",
       "abbr": "",
       "w": 27,
-      "l": 12
+      "l": 13
     },
     {
       "team": "Cardinals",
       "abbr": "",
       "w": 23,
-      "l": 15
+      "l": 16
+    },
+    {
+      "team": "Brewers",
+      "abbr": "",
+      "w": 21,
+      "l": 16
     },
     {
       "team": "Pirates",
@@ -6097,12 +6098,6 @@
       "abbr": "",
       "w": 21,
       "l": 19
-    },
-    {
-      "team": "Brewers",
-      "abbr": "",
-      "w": 20,
-      "l": 16
     }
   ]
 }
