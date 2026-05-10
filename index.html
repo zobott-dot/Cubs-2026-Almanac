@@ -212,6 +212,9 @@
     text-transform: uppercase;
     color: var(--ink-soft);
   }
+  .hero-state.final-pending {
+    font-style: italic;
+  }
   .hero-channel.national {
     color: var(--ink);
     font-weight: 700;
@@ -1574,6 +1577,7 @@
 
   // Mutable state — replaced by refresh
   let today = new Date('2026-04-18T12:00:00');
+  let dataUpdatedAt = null;
 
   let standings = [
     { team: 'Cincinnati Reds',    abbr: 'CIN', w: 12, l: 8 },
@@ -1928,16 +1932,56 @@
   // this game over?" we need both checks, not just result !== null.
   function isFinal(g) { return g.result !== null && !g.live; }
 
-  function classifyTodayGame(g, nowTime) {
+  // First-pitch as a UTC millisecond timestamp, derived from g.date +
+  // g.time (which is wall-clock CT). The 162-game regular season runs
+  // entirely within CDT (UTC-5); DST starts before opening day and ends
+  // after the schedule completes. Returns null if g.time is "TBD" or
+  // unparseable.
+  function firstPitchMs(g) {
+    if (!g || !g.date || !g.time) return null;
+    const m = g.time.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+    if (!m) return null;
+    let h = parseInt(m[1], 10);
+    const min = m[2];
+    const ampm = m[3].toUpperCase();
+    if (ampm === 'PM' && h !== 12) h += 12;
+    if (ampm === 'AM' && h === 12) h = 0;
+    const iso = `${g.date}T${String(h).padStart(2, '0')}:${min}:00-05:00`;
+    const t = new Date(iso).getTime();
+    return Number.isFinite(t) ? t : null;
+  }
+
+  // Stale-in-progress: data.json says the game is live, but the file
+  // itself is meaningfully old AND wall-clock is comfortably past the
+  // typical game window. Catches the gap between actual game-end and the
+  // next successful cron write — typically 30 minutes (MLB API lag
+  // flipping abstractGameState to Final), but extending to 60-120
+  // minutes when GitHub Actions cron drops cluster.
+  function isStaleInProgress(g, updatedAt) {
+    if (!g || !g.live) return false;
+    if (!updatedAt) return false;
+    const updatedAtMs = new Date(updatedAt).getTime();
+    if (!Number.isFinite(updatedAtMs)) return false;
+    const nowMs = Date.now();
+    const dataAgeMin = (nowMs - updatedAtMs) / 60000;
+    if (dataAgeMin < 30) return false;
+    const fpMs = firstPitchMs(g);
+    if (fpMs === null) return false;
+    const gameAgeMin = (nowMs - fpMs) / 60000;
+    return gameAgeMin > 210;
+  }
+
+  function classifyTodayGame(g, nowTime, updatedAt) {
     if (isFinal(g)) return 'final';
+    if (isStaleInProgress(g, updatedAt)) return 'final-pending';
     if (g.live) return 'inprogress';
     const gt = parseGameTime(g.time);
     if (!gt) return 'pregame';
     return gt > nowTime ? 'pregame' : 'inprogress';
   }
 
-  function pickTodayGame(gamesToday, nowTime) {
-    const classified = gamesToday.map(g => ({ g, state: classifyTodayGame(g, nowTime), gt: parseGameTime(g.time) }));
+  function pickTodayGame(gamesToday, nowTime, updatedAt) {
+    const classified = gamesToday.map(g => ({ g, state: classifyTodayGame(g, nowTime, updatedAt), gt: parseGameTime(g.time) }));
     const pregames = classified.filter(c => c.state === 'pregame');
     if (pregames.length) {
       pregames.sort((a, b) => (a.gt || '').localeCompare(b.gt || ''));
@@ -1947,6 +1991,11 @@
     if (inprogress.length) {
       inprogress.sort((a, b) => (a.gt || '').localeCompare(b.gt || ''));
       return inprogress[0];
+    }
+    const finalPending = classified.filter(c => c.state === 'final-pending');
+    if (finalPending.length) {
+      finalPending.sort((a, b) => (b.gt || '').localeCompare(a.gt || ''));
+      return finalPending[0];
     }
     const finals = classified.filter(c => c.state === 'final');
     if (finals.length) {
@@ -1993,7 +2042,7 @@
 
     const gamesToday = fullSchedule.filter(g => g.date === todayDate);
     if (gamesToday.length > 0) {
-      const picked = pickTodayGame(gamesToday, nowTime);
+      const picked = pickTodayGame(gamesToday, nowTime, dataUpdatedAt);
       if (!picked) return null;
       const { g, state } = picked;
       const primary = '<span class="hero-label">Today</span>';
@@ -2005,6 +2054,13 @@
           ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
           : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
+      } else if (state === 'final-pending') {
+        // The data says live, but it's old enough and we're far enough
+        // past first pitch that the game is almost certainly over —
+        // either the MLB API hasn't flipped to Final yet (~15-30 min lag
+        // is normal) or GitHub Actions cron has dropped runs. Don't lie
+        // about the game still being live.
+        secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-state final-pending">final pending</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       } else if (state === 'inprogress') {
         // Status-only: no inning, no score. The page no longer reads
         // mid-game data into the hero band — keeps the band honest when
@@ -2524,6 +2580,7 @@
 
       fullSchedule = data.schedule;
       standings = data.standings;
+      dataUpdatedAt = data.updatedAt || null;
       today = new Date();
       renderAll();
 
