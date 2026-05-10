@@ -174,9 +174,10 @@ The page has a full-bleed, fixed-position ivy pattern under all content — the 
 
 - Asset: `Ivy_back.jpg` at the repo root, 1672×941 JPEG, preprocessed for seamless tiling so `background-repeat: repeat` produces no visible seam at any viewport width.
 - Properties: `background-size: auto` (native pixel size), `background-attachment: fixed` (pattern stays put on scroll), `background-position: top left`, `background-repeat: repeat`. The combination produces approximately the same per-leaf physical size on mobile portrait and desktop.
+- The html/body background is `--paper-deep` (#f0e9d6), not `--paper` (#faf6ec). The deeper underlay gives the ivy more visible contrast at desktop widths where the wide margins outside `.container` carry no rules or text to anchor the texture. `.container`, masthead, and section bodies all set `--paper` explicitly, so in-content reading surfaces are unchanged — the deepening is only visible on the wide side margins (and behind the translucent iOS status bar). Deepening the underlay was preferred over lowering the overlay opacity since the opacity is calibrated for the in-content reading area; if the ivy at wide widths still reads as too loud or too quiet, prefer further underlay tuning over altering `body::before` opacity.
 - `opacity: 0.92` softens the leaves about 8% — the cream paper underneath shows through, which warms the leaves slightly. This is the one-knob tuning control if the pattern ever needs to feel more prominent or more recessive.
 - Layered at `z-index: 1`; `.container` sits above at `z-index: 2`.
-- Don't switch to `background-size: cover` (would scale leaves bigger on desktop, breaking same-magnification across viewports). Don't add a `background-color` to the rule (the paper color is already the body background and showing through is the point).
+- Don't switch to `background-size: cover` (would scale leaves bigger on desktop, breaking same-magnification across viewports). Don't add a `background-color` to the `body::before` rule (the html/body underlay is what's intended to show through).
 
 ## Page sections (in order)
 
