@@ -178,6 +178,7 @@ The page has a full-bleed, fixed-position ivy pattern under all content — the 
 - `opacity: 0.92` softens the leaves about 8% — the cream paper underneath shows through, which warms the leaves slightly. This is the one-knob tuning control if the pattern ever needs to feel more prominent or more recessive.
 - Layered at `z-index: 1`; `.container` sits above at `z-index: 2`.
 - Don't switch to `background-size: cover` (would scale leaves bigger on desktop, breaking same-magnification across viewports). Don't add a `background-color` to the `body::before` rule (the html/body underlay is what's intended to show through).
+- Edges use negative `env(safe-area-inset-*)` values (top/right/bottom/left) instead of `0`, paired with `viewport-fit=cover` on the viewport meta tag. This pushes the fixed-positioned ivy past the iOS layout-viewport boundaries into the status bar, home-indicator, and landscape side safe-area zones, so the texture reaches the device edges. On desktop and Android the env() values are `0` and the math collapses — only iOS is affected. The `.container` deliberately doesn't use these insets so body text stays out of the notch.
 
 ## Page sections (in order)
 
