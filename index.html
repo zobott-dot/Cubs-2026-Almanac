@@ -54,7 +54,7 @@
   .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 50px 40px 80px;
+    padding: 50px max(40px, env(safe-area-inset-right)) 80px max(40px, env(safe-area-inset-left));
     position: relative;
     z-index: 2;
   }
@@ -388,7 +388,7 @@
     .two-col { grid-template-columns: 1fr; gap: 36px; }
     .pulse-section { grid-template-columns: 1fr; }
     .pulse-record { text-align: left; }
-    .container { padding: 30px 20px 60px; }
+    .container { padding: 30px max(20px, env(safe-area-inset-right)) 60px max(20px, env(safe-area-inset-left)); }
   }
   .standings {
     width: 100%;
