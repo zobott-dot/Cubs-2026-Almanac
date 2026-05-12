@@ -9,6 +9,7 @@
 <meta name="theme-color" content="#faf6ec">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="2026 Cubs">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400;1,8..60,600&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
@@ -895,6 +896,9 @@
     z-index: 101;
     width: 300px;
     max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 220px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 18px;
     background: var(--paper-deep);
     border: 1px solid var(--rule);
@@ -910,7 +914,13 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .settings-section + .settings-section { margin-top: 14px; }
+  /* Quiet hairline divider between the panel's three sections — lighter
+     than the page's --rule borders so it reads as internal structure. */
+  .settings-section + .settings-section {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(200, 184, 150, 0.4);
+  }
   .settings-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
@@ -918,13 +928,113 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink);
-    margin-bottom: 6px;
+    margin: 0 0 6px;
   }
   .settings-body {
     font-family: 'Source Serif 4', serif;
     font-size: 14px;
     line-height: 1.5;
     color: var(--ink);
+    margin: 0;
+  }
+  .settings-body + .settings-body { margin-top: 8px; }
+  .settings-body-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+
+  /* Home-screen how-to: small icon sequences with arrow connectors. */
+  .settings-howto { margin-top: 12px; }
+  .settings-howto-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+  .settings-howto-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 6px;
+  }
+  .settings-howto-row + .settings-howto-label { margin-top: 16px; }
+  .settings-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: 76px;
+  }
+  .settings-step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    color: var(--ink);
+  }
+  .settings-step-icon svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+  }
+  .settings-step-pill {
+    width: auto;
+    min-width: 32px;
+    padding: 0 10px;
+    border-radius: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .settings-step-text {
+    font-family: 'Source Serif 4', serif;
+    font-size: 11px;
+    line-height: 1.25;
+    text-align: center;
+    color: var(--ink-soft);
+  }
+  .settings-step-arrow {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    flex-shrink: 0;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+
+  /* Feedback link styled as a button-like affordance. */
+  .settings-feedback-link {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 7px 14px;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .settings-feedback-link:hover,
+  .settings-feedback-link:focus-visible {
+    background: #fff;
+    border-color: var(--ink);
   }
 
   /* Refresh status toast */
@@ -1472,12 +1582,72 @@
 
 <div id="settingsPanel" class="settings-panel" role="region" aria-label="Settings">
   <div class="settings-section">
-    <div class="settings-label">Add to home screen</div>
-    <div class="settings-body">On iPhone, tap the share button in Safari, then &ldquo;Add to Home Screen.&rdquo; On Android, tap the menu button in Chrome, then &ldquo;Add to Home screen.&rdquo; The almanac will get its own icon and open like an app.</div>
+    <div class="settings-label">Add to your Home Screen</div>
+    <p class="settings-body">The almanac works best added to your phone&rsquo;s home screen &mdash; it gets its own icon and opens like an app.</p>
+
+    <div class="settings-howto">
+      <div class="settings-howto-label">iPhone &mdash; Safari</div>
+      <div class="settings-howto-row">
+        <div class="settings-step">
+          <span class="settings-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 12v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7"/>
+              <polyline points="8.5 6.5 12 3 15.5 6.5"/>
+              <line x1="12" y1="3" x2="12" y2="14"/>
+            </svg>
+          </span>
+          <span class="settings-step-text">Tap Share</span>
+        </div>
+        <span class="settings-step-arrow" aria-hidden="true">&rarr;</span>
+        <div class="settings-step">
+          <span class="settings-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="4"/>
+              <line x1="12" y1="8" x2="12" y2="16"/>
+              <line x1="8" y1="12" x2="16" y2="12"/>
+            </svg>
+          </span>
+          <span class="settings-step-text">Add to Home Screen</span>
+        </div>
+        <span class="settings-step-arrow" aria-hidden="true">&rarr;</span>
+        <div class="settings-step">
+          <span class="settings-step-icon settings-step-pill" aria-hidden="true">Add</span>
+          <span class="settings-step-text">Tap Add</span>
+        </div>
+      </div>
+
+      <div class="settings-howto-label">Android &mdash; Chrome</div>
+      <div class="settings-howto-row">
+        <div class="settings-step">
+          <span class="settings-step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <circle cx="12" cy="5" r="1.9"/>
+              <circle cx="12" cy="12" r="1.9"/>
+              <circle cx="12" cy="19" r="1.9"/>
+            </svg>
+          </span>
+          <span class="settings-step-text">Tap menu</span>
+        </div>
+        <span class="settings-step-arrow" aria-hidden="true">&rarr;</span>
+        <div class="settings-step">
+          <span class="settings-step-icon settings-step-pill" aria-hidden="true">Install app</span>
+          <span class="settings-step-text">Tap Install</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="settings-body settings-body-note">Tap the refresh icon for the latest scores, standings, and broadcast info. The almanac also updates itself every fifteen minutes during game hours and every few hours overnight.</p>
   </div>
+
   <div class="settings-section">
-    <div class="settings-label">Loading the latest data</div>
-    <div class="settings-body">Tap the refresh button to load the latest scores, standings, and broadcast info. The page also updates on its own every fifteen minutes during the day and every few hours overnight.</div>
+    <div class="settings-label">About</div>
+    <p class="settings-body">A personal almanac of the Chicago Cubs&rsquo; 2026 season, built and kept by Dave Zobott in Bartlett, Illinois. Free to share &mdash; no accounts, no tracking, no ads.</p>
+  </div>
+
+  <div class="settings-section">
+    <div class="settings-label">Send Feedback</div>
+    <p class="settings-body">Bug reports, feature ideas, or anything else &mdash; all welcome.</p>
+    <a class="settings-feedback-link" href="mailto:zobott@icloud.com?subject=Cubs%20Almanac%20feedback">Send feedback</a>
   </div>
 </div>
 
