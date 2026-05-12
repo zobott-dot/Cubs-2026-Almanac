@@ -240,6 +240,31 @@
     font-size: 14px;
     color: var(--ink-soft);
   }
+  /* Lineup status caption — a quiet eyebrow sub-line below the hero
+     band's timestamp/channel line on game days. Three states keyed on
+     data shape (g.lineup / g.live / g.result), no time math. The
+     waiting state is plain text (no chevron, head not tappable); the
+     ready and in-progress states sit alongside the existing chevron and
+     the head's tap-to-expand handler. width:100% forces it onto its
+     own row below the timestamp line (the head is a wrapping flex row
+     on desktop, a column on mobile); the chevron is absolutely
+     positioned so this never shifts it. */
+  .hero-lineup-caption {
+    width: 100%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .hero-lineup-caption.lineup-waiting {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .hero-lineup-caption.lineup-ready,
+  .hero-lineup-caption.lineup-inprogress {
+    color: var(--ink);
+    font-weight: 500;
+  }
   @media (max-width: 600px) {
     .hero-band-head { flex-direction: column; align-items: flex-start; gap: 6px; }
     .hero-secondary::before { display: none; }
@@ -2248,7 +2273,7 @@
       } else {
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-time">${g.time} CT</span><span class="hero-sep">·</span>${heroChannelMarkup(g)}`;
       }
-      return { primary, secondary };
+      return { primary, secondary, state };
     }
 
     const futureGames = fullSchedule.filter(g => g.date > todayDate && !g.result);
@@ -2426,10 +2451,26 @@
       ? `<div class="hero-band-body" id="hero-band-body">${gdcRenderBody(bodyGame)}</div>`
       : '';
 
+    // Lineup status caption — game days only (pre-game / in-progress).
+    // Switches on data shape, not on time-to-first-pitch. The waiting
+    // form is plain non-tappable text excluded from the a11y tree (the
+    // chevron's aria-expanded already conveys the body when it posts);
+    // the ready / in-progress forms are paired with the existing
+    // chevron and the head's tap-to-expand handler.
+    let lineupCaption = '';
+    if (content.state === 'inprogress') {
+      lineupCaption = `<div class="hero-lineup-caption lineup-inprogress">Lineup</div>`;
+    } else if (content.state === 'pregame') {
+      lineupCaption = bodyGame
+        ? `<div class="hero-lineup-caption lineup-ready">Lineup Ready!</div>`
+        : `<div class="hero-lineup-caption lineup-waiting" aria-hidden="true">Lineup (waiting)</div>`;
+    }
+
     band.innerHTML = `
       <div class="hero-band-head"${headAttrs}>
         <div class="hero-primary">${content.primary}</div>
         <div class="hero-secondary">${content.secondary}</div>
+        ${lineupCaption}
         ${chevron}
       </div>
       ${body}`;
