@@ -165,7 +165,7 @@ The in-progress branch deliberately reads no `result` and no `live.inning` into 
 The look is an editorial almanac — think a 1968 Cubs game-day program, not a modern sports app.
 
 - Palette: cream `#faf6ec`, royal Cubs blue `#0e3386`, Cubs red `#cc3433`.
-- Typography: Playfair Display for headings, Source Serif 4 for body, JetBrains Mono for stats.
+- Typography: Roboto Slab is the single display family — weight 900 for masthead title, section headers, big data numbers (`.pulse-record`, `.proj-value`), and the W/L pennant strip; weight 700 for hero matchup, pitcher names, and watch-card titles; weight 400 for Roman numerals, recap column heads, schedule month headers, and other quiet labels. Source Serif 4 carries body text (italic for `.gdc-pitcher-hand`); JetBrains Mono carries data and labels (including the load-bearing `.hero-state.final-pending` italic).
 - **Do not add** purple gradients or brick-wall imagery. Muted ivy green is now the page's background pattern (see "Page background" below).
 
 ### Page background
@@ -179,6 +179,18 @@ The page has a full-bleed, fixed-position ivy pattern under all content — the 
 - Layered at `z-index: 1`; `.container` sits above at `z-index: 2`.
 - Don't switch to `background-size: cover` (would scale leaves bigger on desktop, breaking same-magnification across viewports). Don't add a `background-color` to the `body::before` rule (the html/body underlay is what's intended to show through).
 - Edges use negative `env(safe-area-inset-*)` values (top/right/bottom/left) instead of `0`, paired with `viewport-fit=cover` on the viewport meta tag. This pushes the fixed-positioned ivy past the iOS layout-viewport boundaries into the status bar, home-indicator, and landscape side safe-area zones, so the texture reaches the device edges. On desktop and Android the env() values are `0` and the math collapses — only iOS is affected. The `.container` uses `max(<base>, env(safe-area-inset-left/right))` on its horizontal padding to keep body text out of the notch in landscape, while `body::before` extends past those insets via the negative-env values above to fill the device edges with the background — background extends, content respects. The companion `apple-mobile-web-app-status-bar-style` meta tag is set to `black-translucent`: black-translucent puts the page at the physical [0,0] pixel and renders the status bar with a transparent overlay, which is what allows `body::before` to fill the status bar zone with ivy. Side effect: status bar text/icons are rendered in white in this mode, regardless of theme-color or page background — design for white-on-content readability up there.
+
+## Masthead
+
+The H1 reads "2026 Cubs" — no definite article. "2026" renders in Cubs red, "Cubs" in royal Cubs blue, both upright Roboto Slab 900. The visible H1 dropped its leading "The" in the May 13, 2026 pass; the `<title>` tag and `apple-mobile-web-app-title` meta were intentionally left untouched, since the in-page mark and the browser/home-screen labels serve different functions.
+
+**Sizing.** The title uses fluid sizing — `clamp(2.5rem, 7vw + 0.5rem, 5.5rem)` — instead of breakpoint-specific font-size rules. Scales smoothly across viewport widths.
+
+**Baseball ornament.** A small animated baseball sits inline after "Cubs" inside the H1: `<img class="masthead-baseball" src="./baseball_rotate.webp" alt="" aria-hidden="true">`. Purely decorative — empty `alt` and `aria-hidden` together keep it out of the accessibility tree. The `.masthead-baseball` rule uses em-based sizing (`height: 1.1em`, `margin-left: 0.2em`, `translateY: 0.1em`) so the ornament scales with the title's fluid font-size and stays optically balanced against the cap-height of "Cubs."
+
+**Animation asset.** `baseball_rotate.webp` at the repo root is an animated WebP with true alpha: 180×180 pixels, 192 frames at 6fps, ~32-second runtime, ~1.5 MB. The WebP plays once through and freezes on its final frame. With the cache-bust behavior below, this means one slow rotation per browser session rather than per page load. The 32-second cadence makes per-frame pixel deltas small enough to read as smooth at 6fps; earlier 8fps and 6fps versions over a 16-second runtime both looked choppy with the same source frames.
+
+**Cache-bust behavior.** A small IIFE at the end of the on-load sequence appends a query string to the WebP's `src` so updates to the asset always invalidate the browser cache. The query value is session-gated: the first page load in a browser session generates a `Date.now()` token, stores it in `sessionStorage`, and uses it; subsequent loads within the same session reuse the stored token, which means the WebP comes from cache and the rotation plays only once per session rather than on every navigation. If `sessionStorage` is unavailable (private browsing in some configurations), the IIFE falls back to per-load `Date.now()` — correct behavior at the cost of re-downloading the 1.5 MB asset each load. The script also respects `prefers-reduced-motion: reduce`.
 
 ## Page sections (in order)
 
@@ -208,6 +220,11 @@ These were tried and intentionally removed. Do not add them back:
 - Colophon footer
 - Bracket collapse buttons (`[−]` / `[+]`)
 - Browser-direct MLB API calls
+- Playfair Display anywhere on the page — Roboto Slab is the single display family across all display surfaces. Don't propose Playfair for any new selector.
+- Italic on `.title em` ("2026") — the red color does the differentiation work; italic on Roboto Slab 900 reads as overworked.
+- "The" in the masthead title — visible H1 is "2026 Cubs" followed by the baseball ornament. `<title>` tag and `apple-mobile-web-app-title` meta were intentionally not touched.
+- Per-load `Date.now()`-only cache-bust for the baseball ornament — replaced with sessionStorage-gated cache-bust. Fine at 772 KB; wasteful at 1.5 MB.
+- 8fps / 6fps WebP playback over a 16-second rotation — both read as choppy with the original source frame deltas. Fix wasn't more frames; it was slowing the rotation itself so per-frame deltas became small.
 
 ## Known issues
 
