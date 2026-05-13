@@ -105,6 +105,8 @@
     width: auto;
     margin-left: 0.2em;
     transform: translateY(0.1em);
+    cursor: pointer;
+    touch-action: manipulation;
   }
   .masthead-record {
     font-family: 'JetBrains Mono', monospace;
@@ -1327,7 +1329,7 @@
       <span id="lastUpdatedMeta"></span>
       <span id="datelineMeta"></span>
     </div>
-    <h1 class="title"><em>2026</em> Cubs<img class="masthead-baseball" src="./baseball_rotate.webp" alt="" aria-hidden="true"></h1>
+    <h1 class="title"><em>2026</em> Cubs<img class="masthead-baseball" src="./baseball_rotate.webp" alt="Replay baseball spin" role="button" tabindex="0"></h1>
     <div class="masthead-record" id="mastheadRecord"></div>
     <div class="masthead-pennants" id="mastheadPennants" aria-label="Season W/L sequence"></div>
   </header>
@@ -2903,6 +2905,34 @@
     }
 
     ball.src = './baseball_rotate.webp?v=' + Date.now();
+  })();
+
+  // Tap-to-replay the baseball ornament. Re-sets the WebP src with a fresh
+  // cache-bust to force a re-decode and replay the single loop. Debounced
+  // for the WebP's runtime so overlapping taps don't pile up. Deliberately
+  // does NOT respect prefers-reduced-motion — a tap is an explicit user
+  // override of the system preference.
+  (function() {
+    const ball = document.querySelector('.masthead-baseball');
+    if (!ball) return;
+
+    const SPIN_DURATION_MS = 32000;
+    let isSpinning = false;
+
+    function replay() {
+      if (isSpinning) return;
+      isSpinning = true;
+      ball.src = './baseball_rotate.webp?v=' + Date.now();
+      setTimeout(() => { isSpinning = false; }, SPIN_DURATION_MS);
+    }
+
+    ball.addEventListener('click', replay);
+    ball.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        replay();
+      }
+    });
   })();
 
   // Tap-anywhere wave animation on the W/L pennant strip. Queries pennants
