@@ -2858,11 +2858,24 @@
   });
 
   // Cache-bust the baseball ornament so its play-once animation restarts on
-  // every page load. Respects prefers-reduced-motion (static final frame only).
+  // the first page load of each browser session. Respects prefers-reduced-motion.
   (function() {
     const ball = document.querySelector('.masthead-baseball');
     if (!ball) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const SESSION_KEY = 'masthead-baseball-spun';
+    try {
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        // Already spun this session — leave the cached image alone (static final frame)
+        return;
+      }
+      sessionStorage.setItem(SESSION_KEY, '1');
+    } catch (e) {
+      // sessionStorage unavailable (private browsing in some browsers, storage quota, etc.)
+      // — fall through to cache-bust on every load, which is the safe default
+    }
+
     ball.src = './baseball_rotate.webp?v=' + Date.now();
   })();
 
