@@ -129,6 +129,9 @@
     gap: 3px;
     margin-top: 12px;
     padding: 0 20px;
+    position: relative;
+    cursor: pointer;
+    touch-action: manipulation;
   }
   .pennant {
     display: inline-flex;
@@ -144,6 +147,30 @@
   }
   .pennant-w { background: var(--ink); }
   .pennant-l { background: var(--accent); }
+
+  @keyframes pennant-lift {
+    0%   { transform: translateY(0) scale(1); }
+    40%  { transform: translateY(-10px) scale(1.10); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  .pennant.wave-active {
+    animation: pennant-lift 400ms ease-in-out;
+  }
+  .pennant-spark {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #F5C84B;
+    box-shadow: 0 0 6px 2px rgba(245, 200, 75, 0.6);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: spark-fly 700ms ease-out forwards;
+  }
+  @keyframes spark-fly {
+    0%   { transform: translate(-50%, -50%) translate(0, 0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) translate(var(--dx), var(--dy)); opacity: 0; }
+  }
 
   /* Hero band — between masthead and section I.
      On game days where the lineup has been posted the band is also a
@@ -2876,6 +2903,68 @@
     }
 
     ball.src = './baseball_rotate.webp?v=' + Date.now();
+  })();
+
+  // Tap-anywhere wave animation on the W/L pennant strip. Queries pennants
+  // fresh on each tap so subsequent data.json refreshes (which rewrite
+  // mastheadPennants.innerHTML) are picked up automatically.
+  (function() {
+    const strip = document.getElementById('mastheadPennants');
+    if (!strip) return;
+
+    const STAGGER_MS = 250;
+    const LIFT_MS = 400;
+    const SPARK_PEAK_MS = 160;
+    const SPARK_LIFE_MS = 700;
+    const SPARK_COUNT = 5;
+
+    strip.addEventListener('click', () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (strip.classList.contains('waving')) return;
+
+      const pennants = strip.querySelectorAll('.pennant');
+      if (pennants.length === 0) return;
+
+      strip.classList.add('waving');
+
+      pennants.forEach((pennant, i) => {
+        setTimeout(() => {
+          pennant.classList.add('wave-active');
+          if (pennant.classList.contains('pennant-w')) {
+            setTimeout(() => emitBurst(pennant, strip), SPARK_PEAK_MS);
+          }
+          setTimeout(() => pennant.classList.remove('wave-active'), LIFT_MS);
+        }, i * STAGGER_MS);
+      });
+
+      const totalMs = pennants.length * STAGGER_MS + LIFT_MS;
+      setTimeout(() => strip.classList.remove('waving'), totalMs);
+    });
+
+    function emitBurst(pennant, container) {
+      const pRect = pennant.getBoundingClientRect();
+      const cRect = container.getBoundingClientRect();
+      const originX = pRect.left - cRect.left + pRect.width / 2;
+      const originY = pRect.top - cRect.top;
+
+      for (let i = 0; i < SPARK_COUNT; i++) {
+        const spark = document.createElement('span');
+        spark.className = 'pennant-spark';
+
+        const angle = -Math.PI + (Math.PI * i / (SPARK_COUNT - 1));
+        const distance = 20 + Math.random() * 10;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+
+        spark.style.left = originX + 'px';
+        spark.style.top = originY + 'px';
+        spark.style.setProperty('--dx', dx + 'px');
+        spark.style.setProperty('--dy', dy + 'px');
+
+        container.appendChild(spark);
+        setTimeout(() => spark.remove(), SPARK_LIFE_MS);
+      }
+    }
   })();
 
   // Try to load fresh data on page load, silently. If it fails, the page
