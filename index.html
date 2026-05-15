@@ -108,6 +108,44 @@
     cursor: pointer;
     touch-action: manipulation;
   }
+  .masthead-wordmark {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .wordmark-sheen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    white-space: nowrap;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 45%,
+      rgba(255, 255, 255, 0.92) 50%,
+      transparent 55%
+    );
+    background-size: 300% 100%;
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    opacity: 0;
+  }
+  .masthead-wordmark.sheen-active .wordmark-sheen {
+    opacity: 1;
+    animation: wordmark-sheen 2000ms ease-in-out;
+  }
+  @keyframes wordmark-sheen {
+    from { background-position: 100% 0; }
+    to   { background-position: 0% 0; }
+  }
   .masthead-record {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
@@ -1334,7 +1372,7 @@
       <span id="lastUpdatedMeta"></span>
       <span id="datelineMeta"></span>
     </div>
-    <h1 class="title"><em>2026</em> Cubs<img class="masthead-baseball" src="./baseball_rotate.webp" alt="Replay baseball spin" role="button" tabindex="0"></h1>
+    <h1 class="title"><span class="masthead-wordmark" role="button" tabindex="0" aria-label="Replay wordmark highlight"><em>2026</em> Cubs<span class="wordmark-sheen" aria-hidden="true">2026 Cubs</span></span><img class="masthead-baseball" src="./baseball_rotate.webp" alt="Replay baseball spin" role="button" tabindex="0"></h1>
     <div class="masthead-record" id="mastheadRecord"></div>
     <div class="masthead-pennants" id="mastheadPennants" aria-label="Season W/L sequence"></div>
   </header>
@@ -3000,6 +3038,42 @@
         setTimeout(() => spark.remove(), SPARK_LIFE_MS);
       }
     }
+  })();
+
+  // First-load + tap-to-replay sheen on the "2026 Cubs" wordmark. A reflective
+  // highlight clipped to the letterforms travels left-to-right over 2s. Fires once
+  // on load (respects prefers-reduced-motion) and on tap/keypress (deliberate user
+  // action — overrides the preference, matching the baseball ornament asymmetry).
+  (function() {
+    const wordmark = document.querySelector('.masthead-wordmark');
+    if (!wordmark) return;
+
+    const SHEEN_MS = 2000;
+    let running = false;
+
+    function sweep() {
+      if (running) return;
+      running = true;
+      wordmark.classList.remove('sheen-active');
+      void wordmark.offsetWidth;
+      wordmark.classList.add('sheen-active');
+      setTimeout(() => {
+        wordmark.classList.remove('sheen-active');
+        running = false;
+      }, SHEEN_MS);
+    }
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      sweep();
+    }
+
+    wordmark.addEventListener('click', sweep);
+    wordmark.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        sweep();
+      }
+    });
   })();
 
   // Try to load fresh data on page load, silently. If it fails, the page
