@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-16T22:01:15.237859+00:00",
+  "updatedAt": "2026-05-16T23:03:04.325756+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -9780,7 +9780,10 @@
       "opp": "CWS",
       "home": false,
       "time": "6:10 PM",
-      "result": null,
+      "result": {
+        "us": 0,
+        "them": 0
+      },
       "broadcast": "MARQUEE",
       "gamePk": 824600,
       "probables": {
@@ -10760,6 +10763,11 @@
             }
           }
         ]
+      },
+      "live": {
+        "status": "Warmup",
+        "inning": 1,
+        "inningHalf": "Top"
       }
     },
     {
@@ -11971,16 +11979,16 @@
       "l": 17
     },
     {
-      "team": "Pirates",
+      "team": "Reds",
       "abbr": "",
       "w": 24,
       "l": 21
     },
     {
-      "team": "Reds",
+      "team": "Pirates",
       "abbr": "",
       "w": 24,
-      "l": 21
+      "l": 22
     }
   ]
 }
