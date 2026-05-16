@@ -2333,8 +2333,8 @@
         const cubsWon = g.result.us > g.result.them;
         const oppName = ABBR_TO_NICKNAME[g.opp] || g.opp;
         const score = cubsWon
-          ? `Cubs ${g.result.us}, ${oppName} ${g.result.them}`
-          : `${oppName} ${g.result.them}, Cubs ${g.result.us}`;
+          ? `Cubs\u00A0${g.result.us}, ${oppName}\u00A0${g.result.them}`
+          : `${oppName}\u00A0${g.result.them}, Cubs\u00A0${g.result.us}`;
         secondary = `${heroMatchupMarkup(g)}<span class="hero-sep">·</span><span class="hero-score"><strong>${score}</strong></span><span class="hero-sep">·</span><span class="hero-state">final</span>`;
       } else if (state === 'final-pending') {
         // The data says live, but it's old enough and we're far enough
