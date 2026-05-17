@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-17T21:09:38.330014+00:00",
+  "updatedAt": "2026-05-17T21:58:36.166212+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -10771,8 +10771,8 @@
       "home": false,
       "time": "1:10 PM",
       "result": {
-        "us": 7,
-        "them": 7
+        "us": 8,
+        "them": 9
       },
       "broadcast": "MARQUEE",
       "gamePk": 824599,
@@ -11753,11 +11753,6 @@
             }
           }
         ]
-      },
-      "live": {
-        "status": "In Progress",
-        "inning": 9,
-        "inningHalf": "Bottom"
       }
     },
     {
@@ -13233,7 +13228,7 @@
       "team": "Cubs",
       "abbr": "",
       "w": 29,
-      "l": 17
+      "l": 18
     },
     {
       "team": "Cardinals",
