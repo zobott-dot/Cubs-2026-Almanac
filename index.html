@@ -464,6 +464,37 @@
     letter-spacing: 0.15em;
     line-height: 1;
     word-break: break-all;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .pulse-strip.pulse-positioned {
+    cursor: pointer;
+    word-break: normal;
+  }
+  .pulse-strip.pulse-positioned > .pulse-char {
+    position: absolute;
+    top: 0;
+    left: 0;
+    will-change: transform;
+  }
+  .pulse-char {
+    display: inline-block;
+  }
+  .pulse-char-inner {
+    display: inline-block;
+    transform-origin: 50% 60%;
+  }
+  .pulse-char.pulse-wiggle > .pulse-char-inner {
+    animation: pulse-wiggle 400ms ease-in-out;
+  }
+  @keyframes pulse-wiggle {
+    0%   { transform: translateY(0)    rotate(0deg); }
+    20%  { transform: translateY(-3px) rotate(8deg); }
+    40%  { transform: translateY(-1px) rotate(-8deg); }
+    60%  { transform: translateY(-2px) rotate(6deg); }
+    80%  { transform: translateY(0px)  rotate(-3deg); }
+    100% { transform: translateY(0)    rotate(0deg); }
   }
   .pulse-W { color: var(--win); }
   .pulse-L { color: var(--accent); }
@@ -2053,11 +2084,24 @@
 
   function renderPulseStrip() {
     const playedGames = fullSchedule.filter(isFinal);
-    const pulseHTML = playedGames.map(g => {
+    const strip = document.getElementById('pulseStrip');
+    strip.innerHTML = '';
+    // Per-character spans (outer carries layout transform, inner carries
+    // wiggle transform) so the sort animator can address each character
+    // independently. Text-node spaces between spans preserve the inline-flow
+    // fallback look if the animator hasn't applied .pulse-positioned yet.
+    playedGames.forEach((g, i) => {
+      if (i > 0) strip.appendChild(document.createTextNode(' '));
       const w = g.result.us > g.result.them;
-      return w ? '<span class="pulse-W">W</span>' : '<span class="pulse-L">L</span>';
-    }).join(' ');
-    document.getElementById('pulseStrip').innerHTML = pulseHTML;
+      const span = document.createElement('span');
+      span.className = 'pulse-char ' + (w ? 'pulse-W' : 'pulse-L');
+      span.dataset.win = w ? '1' : '0';
+      const inner = document.createElement('span');
+      inner.className = 'pulse-char-inner';
+      inner.textContent = w ? 'W' : 'L';
+      span.appendChild(inner);
+      strip.appendChild(span);
+    });
 
     const winsCount = playedGames.filter(g => g.result.us > g.result.them).length;
     const lossesCount = playedGames.length - winsCount;
@@ -2066,6 +2110,8 @@
       : '\u2014';
     document.getElementById('pulseRecord').innerHTML =
       `${winsCount}\u2013${lossesCount}<span class="pct">${pctVal} \u00b7 ${playedGames.length} GAMES</span>`;
+
+    if (window.__pulseAnimator) window.__pulseAnimator.onRender();
   }
 
   function renderStandings() {
@@ -3074,6 +3120,287 @@
         sweep();
       }
     });
+  })();
+
+  // Section I "Season's Pulse" — tap to toggle between chronological and
+  // sorted views (Ws gathered on the left, Ls on the right, with equal
+  // columns per side so the height difference between the two piles is the
+  // visual story). A one-time teaser wiggle on five random characters
+  // (~2s after the grid first becomes visible) hints that the grid is
+  // tappable. Following the wordmark-sheen asymmetry: the teaser is ambient
+  // and skipped under prefers-reduced-motion; the sort toggle is a
+  // deliberate user action and still executes under reduced motion, but as
+  // an instant snap rather than staggered motion. Independent of the
+  // pennant-wave, baseball-spin, and wordmark-sheen IIFEs.
+  (function() {
+    const SORT_ANIM_MS = 500;
+    const SORT_STAGGER_MAX_MS = 250;
+    const SORT_TOTAL_MS = SORT_ANIM_MS + SORT_STAGGER_MAX_MS;
+    const WIGGLE_MS = 400;
+    const WIGGLE_STAGGER_MS = 500;
+    const WIGGLE_COUNT = 5;
+    const TEASER_DELAY_MS = 2000;
+    const RESIZE_DEBOUNCE_MS = 150;
+    const GAP_PCT = 0.10;
+
+    let currentMode = 'chrono';
+    let isSorting = false;
+    let teaserScheduled = false;
+    let teaserPlayed = false;
+    let pendingTeaserTimeouts = [];
+    let chronoPositions = [];
+    let sortedPositions = [];
+    let containerHeight = 0;
+    let lastWidth = 0;
+    let resizeTimer = null;
+    let resizeObserver = null;
+
+    function reducedMotion() {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+    function getStrip() {
+      return document.getElementById('pulseStrip');
+    }
+    function getChars() {
+      const s = getStrip();
+      return s ? Array.from(s.children).filter(c => c.classList && c.classList.contains('pulse-char')) : [];
+    }
+
+    // Measure the inline cell pitch (left-edge-to-left-edge of consecutive
+    // chars) and char height using a probe. The probe sits inside the strip
+    // so it inherits font/letter-spacing, but its chars are nested one level
+    // deep so the `.pulse-strip.pulse-positioned > .pulse-char` rule doesn't
+    // make them position:absolute — they flow inline, which is what we want
+    // to measure.
+    function measureCell(strip) {
+      const probe = document.createElement('div');
+      probe.style.cssText = 'position:absolute;visibility:hidden;white-space:pre;top:0;left:0;';
+      probe.innerHTML =
+        '<span class="pulse-char"><span class="pulse-char-inner">W</span></span> ' +
+        '<span class="pulse-char"><span class="pulse-char-inner">W</span></span>';
+      strip.appendChild(probe);
+      const outers = probe.querySelectorAll('.pulse-char');
+      const r0 = outers[0].getBoundingClientRect();
+      const r1 = outers[1].getBoundingClientRect();
+      const cellPitch = r1.left - r0.left;
+      const charHeight = r0.height;
+      probe.remove();
+      return { cellPitch, charHeight };
+    }
+
+    function computeLayouts(strip, chars) {
+      const stripWidth = strip.clientWidth;
+      if (stripWidth <= 0) return false;
+      const { cellPitch, charHeight } = measureCell(strip);
+      if (cellPitch <= 0 || charHeight <= 0) return false;
+      const lineHeight = charHeight; // strip has line-height: 1
+      const n = chars.length;
+      if (n === 0) {
+        chronoPositions = [];
+        sortedPositions = [];
+        containerHeight = 0;
+        return true;
+      }
+
+      // Chronological: left-to-right, wrap at stripWidth.
+      const colsChrono = Math.max(1, Math.floor(stripWidth / cellPitch));
+      const rowsChrono = Math.ceil(n / colsChrono);
+      chronoPositions = new Array(n);
+      for (let i = 0; i < n; i++) {
+        const row = Math.floor(i / colsChrono);
+        const col = i % colsChrono;
+        chronoPositions[i] = { x: col * cellPitch, y: row * lineHeight };
+      }
+      const chronoHeight = rowsChrono * lineHeight;
+
+      // Sorted: equal columns per side. The same column count on both sides
+      // is what makes the height difference between piles read as the W/L
+      // imbalance — if columns diverged, height would mean nothing.
+      const minGap = stripWidth * GAP_PCT;
+      const maxSideWidth = (stripWidth - minGap) / 2;
+      const colsSide = Math.max(1, Math.floor(maxSideWidth / cellPitch));
+
+      const wIdx = [];
+      const lIdx = [];
+      for (let i = 0; i < n; i++) {
+        if (chars[i].dataset.win === '1') wIdx.push(i);
+        else lIdx.push(i);
+      }
+      const wRows = Math.ceil(wIdx.length / colsSide);
+      const lRows = Math.ceil(lIdx.length / colsSide);
+      const sortedHeight = Math.max(wRows, lRows, 1) * lineHeight;
+
+      sortedPositions = new Array(n);
+      const sideUsedWidth = colsSide * cellPitch;
+      const rightSideX = stripWidth - sideUsedWidth;
+
+      // Bottom-up, left-to-right fill — like sediment settling. Incomplete
+      // top row left-aligns into the leftmost columns.
+      function fillSide(indices, sideStartX) {
+        for (let i = 0; i < indices.length; i++) {
+          const rowFromBottom = Math.floor(i / colsSide);
+          const col = i % colsSide;
+          const x = sideStartX + col * cellPitch;
+          const y = sortedHeight - (rowFromBottom + 1) * lineHeight;
+          sortedPositions[indices[i]] = { x, y };
+        }
+      }
+      fillSide(wIdx, 0);
+      fillSide(lIdx, rightSideX);
+
+      // Reserve the taller layout's height so the strip doesn't jump
+      // between the two modes; center the shorter layout vertically.
+      containerHeight = Math.max(chronoHeight, sortedHeight);
+      const chronoVOffset = (containerHeight - chronoHeight) / 2;
+      const sortedVOffset = (containerHeight - sortedHeight) / 2;
+      for (let i = 0; i < n; i++) {
+        chronoPositions[i].y += chronoVOffset;
+        sortedPositions[i].y += sortedVOffset;
+      }
+      return true;
+    }
+
+    function applyMode(mode, animate) {
+      const strip = getStrip();
+      const chars = getChars();
+      if (!strip) return;
+      strip.style.height = containerHeight + 'px';
+      strip.classList.add('pulse-positioned');
+      const targets = mode === 'sorted' ? sortedPositions : chronoPositions;
+      const willAnimate = animate && !reducedMotion();
+      chars.forEach((ch, i) => {
+        const t = targets[i];
+        if (!t) return;
+        if (willAnimate) {
+          const delay = Math.random() * SORT_STAGGER_MAX_MS;
+          ch.style.transition = `transform ${SORT_ANIM_MS}ms ease-out`;
+          ch.style.transitionDelay = delay + 'ms';
+        } else {
+          ch.style.transition = 'none';
+          ch.style.transitionDelay = '0ms';
+        }
+        ch.style.transform = `translate(${t.x}px, ${t.y}px)`;
+      });
+      currentMode = mode;
+    }
+
+    function cancelPendingTeaser() {
+      pendingTeaserTimeouts.forEach(clearTimeout);
+      pendingTeaserTimeouts = [];
+      const strip = getStrip();
+      if (strip) {
+        strip.querySelectorAll('.pulse-char.pulse-wiggle')
+          .forEach(c => c.classList.remove('pulse-wiggle'));
+      }
+    }
+
+    function runTeaserSequence() {
+      const chars = getChars();
+      if (chars.length === 0) return;
+      const k = Math.min(WIGGLE_COUNT, chars.length);
+      const picked = new Set();
+      while (picked.size < k) picked.add(Math.floor(Math.random() * chars.length));
+      Array.from(picked).forEach((idx, i) => {
+        const t = setTimeout(() => {
+          const cur = getChars()[idx];
+          if (!cur) return;
+          cur.classList.add('pulse-wiggle');
+          setTimeout(() => cur.classList.remove('pulse-wiggle'), WIGGLE_MS);
+        }, i * WIGGLE_STAGGER_MS);
+        pendingTeaserTimeouts.push(t);
+      });
+    }
+
+    function scheduleTeaser() {
+      if (teaserScheduled || teaserPlayed) return;
+      if (reducedMotion()) { teaserPlayed = true; return; }
+      teaserScheduled = true;
+      const t = setTimeout(() => {
+        teaserPlayed = true;
+        runTeaserSequence();
+      }, TEASER_DELAY_MS);
+      pendingTeaserTimeouts.push(t);
+    }
+
+    function bindTap(strip) {
+      if (strip.dataset.tapBound === '1') return;
+      strip.dataset.tapBound = '1';
+      strip.setAttribute('role', 'button');
+      strip.setAttribute('tabindex', '0');
+      strip.setAttribute('aria-label', 'Toggle sorted view of wins and losses');
+
+      function toggle() {
+        cancelPendingTeaser();
+        teaserPlayed = true;
+        teaserScheduled = true;
+        if (isSorting) return;
+        if (chronoPositions.length === 0) return;
+        const next = currentMode === 'chrono' ? 'sorted' : 'chrono';
+        isSorting = true;
+        applyMode(next, true);
+        const wait = reducedMotion() ? 0 : SORT_TOTAL_MS;
+        setTimeout(() => { isSorting = false; }, wait);
+      }
+
+      strip.addEventListener('click', toggle);
+      strip.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggle();
+        }
+      });
+    }
+
+    function bindResizeObserver(strip) {
+      if (resizeObserver) return;
+      resizeObserver = new ResizeObserver(() => {
+        const w = strip.clientWidth;
+        if (w === 0) { lastWidth = 0; return; }
+        if (w === lastWidth) return;
+        const firstVisible = lastWidth === 0;
+        lastWidth = w;
+        const apply = () => {
+          const chars = getChars();
+          if (chars.length === 0) return;
+          if (computeLayouts(strip, chars)) {
+            applyMode(currentMode, false);
+          }
+        };
+        if (firstVisible) {
+          apply();
+          scheduleTeaser();
+        } else {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(apply, RESIZE_DEBOUNCE_MS);
+        }
+      });
+      resizeObserver.observe(strip);
+    }
+
+    function onRender() {
+      const strip = getStrip();
+      if (!strip) return;
+      const chars = getChars();
+      bindTap(strip);
+      bindResizeObserver(strip);
+      isSorting = false;
+      if (chars.length === 0) {
+        strip.style.height = '';
+        strip.classList.remove('pulse-positioned');
+        return;
+      }
+      if (computeLayouts(strip, chars)) {
+        lastWidth = strip.clientWidth;
+        applyMode(currentMode, false);
+        scheduleTeaser();
+      }
+    }
+
+    window.__pulseAnimator = { onRender };
+
+    // Bootstrap: the initial renderPulseStrip ran before this IIFE
+    // registered itself, so its onRender call no-op'd. Run once now.
+    onRender();
   })();
 
   // Try to load fresh data on page load, silently. If it fails, the page
