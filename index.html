@@ -486,7 +486,7 @@
     transform-origin: 50% 60%;
   }
   .pulse-char.pulse-wiggle > .pulse-char-inner {
-    animation: pulse-wiggle 400ms ease-in-out;
+    animation: pulse-wiggle 800ms ease-in-out;
   }
   @keyframes pulse-wiggle {
     0%   { transform: translateY(0)    rotate(0deg); }
@@ -3136,12 +3136,12 @@
     const SORT_ANIM_MS = 500;
     const SORT_STAGGER_MAX_MS = 250;
     const SORT_TOTAL_MS = SORT_ANIM_MS + SORT_STAGGER_MAX_MS;
-    const WIGGLE_MS = 400;
-    const WIGGLE_STAGGER_MS = 500;
+    const WIGGLE_MS = 800;
+    const WIGGLE_STAGGER_MS = 500;  // intentionally < WIGGLE_MS — overlap creates a continuous ripple
     const WIGGLE_COUNT = 5;
     const TEASER_DELAY_MS = 2000;
     const RESIZE_DEBOUNCE_MS = 150;
-    const GAP_PCT = 0.10;
+    const GAP_PCT = 0.05;
 
     let currentMode = 'chrono';
     let isSorting = false;
@@ -3234,14 +3234,17 @@
       const sideUsedWidth = colsSide * cellPitch;
       const rightSideX = stripWidth - sideUsedWidth;
 
-      // Bottom-up, left-to-right fill — like sediment settling. Incomplete
-      // top row left-aligns into the leftmost columns.
+      // Top-down, left-to-right fill. Top row always full (or as full as it
+      // can be); the partial row sits at the bottom. Both piles top-align to
+      // the same horizontal line so the W pile's bottom row visibly extends
+      // past the L pile's bottom edge — that ragged-bottom asymmetry is what
+      // makes the W/L imbalance read at a glance.
       function fillSide(indices, sideStartX) {
         for (let i = 0; i < indices.length; i++) {
-          const rowFromBottom = Math.floor(i / colsSide);
+          const row = Math.floor(i / colsSide);
           const col = i % colsSide;
           const x = sideStartX + col * cellPitch;
-          const y = sortedHeight - (rowFromBottom + 1) * lineHeight;
+          const y = row * lineHeight;
           sortedPositions[indices[i]] = { x, y };
         }
       }
