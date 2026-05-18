@@ -52,6 +52,25 @@
     z-index: 1;
     opacity: 0.92;
   }
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 2240px;
+    height: 1491px;
+    background-image: url('./marquee.png');
+    background-repeat: no-repeat;
+    background-size: 2240px 1491px;
+    background-position: top left;
+    transform: translate(-50%, -30%) rotate(15.56deg);
+    transform-origin: center center;
+    opacity: 0.15;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent);
+    mask-image: linear-gradient(to bottom, black, transparent);
+    pointer-events: none;
+    z-index: 1;
+  }
   .container {
     max-width: 1100px;
     margin: 0 auto;
