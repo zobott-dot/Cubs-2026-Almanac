@@ -1,6 +1,6 @@
 # Cubs 2026 Almanac
 
-A self-updating Chicago Cubs 2026 season tracker built for family and friends. Deployed at https://zobott-dot.github.io/Cubs-2026-Almanac/.
+A Chicago Cubs 2026 season tracker built for family and friends. Deployed at https://zobott-dot.github.io/Cubs-2026-Almanac/ (Pages site unpublished 2026-05-20; data automation paused on the same date — see Architecture below).
 
 ## Architecture
 
@@ -8,7 +8,7 @@ Three files do all the work:
 
 - **index.html** — Single static page with an embedded fallback schedule baked in so the page is never blank before data.json loads.
 - **update_data.py** — Python stdlib-only script that calls the MLB Stats API, assembles the current schedule and standings, and writes `data.json` to the repo root.
-- **.github/workflows/update.yml** — GitHub Action that runs `update_data.py` every 3 hours and commits the result.
+- **.github/workflows/update.yml** — GitHub Action that runs `update_data.py` on a cron and commits the result. **Paused 2026-05-20:** the `schedule:` block is commented out (Pages site is unpublished, so the data refresh was doing pointless work). `workflow_dispatch:` is still enabled — manual runs from the Actions tab work. To resume: uncomment the `schedule:` block; the prior cadence (`*/10 14-23,0-4 * * *` plus `0 */3 * * *` overnight) is preserved as comments in the file.
 
 ### Why it works this way
 
@@ -255,7 +255,7 @@ Rules about non-obvious behavior that must survive future edits.
 - Radio span requires the two-class pattern: `class="<base> <base>-radio"` (e.g. `class="game-channel game-channel-radio"`, `class="hero-channel hero-channel-radio"`, `class="sched-channel sched-channel-radio"`, `class="sched-subline-channel sched-subline-channel-radio"`). The base class on the radio span is load-bearing — it's how the radio span picks up JetBrains Mono, uppercase, and letter-spacing typography directly. Inheritance through the parent wrapper isn't reliable across all four contexts; the two-class pattern was added after the May 2026 deploy when single-class radio spans rendered in serif. The `-radio` modifier rule sets `color: var(--ink-soft); font-weight: 400` — the font-weight reset defeats any bold inherited from a sibling `.national` span.
 - Full Slate main row (`buildGameRow`) wraps the TV+radio pair in a `.sched-channel-cell` span to preserve the 5-column grid (`80px 1fr 70px 180px 38px`). The wrapper is the grid item; it carries `text-align: right` and the inner spans flow inline within it. Don't unwrap the pair into direct grid children — that creates a 6th grid item and pushes the W/L badge to a wrapped second row on completed games. The Recent/Coming Up `.game-channel` div, the hero band, and the Full Slate sub-line don't need this wrapper because they're not direct grid children.
 - Section IV's `data-section-id` stays as `watch` despite the user-facing rename to "Where to Catch the Game." The id is structural, not a label — keeping it stable preserves any localStorage section-order continuity from the old drag-to-reorder feature. Don't rename the id to match the title; rename the title freely.
-- **Cron cadence is aspirational, not contractual.** The `*/10 14-23,0-4 * * *` schedule in `.github/workflows/update.yml` is what we ask GitHub for; actual observed cadence is closer to every 1–3 hours due to GitHub's silent throttling of scheduled workflows on free public repos. Verified May 15, 2026: 15 runs in 24 hours instead of the expected 90+. Do NOT "fix" this by tightening the cron — the schedule is already as aggressive as the platform will accept, and tightening further changes nothing. The consumer-side `final-pending` state in the hero band (added May 10) is the intentional backstop for this gap. If `final-pending` appears to persist longer than it should, the cause is upstream cron throttling, not a bug in the classifier or `update_data.py`.
+- **Cron cadence is aspirational, not contractual.** *Moot while automation is paused (2026-05-20) — this contract applies whenever the `schedule:` block is restored.* The `*/10 14-23,0-4 * * *` schedule in `.github/workflows/update.yml` is what we ask GitHub for; actual observed cadence is closer to every 1–3 hours due to GitHub's silent throttling of scheduled workflows on free public repos. Verified May 15, 2026: 15 runs in 24 hours instead of the expected 90+. Do NOT "fix" this by tightening the cron — the schedule is already as aggressive as the platform will accept, and tightening further changes nothing. The consumer-side `final-pending` state in the hero band (added May 10) is the intentional backstop for this gap. If `final-pending` appears to persist longer than it should, the cause is upstream cron throttling, not a bug in the classifier or `update_data.py`.
 
 ## Working with Dave
 
