@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-05-20T00:01:01.991202+00:00",
+  "updatedAt": "2026-05-20T03:56:01.187431+00:00",
   "schedule": [
     {
       "date": "2026-03-26",
@@ -12751,8 +12751,8 @@
       "home": true,
       "time": "6:40 PM",
       "result": {
-        "us": 0,
-        "them": 1
+        "us": 2,
+        "them": 5
       },
       "broadcast": "MARQUEE",
       "gamePk": 824677,
@@ -13733,11 +13733,6 @@
             }
           }
         ]
-      },
-      "live": {
-        "status": "In Progress",
-        "inning": 1,
-        "inningHalf": "Bottom"
       }
     },
     {
@@ -14907,28 +14902,28 @@
       "team": "Cubs",
       "abbr": "",
       "w": 29,
-      "l": 19
+      "l": 20
     },
     {
       "team": "Brewers",
       "abbr": "",
-      "w": 27,
+      "w": 28,
       "l": 18
     },
     {
       "team": "Cardinals",
       "abbr": "",
-      "w": 27,
+      "w": 28,
       "l": 19
     },
     {
-      "team": "Pirates",
+      "team": "Reds",
       "abbr": "",
-      "w": 24,
-      "l": 23
+      "w": 25,
+      "l": 24
     },
     {
-      "team": "Reds",
+      "team": "Pirates",
       "abbr": "",
       "w": 24,
       "l": 24
