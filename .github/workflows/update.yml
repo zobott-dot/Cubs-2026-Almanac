@@ -1,18 +1,22 @@
+# Paused 2026-05-20: GitHub Pages site for this repo is unpublished.
+# Scheduled cron is commented out. Manual workflow_dispatch is still available.
+# To resume automation, restore the schedule: block.
+
 name: Update Cubs data
 
 on:
-  schedule:
-    # Every 10 minutes during the likely game window (9am-midnight Central
-    # = 14:00-04:59 UTC during CDT). The 9am start gives the cron 4-5 cycles
-    # to catch posted lineups before the typical Wrigley 1:20 PM first pitch
-    # (lineups go up ~2-3 hours before first pitch). Also catches live-score
-    # updates and shrinks the post-game stale-in-progress window when
-    # GitHub Actions cron drops cluster.
-    - cron: "*/10 14-23,0-4 * * *"
-    # Every 3 hours overnight as a fallback for late West Coast finals
-    # and schedule changes. Overlaps the 15-min window at a few hours;
-    # those duplicate runs are harmless.
-    - cron: "0 */3 * * *"
+  # schedule:
+  #   # Every 10 minutes during the likely game window (9am-midnight Central
+  #   # = 14:00-04:59 UTC during CDT). The 9am start gives the cron 4-5 cycles
+  #   # to catch posted lineups before the typical Wrigley 1:20 PM first pitch
+  #   # (lineups go up ~2-3 hours before first pitch). Also catches live-score
+  #   # updates and shrinks the post-game stale-in-progress window when
+  #   # GitHub Actions cron drops cluster.
+  #   - cron: "*/10 14-23,0-4 * * *"
+  #   # Every 3 hours overnight as a fallback for late West Coast finals
+  #   # and schedule changes. Overlaps the 15-min window at a few hours;
+  #   # those duplicate runs are harmless.
+  #   - cron: "0 */3 * * *"
   # Allow manual runs from the Actions tab
   workflow_dispatch:
 
