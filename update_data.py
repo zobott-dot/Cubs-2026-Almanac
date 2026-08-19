@@ -647,8 +647,13 @@ def fetch_standings():
                 "l": tr.get("losses", 0),
             })
 
-    # Sort by wins desc, losses asc — matches "first place by record"
-    standings.sort(key=lambda s: (-s["w"], s["l"]))
+    # Sort by winning percentage desc; raw wins as stable tiebreaker.
+    # MLB orders divisions by PCT, not raw wins — a team can have more total
+    # wins but a lower PCT if it has played more games.
+    standings.sort(key=lambda s: (
+        -(s["w"] / (s["w"] + s["l"])) if (s["w"] + s["l"]) else 0,
+        -s["w"]
+    ))
     return standings
 
 
